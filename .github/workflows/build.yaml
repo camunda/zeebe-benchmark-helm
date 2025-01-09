@@ -42,7 +42,7 @@ jobs:
     name: Auto-merge dependency PRs
     runs-on: ubuntu-latest
     needs: [ build ]
-    if: github.repository == 'zeebe-io/benchmark-helm' && (github.actor == 'dependabot[bot]' || github.actor == 'renovate[bot]')
+    if: github.repository == 'camunda/zeebe-benchmark-helm' && (github.actor == 'dependabot[bot]' || github.actor == 'renovate[bot]')
     permissions:
       checks: read
       pull-requests: write
