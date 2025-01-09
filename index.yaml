@@ -30,11 +30,11 @@ entries:
       name: Zelldon
     name: zeebe-benchmark
     sources:
-    - https://github.com/zeebe-io/benchmark-helm
+    - https://github.com/camunda/zeebe-benchmark-helm
     - https://github.com/camunda/camunda
     type: application
     urls:
-    - https://github.com/zeebe-io/benchmark-helm/releases/download/zeebe-benchmark-0.3.8/zeebe-benchmark-0.3.8.tgz
+    - https://github.com/camunda/zeebe-benchmark-helm/releases/download/zeebe-benchmark-0.3.8/zeebe-benchmark-0.3.8.tgz
     version: 0.3.8
   - annotations:
       artifacthub.io/changes: |
@@ -65,11 +65,11 @@ entries:
       name: Zelldon
     name: zeebe-benchmark
     sources:
-    - https://github.com/zeebe-io/benchmark-helm
+    - https://github.com/camunda/zeebe-benchmark-helm
     - https://github.com/camunda/camunda
     type: application
     urls:
-    - https://github.com/zeebe-io/benchmark-helm/releases/download/zeebe-benchmark-0.3.7/zeebe-benchmark-0.3.7.tgz
+    - https://github.com/camunda/zeebe-benchmark-helm/releases/download/zeebe-benchmark-0.3.7/zeebe-benchmark-0.3.7.tgz
     version: 0.3.7
   - annotations:
       artifacthub.io/changes: |
@@ -100,11 +100,11 @@ entries:
       name: Zelldon
     name: zeebe-benchmark
     sources:
-    - https://github.com/zeebe-io/benchmark-helm
+    - https://github.com/camunda/zeebe-benchmark-helm
     - https://github.com/camunda/camunda
     type: application
     urls:
-    - https://github.com/zeebe-io/benchmark-helm/releases/download/zeebe-benchmark-0.3.6/zeebe-benchmark-0.3.6.tgz
+    - https://github.com/camunda/zeebe-benchmark-helm/releases/download/zeebe-benchmark-0.3.6/zeebe-benchmark-0.3.6.tgz
     version: 0.3.6
   - annotations:
       artifacthub.io/changes: |
@@ -135,11 +135,11 @@ entries:
       name: Zelldon
     name: zeebe-benchmark
     sources:
-    - https://github.com/zeebe-io/benchmark-helm
+    - https://github.com/camunda/zeebe-benchmark-helm
     - https://github.com/camunda/camunda
     type: application
     urls:
-    - https://github.com/zeebe-io/benchmark-helm/releases/download/zeebe-benchmark-0.3.5/zeebe-benchmark-0.3.5.tgz
+    - https://github.com/camunda/zeebe-benchmark-helm/releases/download/zeebe-benchmark-0.3.5/zeebe-benchmark-0.3.5.tgz
     version: 0.3.5
   - annotations:
       artifacthub.io/changes: |
@@ -178,11 +178,11 @@ entries:
       name: Zelldon
     name: zeebe-benchmark
     sources:
-    - https://github.com/zeebe-io/benchmark-helm
+    - https://github.com/camunda/zeebe-benchmark-helm
     - https://github.com/camunda/camunda
     type: application
     urls:
-    - https://github.com/zeebe-io/benchmark-helm/releases/download/zeebe-benchmark-0.3.4/zeebe-benchmark-0.3.4.tgz
+    - https://github.com/camunda/zeebe-benchmark-helm/releases/download/zeebe-benchmark-0.3.4/zeebe-benchmark-0.3.4.tgz
     version: 0.3.4
   - annotations:
       artifacthub.io/changes: |
@@ -229,11 +229,11 @@ entries:
       name: Zelldon
     name: zeebe-benchmark
     sources:
-    - https://github.com/zeebe-io/benchmark-helm
+    - https://github.com/camunda/zeebe-benchmark-helm
     - https://github.com/camunda/camunda
     type: application
     urls:
-    - https://github.com/zeebe-io/benchmark-helm/releases/download/zeebe-benchmark-0.3.3/zeebe-benchmark-0.3.3.tgz
+    - https://github.com/camunda/zeebe-benchmark-helm/releases/download/zeebe-benchmark-0.3.3/zeebe-benchmark-0.3.3.tgz
     version: 0.3.3
   - annotations:
       artifacthub.io/changes: ""
@@ -262,11 +262,11 @@ entries:
       name: Zelldon
     name: zeebe-benchmark
     sources:
-    - https://github.com/zeebe-io/benchmark-helm
+    - https://github.com/camunda/zeebe-benchmark-helm
     - https://github.com/camunda/camunda
     type: application
     urls:
-    - https://github.com/zeebe-io/benchmark-helm/releases/download/zeebe-benchmark-0.3.2/zeebe-benchmark-0.3.2.tgz
+    - https://github.com/camunda/zeebe-benchmark-helm/releases/download/zeebe-benchmark-0.3.2/zeebe-benchmark-0.3.2.tgz
     version: 0.3.2
   - annotations:
       artifacthub.io/changes: |
@@ -303,11 +303,11 @@ entries:
       name: Zelldon
     name: zeebe-benchmark
     sources:
-    - https://github.com/zeebe-io/benchmark-helm
+    - https://github.com/camunda/zeebe-benchmark-helm
     - https://github.com/camunda/camunda
     type: application
     urls:
-    - https://github.com/zeebe-io/benchmark-helm/releases/download/zeebe-benchmark-0.3.1/zeebe-benchmark-0.3.1.tgz
+    - https://github.com/camunda/zeebe-benchmark-helm/releases/download/zeebe-benchmark-0.3.1/zeebe-benchmark-0.3.1.tgz
     version: 0.3.1
   - annotations:
       artifacthub.io/changes: |
@@ -362,11 +362,11 @@ entries:
       name: Zelldon
     name: zeebe-benchmark
     sources:
-    - https://github.com/zeebe-io/benchmark-helm
+    - https://github.com/camunda/zeebe-benchmark-helm
     - https://github.com/camunda/camunda
     type: application
     urls:
-    - https://github.com/zeebe-io/benchmark-helm/releases/download/zeebe-benchmark-0.3.0/zeebe-benchmark-0.3.0.tgz
+    - https://github.com/camunda/zeebe-benchmark-helm/releases/download/zeebe-benchmark-0.3.0/zeebe-benchmark-0.3.0.tgz
     version: 0.3.0
   - annotations:
       artifacthub.io/changes: |
@@ -397,11 +397,11 @@ entries:
       name: Zelldon
     name: zeebe-benchmark
     sources:
-    - https://github.com/zeebe-io/benchmark-helm
+    - https://github.com/camunda/zeebe-benchmark-helm
     - https://github.com/camunda/camunda
     type: application
     urls:
-    - https://github.com/zeebe-io/benchmark-helm/releases/download/zeebe-benchmark-0.2.4/zeebe-benchmark-0.2.4.tgz
+    - https://github.com/camunda/zeebe-benchmark-helm/releases/download/zeebe-benchmark-0.2.4/zeebe-benchmark-0.2.4.tgz
     version: 0.2.4
   - annotations:
       artifacthub.io/changes: |
@@ -432,11 +432,11 @@ entries:
       name: Zelldon
     name: zeebe-benchmark
     sources:
-    - https://github.com/zeebe-io/benchmark-helm
+    - https://github.com/camunda/zeebe-benchmark-helm
     - https://github.com/camunda/camunda
     type: application
     urls:
-    - https://github.com/zeebe-io/benchmark-helm/releases/download/zeebe-benchmark-0.2.3/zeebe-benchmark-0.2.3.tgz
+    - https://github.com/camunda/zeebe-benchmark-helm/releases/download/zeebe-benchmark-0.2.3/zeebe-benchmark-0.2.3.tgz
     version: 0.2.3
   - annotations:
       artifacthub.io/changes: |
@@ -475,11 +475,11 @@ entries:
       name: Zelldon
     name: zeebe-benchmark
     sources:
-    - https://github.com/zeebe-io/benchmark-helm
+    - https://github.com/camunda/zeebe-benchmark-helm
     - https://github.com/camunda/camunda
     type: application
     urls:
-    - https://github.com/zeebe-io/benchmark-helm/releases/download/zeebe-benchmark-0.2.2/zeebe-benchmark-0.2.2.tgz
+    - https://github.com/camunda/zeebe-benchmark-helm/releases/download/zeebe-benchmark-0.2.2/zeebe-benchmark-0.2.2.tgz
     version: 0.2.2
   - annotations:
       artifacthub.io/changes: |
@@ -510,11 +510,11 @@ entries:
       name: Zelldon
     name: zeebe-benchmark
     sources:
-    - https://github.com/zeebe-io/benchmark-helm
+    - https://github.com/camunda/zeebe-benchmark-helm
     - https://github.com/camunda/zeebe
     type: application
     urls:
-    - https://github.com/zeebe-io/benchmark-helm/releases/download/zeebe-benchmark-0.2.1/zeebe-benchmark-0.2.1.tgz
+    - https://github.com/camunda/zeebe-benchmark-helm/releases/download/zeebe-benchmark-0.2.1/zeebe-benchmark-0.2.1.tgz
     version: 0.2.1
   - annotations:
       artifacthub.io/changes: |
@@ -563,11 +563,11 @@ entries:
       name: Zelldon
     name: zeebe-benchmark
     sources:
-    - https://github.com/zeebe-io/benchmark-helm
+    - https://github.com/camunda/zeebe-benchmark-helm
     - https://github.com/camunda/zeebe
     type: application
     urls:
-    - https://github.com/zeebe-io/benchmark-helm/releases/download/zeebe-benchmark-0.2.0/zeebe-benchmark-0.2.0.tgz
+    - https://github.com/camunda/zeebe-benchmark-helm/releases/download/zeebe-benchmark-0.2.0/zeebe-benchmark-0.2.0.tgz
     version: 0.2.0
   - annotations:
       artifacthub.io/changes: ""
@@ -596,11 +596,11 @@ entries:
       name: Zelldon
     name: zeebe-benchmark
     sources:
-    - https://github.com/zeebe-io/benchmark-helm
+    - https://github.com/camunda/zeebe-benchmark-helm
     - https://github.com/camunda/zeebe
     type: application
     urls:
-    - https://github.com/zeebe-io/benchmark-helm/releases/download/zeebe-benchmark-0.1.22/zeebe-benchmark-0.1.22.tgz
+    - https://github.com/camunda/zeebe-benchmark-helm/releases/download/zeebe-benchmark-0.1.22/zeebe-benchmark-0.1.22.tgz
     version: 0.1.22
   - annotations:
       artifacthub.io/changes: |
@@ -631,11 +631,11 @@ entries:
       name: Zelldon
     name: zeebe-benchmark
     sources:
-    - https://github.com/zeebe-io/benchmark-helm
+    - https://github.com/camunda/zeebe-benchmark-helm
     - https://github.com/camunda/zeebe
     type: application
     urls:
-    - https://github.com/zeebe-io/benchmark-helm/releases/download/zeebe-benchmark-0.1.21/zeebe-benchmark-0.1.21.tgz
+    - https://github.com/camunda/zeebe-benchmark-helm/releases/download/zeebe-benchmark-0.1.21/zeebe-benchmark-0.1.21.tgz
     version: 0.1.21
   - annotations:
       artifacthub.io/changes: |
@@ -666,11 +666,11 @@ entries:
       name: Zelldon
     name: zeebe-benchmark
     sources:
-    - https://github.com/zeebe-io/benchmark-helm
+    - https://github.com/camunda/zeebe-benchmark-helm
     - https://github.com/camunda/zeebe
     type: application
     urls:
-    - https://github.com/zeebe-io/benchmark-helm/releases/download/zeebe-benchmark-0.1.20/zeebe-benchmark-0.1.20.tgz
+    - https://github.com/camunda/zeebe-benchmark-helm/releases/download/zeebe-benchmark-0.1.20/zeebe-benchmark-0.1.20.tgz
     version: 0.1.20
   - annotations:
       artifacthub.io/changes: |
@@ -707,11 +707,11 @@ entries:
       name: Zelldon
     name: zeebe-benchmark
     sources:
-    - https://github.com/zeebe-io/benchmark-helm
+    - https://github.com/camunda/zeebe-benchmark-helm
     - https://github.com/camunda/zeebe
     type: application
     urls:
-    - https://github.com/zeebe-io/benchmark-helm/releases/download/zeebe-benchmark-0.1.19/zeebe-benchmark-0.1.19.tgz
+    - https://github.com/camunda/zeebe-benchmark-helm/releases/download/zeebe-benchmark-0.1.19/zeebe-benchmark-0.1.19.tgz
     version: 0.1.19
   - annotations:
       artifacthub.io/changes: |
@@ -742,11 +742,11 @@ entries:
       name: Zelldon
     name: zeebe-benchmark
     sources:
-    - https://github.com/zeebe-io/benchmark-helm
+    - https://github.com/camunda/zeebe-benchmark-helm
     - https://github.com/camunda/zeebe
     type: application
     urls:
-    - https://github.com/zeebe-io/benchmark-helm/releases/download/zeebe-benchmark-0.1.18/zeebe-benchmark-0.1.18.tgz
+    - https://github.com/camunda/zeebe-benchmark-helm/releases/download/zeebe-benchmark-0.1.18/zeebe-benchmark-0.1.18.tgz
     version: 0.1.18
   - annotations:
       artifacthub.io/changes: |
@@ -777,11 +777,11 @@ entries:
       name: Zelldon
     name: zeebe-benchmark
     sources:
-    - https://github.com/zeebe-io/benchmark-helm
+    - https://github.com/camunda/zeebe-benchmark-helm
     - https://github.com/camunda/zeebe
     type: application
     urls:
-    - https://github.com/zeebe-io/benchmark-helm/releases/download/zeebe-benchmark-0.1.17/zeebe-benchmark-0.1.17.tgz
+    - https://github.com/camunda/zeebe-benchmark-helm/releases/download/zeebe-benchmark-0.1.17/zeebe-benchmark-0.1.17.tgz
     version: 0.1.17
   - annotations:
       artifacthub.io/changes: |
@@ -816,11 +816,11 @@ entries:
       name: Zelldon
     name: zeebe-benchmark
     sources:
-    - https://github.com/zeebe-io/benchmark-helm
+    - https://github.com/camunda/zeebe-benchmark-helm
     - https://github.com/camunda/zeebe
     type: application
     urls:
-    - https://github.com/zeebe-io/benchmark-helm/releases/download/zeebe-benchmark-0.1.16/zeebe-benchmark-0.1.16.tgz
+    - https://github.com/camunda/zeebe-benchmark-helm/releases/download/zeebe-benchmark-0.1.16/zeebe-benchmark-0.1.16.tgz
     version: 0.1.16
   - annotations:
       artifacthub.io/changes: |
@@ -847,11 +847,11 @@ entries:
       name: Zelldon
     name: zeebe-benchmark
     sources:
-    - https://github.com/zeebe-io/benchmark-helm
+    - https://github.com/camunda/zeebe-benchmark-helm
     - https://github.com/camunda/zeebe
     type: application
     urls:
-    - https://github.com/zeebe-io/benchmark-helm/releases/download/zeebe-benchmark-0.1.15/zeebe-benchmark-0.1.15.tgz
+    - https://github.com/camunda/zeebe-benchmark-helm/releases/download/zeebe-benchmark-0.1.15/zeebe-benchmark-0.1.15.tgz
     version: 0.1.15
   - annotations:
       artifacthub.io/changes: |
@@ -880,11 +880,11 @@ entries:
       name: Zelldon
     name: zeebe-benchmark
     sources:
-    - https://github.com/zeebe-io/benchmark-helm
+    - https://github.com/camunda/zeebe-benchmark-helm
     - https://github.com/camunda/zeebe
     type: application
     urls:
-    - https://github.com/zeebe-io/benchmark-helm/releases/download/zeebe-benchmark-0.1.14/zeebe-benchmark-0.1.14.tgz
+    - https://github.com/camunda/zeebe-benchmark-helm/releases/download/zeebe-benchmark-0.1.14/zeebe-benchmark-0.1.14.tgz
     version: 0.1.14
   - annotations:
       artifacthub.io/changes: |
@@ -911,11 +911,11 @@ entries:
       name: Zelldon
     name: zeebe-benchmark
     sources:
-    - https://github.com/zeebe-io/benchmark-helm
+    - https://github.com/camunda/zeebe-benchmark-helm
     - https://github.com/camunda/zeebe
     type: application
     urls:
-    - https://github.com/zeebe-io/benchmark-helm/releases/download/zeebe-benchmark-0.1.13/zeebe-benchmark-0.1.13.tgz
+    - https://github.com/camunda/zeebe-benchmark-helm/releases/download/zeebe-benchmark-0.1.13/zeebe-benchmark-0.1.13.tgz
     version: 0.1.13
   - annotations:
       artifacthub.io/changes: |
@@ -944,11 +944,11 @@ entries:
       name: Zelldon
     name: zeebe-benchmark
     sources:
-    - https://github.com/zeebe-io/benchmark-helm
+    - https://github.com/camunda/zeebe-benchmark-helm
     - https://github.com/camunda/zeebe
     type: application
     urls:
-    - https://github.com/zeebe-io/benchmark-helm/releases/download/zeebe-benchmark-0.1.12/zeebe-benchmark-0.1.12.tgz
+    - https://github.com/camunda/zeebe-benchmark-helm/releases/download/zeebe-benchmark-0.1.12/zeebe-benchmark-0.1.12.tgz
     version: 0.1.12
   - annotations:
       artifacthub.io/changes: |
@@ -975,11 +975,11 @@ entries:
       name: Zelldon
     name: zeebe-benchmark
     sources:
-    - https://github.com/zeebe-io/benchmark-helm
+    - https://github.com/camunda/zeebe-benchmark-helm
     - https://github.com/camunda/zeebe
     type: application
     urls:
-    - https://github.com/zeebe-io/benchmark-helm/releases/download/zeebe-benchmark-0.1.11/zeebe-benchmark-0.1.11.tgz
+    - https://github.com/camunda/zeebe-benchmark-helm/releases/download/zeebe-benchmark-0.1.11/zeebe-benchmark-0.1.11.tgz
     version: 0.1.11
   - annotations:
       artifacthub.io/changes: |
@@ -1014,11 +1014,11 @@ entries:
       name: Zelldon
     name: zeebe-benchmark
     sources:
-    - https://github.com/zeebe-io/benchmark-helm
+    - https://github.com/camunda/zeebe-benchmark-helm
     - https://github.com/camunda/zeebe
     type: application
     urls:
-    - https://github.com/zeebe-io/benchmark-helm/releases/download/zeebe-benchmark-0.1.10/zeebe-benchmark-0.1.10.tgz
+    - https://github.com/camunda/zeebe-benchmark-helm/releases/download/zeebe-benchmark-0.1.10/zeebe-benchmark-0.1.10.tgz
     version: 0.1.10
   - annotations:
       artifacthub.io/changes: |
@@ -1047,11 +1047,11 @@ entries:
       name: Zelldon
     name: zeebe-benchmark
     sources:
-    - https://github.com/zeebe-io/benchmark-helm
+    - https://github.com/camunda/zeebe-benchmark-helm
     - https://github.com/camunda/zeebe
     type: application
     urls:
-    - https://github.com/zeebe-io/benchmark-helm/releases/download/zeebe-benchmark-0.1.9/zeebe-benchmark-0.1.9.tgz
+    - https://github.com/camunda/zeebe-benchmark-helm/releases/download/zeebe-benchmark-0.1.9/zeebe-benchmark-0.1.9.tgz
     version: 0.1.9
   - annotations:
       artifacthub.io/changes: |
@@ -1078,11 +1078,11 @@ entries:
       name: Zelldon
     name: zeebe-benchmark
     sources:
-    - https://github.com/zeebe-io/benchmark-helm
+    - https://github.com/camunda/zeebe-benchmark-helm
     - https://github.com/camunda/zeebe
     type: application
     urls:
-    - https://github.com/zeebe-io/benchmark-helm/releases/download/zeebe-benchmark-0.1.8/zeebe-benchmark-0.1.8.tgz
+    - https://github.com/camunda/zeebe-benchmark-helm/releases/download/zeebe-benchmark-0.1.8/zeebe-benchmark-0.1.8.tgz
     version: 0.1.8
   - annotations:
       artifacthub.io/changes: |
@@ -1113,11 +1113,11 @@ entries:
       name: Zelldon
     name: zeebe-benchmark
     sources:
-    - https://github.com/zeebe-io/benchmark-helm
+    - https://github.com/camunda/zeebe-benchmark-helm
     - https://github.com/camunda/zeebe
     type: application
     urls:
-    - https://github.com/zeebe-io/benchmark-helm/releases/download/zeebe-benchmark-0.1.7/zeebe-benchmark-0.1.7.tgz
+    - https://github.com/camunda/zeebe-benchmark-helm/releases/download/zeebe-benchmark-0.1.7/zeebe-benchmark-0.1.7.tgz
     version: 0.1.7
   - annotations:
       artifacthub.io/changes: |
@@ -1144,11 +1144,11 @@ entries:
       name: Zelldon
     name: zeebe-benchmark
     sources:
-    - https://github.com/zeebe-io/benchmark-helm
+    - https://github.com/camunda/zeebe-benchmark-helm
     - https://github.com/camunda/zeebe
     type: application
     urls:
-    - https://github.com/zeebe-io/benchmark-helm/releases/download/zeebe-benchmark-0.1.6/zeebe-benchmark-0.1.6.tgz
+    - https://github.com/camunda/zeebe-benchmark-helm/releases/download/zeebe-benchmark-0.1.6/zeebe-benchmark-0.1.6.tgz
     version: 0.1.6
   - annotations:
       artifacthub.io/changes: |
@@ -1181,11 +1181,11 @@ entries:
       name: Zelldon
     name: zeebe-benchmark
     sources:
-    - https://github.com/zeebe-io/benchmark-helm
+    - https://github.com/camunda/zeebe-benchmark-helm
     - https://github.com/camunda/zeebe
     type: application
     urls:
-    - https://github.com/zeebe-io/benchmark-helm/releases/download/zeebe-benchmark-0.1.5/zeebe-benchmark-0.1.5.tgz
+    - https://github.com/camunda/zeebe-benchmark-helm/releases/download/zeebe-benchmark-0.1.5/zeebe-benchmark-0.1.5.tgz
     version: 0.1.5
   - annotations:
       artifacthub.io/changes: |
@@ -1212,11 +1212,11 @@ entries:
       name: Zelldon
     name: zeebe-benchmark
     sources:
-    - https://github.com/zeebe-io/benchmark-helm
+    - https://github.com/camunda/zeebe-benchmark-helm
     - https://github.com/camunda/zeebe
     type: application
     urls:
-    - https://github.com/zeebe-io/benchmark-helm/releases/download/zeebe-benchmark-0.1.4/zeebe-benchmark-0.1.4.tgz
+    - https://github.com/camunda/zeebe-benchmark-helm/releases/download/zeebe-benchmark-0.1.4/zeebe-benchmark-0.1.4.tgz
     version: 0.1.4
   - annotations:
       artifacthub.io/changes: |
@@ -1247,11 +1247,11 @@ entries:
       name: Zelldon
     name: zeebe-benchmark
     sources:
-    - https://github.com/zeebe-io/benchmark-helm
+    - https://github.com/camunda/zeebe-benchmark-helm
     - https://github.com/camunda/zeebe
     type: application
     urls:
-    - https://github.com/zeebe-io/benchmark-helm/releases/download/zeebe-benchmark-0.1.3/zeebe-benchmark-0.1.3.tgz
+    - https://github.com/camunda/zeebe-benchmark-helm/releases/download/zeebe-benchmark-0.1.3/zeebe-benchmark-0.1.3.tgz
     version: 0.1.3
   - annotations:
       artifacthub.io/changes: ""
@@ -1276,10 +1276,10 @@ entries:
       name: Zelldon
     name: zeebe-benchmark
     sources:
-    - https://github.com/zeebe-io/benchmark-helm
+    - https://github.com/camunda/zeebe-benchmark-helm
     - https://github.com/camunda/zeebe
     type: application
     urls:
-    - https://github.com/zeebe-io/benchmark-helm/releases/download/zeebe-benchmark-0.1.2/zeebe-benchmark-0.1.2.tgz
+    - https://github.com/camunda/zeebe-benchmark-helm/releases/download/zeebe-benchmark-0.1.2/zeebe-benchmark-0.1.2.tgz
     version: 0.1.2
 generated: "2024-11-13T08:18:45.405764105Z"
