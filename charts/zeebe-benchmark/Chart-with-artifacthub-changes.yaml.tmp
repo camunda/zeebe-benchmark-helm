@@ -5,7 +5,7 @@ type: application
 version: 0.3.8
 appVersion: "8.2.5"
 sources:
-  - https://github.com/zeebe-io/benchmark-helm
+  - https://github.com/camunda/zeebe-benchmark-helm
   - https://github.com/camunda/camunda
 dependencies:
   - name: camunda-platform

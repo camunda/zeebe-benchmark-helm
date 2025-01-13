@@ -1,7 +1,7 @@
 # Zeebe Benchmark Helm 
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-[![Test - Unit](https://github.com/zeebe-io/benchmark-helm/actions/workflows/build.yaml/badge.svg)](https://github.com/zeebe-io/benchmark-helm/actions/workflows/build.yaml)
+[![Test - Unit](https://github.com/camunda/zeebe-benchmark-helm/actions/workflows/build.yaml/badge.svg)](https://github.com/camunda/zeebe-benchmark-helm/actions/workflows/build.yaml)
 
 - [Overview](#overview)
 - [Installation](#installation)
@@ -15,7 +15,7 @@
 Zeebe benchmark Helm charts repo. The Zeebe Benchmark Helm chart is an chart which allows the Zeebe Team
 to run perfromance and stability tests also called benchmarks against Zeebe. 
 
-It makes use of the public available [Camunda Platform 8 Helm chart](https://github.com/zeebe-io/benchmark-helm/actions/workflows/build.yaml), and adds addition features to it.
+It makes use of the public available [Camunda Platform 8 Helm chart](https://github.com/camunda/zeebe-benchmark-helm/actions/workflows/build.yaml), and adds addition features to it.
 
 ## Installation
 
@@ -26,7 +26,7 @@ on the [Zeebe Benchmark Helm chart README](./charts/zeebe-benchmark/README.md).
 
 We value all feedback and contributions. To start contributing to this project, please:
 
-- **Don't create a PR without opening [an issue](https://github.com/zeebe-io/benchmark-helm/issues/new/choose)
+- **Don't create a PR without opening [an issue](https://github.com/camunda/zeebe-benchmark-helm/issues/new/choose)
   and/or discussing it first.**
 - Familiarize yourself with the
   [contribution guide](./CONTRIBUTING.md).
