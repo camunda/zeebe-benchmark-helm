@@ -61,7 +61,7 @@ The first command adds the Zeebe Benchmark Helm charts repo, and the second inst
 Kubernetes context.
 
 ```shell
-  helm repo add zeebe-benchmark https://zeebe-io.github.io/benchmark-helm/
+  helm repo add zeebe-benchmark https://camunda.github.io/zeebe-benchmark-helm/
   helm install this-is-a-benchmark zeebe-benchmark/zeebe-benchmark
 ```
 
