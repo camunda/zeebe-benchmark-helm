@@ -27,7 +27,7 @@ spec:
                 {{- if $.Values.saas.enabled }}
                 -Dapp.tls=true
                 {{- else }}
-                -Dapp.brokerUrl={{ $.Release.Name }}-zeebe-gateway:26500
+                -Dapp.brokerUrl={{ $.Release.Name }}-core:26500
                 {{- end }}
                 -Dzeebe.client.requestTimeout=62000
                 {{- if $worker.capacity }}

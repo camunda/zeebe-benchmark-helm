@@ -1,21 +1,3 @@
-# Example values file for a realistic Zeebe benchmark.
-global:
-  # Disable global ingress
-  ingress:
-    enabled: false
-  # Image configuration to be used in each sub chart
-  image:
-    # Image.repository defines the repository from which to fetch the docker images
-    repository: "gcr.io/zeebe-io"
-    # Image.tag defines the tag / version which should be used in the chart
-    tag: SNAPSHOT
-    # Image.pullPolicy defines the image pull policy which should be used https://kubernetes.io/docs/concepts/containers/images/#image-pull-policy
-    pullPolicy: Always
-  # Disable Identity completely; both this flag and `camunda-platform.identity.enabled` are required.
-  identity:
-    auth:
-      enabled: false
-
 # DEPRECATED worker configuration for the to be deployed worker application
 worker:
   # Worker.benchmark.replicas defines how many replicas of the benchmark worker should be deployed
@@ -217,73 +199,98 @@ starter:
   # each created process instance
   businessKey: "customerId"
 
+## @section Orchestration Core Parameters
+## @extra core configuration for the Orchestration Core.
 camunda-platform:
-  enabled: true
-
-  zeebe:
-    # Image configuration to configure the zeebe image specifics
-    image:
-      # Image.repository defines which image repository to use
-      repository: camunda/zeebe
-      tag: SNAPSHOT
-
-    # Retention can be used to define the data in Elasticsearch (ILM).
-    retention:
-      ## @param zeebe.retention.enabled if true, the ILM Policy is created and applied to the index templates.
-      enabled: true
-      ## @param zeebe.retention.minimumAge defines how old the data must be, before the data is deleted as a duration.
-      minimumAge: 1d # set it to a higher value if we run with operate, so operate has enough time to consume the data
-
-    # Resources configuration to set request and limit configuration for the container https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limitsS
-    resources:
-      limits:
-        cpu: 1700m
-        memory: 4Gi
-      requests:
-        cpu: 1350m
-        memory: 4Gi
-
-  zeebeGateway:
-    # Replicas defines how many standalone gateways are deployed
-    replicas: 2
-
-    # Image configuration to configure the zeebe-gateway image specifics
-    image:
-      # Image.repository defines which image repository to use
-      repository: camunda/zeebe
-      tag: SNAPSHOT
-
-    # Resources configuration to set request and limit configuration for the container https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits
-    resources:
-      limits:
-        cpu: 450m
-        memory: 1Gi
-      requests:
-        cpu: 450m
-        memory: 1Gi
-
-  operate:
+  core:
+    ## @param core.enabled if true, all related resources are deployed via the helm release
     enabled: true
-    image:
-      repository: camunda/operate
-      tag: SNAPSHOT
-    # Resources configuration to set request and limit configuration for the container https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits
-    resources:
-      requests:
-        cpu: 600m
-        memory: 400Mi
-      limits:
-        cpu: 2000m
-        memory: 2Gi
+
+    # Environment variables
     env:
-      - name: CAMUNDA_OPERATE_IMPORTERENABLED
-        value: "false"
+      - name: K8S_NAMESPACE
+        valueFrom:
+          fieldRef:
+            fieldPath: metadata.namespace
+      - name: K8S_NAME
+        valueFrom:
+          fieldRef:
+            fieldPath: metadata.name
+      # Enable JSON logging for google cloud stackdriver
+      - name: ZEEBE_LOG_APPENDER
+        value: Stackdriver
+      - name: ZEEBE_LOG_STACKDRIVER_SERVICENAME
+        value: zeebe
+      - name: ZEEBE_LOG_STACKDRIVER_SERVICEVERSION
+        valueFrom:
+          fieldRef:
+            fieldPath: metadata.namespace
+      - name: ATOMIX_LOG_LEVEL
+        value: INFO
+      - name: ZEEBE_LOG_LEVEL
+        value: DEBUG
+      - name: PYROSCOPE_SERVER_ADDRESS
+        value: "http://pyroscope.pyroscope.svc.cluster.local:4040"
+      - name: PYROSCOPE_APPLICATION_NAME
+        value: "io.camunda.zeebe.broker"
+      - name: PYROSCOPE_LOG_LEVEL
+        value: "debug"
+      - name: PYROSCOPE_FORMAT
+        value: "jfr"
+      - name: PYROSCOPE_PROFILER_EVENT
+        value: "cpu"
+      - name: PYROSCOPE_PROFILER_ALLOC
+        value: "0"
+      - name: PYROSCOPE_PROFILER_LOCK
+        value: "0"
+      - name: PYROSCOPE_LABELS
+        value: "namespace=$(K8S_NAMESPACE), pod=$(K8S_NAME)"
+      # To be able to load a separate/additional configuration
+      # See https://github.com/camunda/camunda-platform-helm/issues/2197
+      - name: SPRING_CONFIG_ADDITIONALLOCATION
+        value: "/usr/local/camunda/config/benchmark-config.yaml"
+      - name: JAVA_OPTS
+        valueFrom:
+          configMapKeyRef:
+            name: zeebe-config
+            key: java-opts
+            optional: true
+      # To run Operate and Tasklist add these to the value of this variable
+      - name: SPRING_PROFILES_ACTIVE
+        value: "auth,broker,operate"
 
-  # ELASTIC
+    ## @param core.debug if true, extra info is printed.
+    debug: false
+
+    ## @extra core.image configuration to configure the image specifics
+    image:
+      ## @param core.image.repository defines which image repository to use
+      repository: camunda/camunda
+      ## @param core.image.tag can be set to overwrite the global tag, which should be used in that chart
+      tag: SNAPSHOT
+
+
+    ## @param core.logLevel defines the log level which is used
+    logLevel: info
+
+    ## @extra core.resources configuration to set request and limit configuration for the container https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits
+    ## @extra core.resources.requests
+    ## @param core.resources.requests.cpu
+    ## @param core.resources.requests.memory
+    ## @param core.resources.limits.cpu
+    ## @param core.resources.limits.memory
+    resources:
+      limits:
+        cpu: 3500m
+        memory: 6Gi
+      requests:
+        cpu: 2000m
+        memory: 5Gi
+
+    nodeSelector:
+      cloud.google.com/gke-nodepool: n2-standard-4
+
   elasticsearch:
-    enabled: true
-    imageTag: 8.9.2
-
     master:
       fullnameOverride: elastic
       nameOverride: elastic

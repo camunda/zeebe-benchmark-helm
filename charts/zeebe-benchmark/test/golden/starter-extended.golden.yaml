@@ -25,7 +25,7 @@ spec:
             - name: JDK_JAVA_OPTIONS
               value: >-
                 -Dconfig.override_with_env_vars=true
-                -Dapp.brokerUrl=benchmark-test-zeebe-gateway:26500
+                -Dapp.brokerUrl=benchmark-test-core:26500
                 -Dapp.starter.rate=150
                 -Dapp.starter.durationLimit=0
                 -Dzeebe.client.requestTimeout=62000

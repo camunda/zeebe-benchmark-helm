@@ -1,9 +1,9 @@
 ---
-# Source: zeebe-benchmark/charts/camunda-platform/templates/service-monitor/zeebe-gateway-service-monitor.yaml
+# Source: zeebe-benchmark/charts/camunda-platform/templates/service-monitor/core-service-monitor.yaml
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: benchmark-test-camunda-platform-zeebe-gateway
+  name: benchmark-test-camunda-platform-core
   labels:
     app: camunda-platform
     app.kubernetes.io/name: camunda-platform
@@ -15,9 +15,9 @@ spec:
   selector:
     matchLabels:
       app: camunda-platform
-      app.kubernetes.io/component: zeebe-gateway
+      app.kubernetes.io/component: core
   endpoints:
     - honorLabels: true
       path: /actuator/prometheus
-      port: http
+      port: server
       interval: 30s

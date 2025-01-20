@@ -2,11 +2,9 @@
 
 Installed Zeebe cluster with:
 
- * {{  index .Values "camunda-platform" "zeebe" "clusterSize" }} Brokers ({{ index .Values "camunda-platform" "zeebe" "image" "repository" }}:{{ index .Values "camunda-platform" "zeebe" "image" "tag" }})
- * {{  index .Values "camunda-platform" "zeebeGateway" "replicas" }} Gateways  ({{ index .Values "camunda-platform" "zeebeGateway" "image" "repository" }}:{{ index .Values "camunda-platform" "zeebeGateway" "image" "tag" }})
-{{- if index .Values "camunda-platform" "operate" "enabled" }}
- * Operate  ({{ index .Values "camunda-platform" "operate" "image" "repository" }}:{{ index .Values "camunda-platform" "operate" "image" "tag" }})
-{{ end }}
+ * {{  index .Values "camunda-platform" "core" "clusterSize" }} Brokers ({{ index .Values "camunda-platform" "core" "image" "repository" }}:{{ index .Values "camunda-platform" "core" "image" "tag" }})
+ * Active profiles: {{- range index .Values "camunda-platform" "core" "env" }}{{- if eq .name "SPRING_PROFILES_ACTIVE" }}{{ .value }}{{- end }}{{- end }}
+
 
 The benchmark is running with:
 

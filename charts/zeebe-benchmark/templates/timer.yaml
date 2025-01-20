@@ -23,7 +23,7 @@ spec:
             - name: JDK_JAVA_OPTIONS
               value: >-
                 -Dconfig.override_with_env_vars=true
-                -Dapp.brokerUrl={{ .Release.Name }}-zeebe-gateway:26500
+                -Dapp.brokerUrl={{ .Release.Name }}-core:26500
                 -Dapp.starter.rate={{ .Values.timer.rate }}
                 -Dzeebe.client.requestTimeout=62000
                 -XX:+HeapDumpOnOutOfMemoryError

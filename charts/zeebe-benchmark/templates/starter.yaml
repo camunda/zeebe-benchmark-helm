@@ -26,7 +26,7 @@ spec:
                 {{- if $.Values.saas.enabled }}
                 -Dapp.tls=true
                 {{- else }}
-                -Dapp.brokerUrl={{ $.Release.Name }}-zeebe-gateway:26500
+                -Dapp.brokerUrl={{ $.Release.Name }}-core:26500
                 {{- end }}
                 -Dapp.starter.rate={{ .Values.starter.rate }}
                 -Dapp.starter.durationLimit=0

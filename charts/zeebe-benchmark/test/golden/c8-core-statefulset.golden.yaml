@@ -1,23 +1,20 @@
 ---
-# Source: zeebe-benchmark/charts/camunda-platform/templates/zeebe-gateway/deployment.yaml
+# Source: zeebe-benchmark/charts/camunda-platform/templates/core/statefulset.yaml
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
-  name: benchmark-test-zeebe-gateway
+  name: benchmark-test-zeebe
   labels:
     app: camunda-platform
     app.kubernetes.io/name: camunda-platform
     app.kubernetes.io/instance: benchmark-test
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: camunda-platform
-    app.kubernetes.io/component: zeebe-gateway
-    app.kubernetes.io/version: "SNAPSHOT"
+    app.kubernetes.io/component: core
+    app.kubernetes.io/version: "8.7.0-alpha2"
   annotations:
-    {}
 spec:
-  strategy:
-    type: RollingUpdate
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
       app: camunda-platform
@@ -25,7 +22,11 @@ spec:
       app.kubernetes.io/instance: benchmark-test
       app.kubernetes.io/managed-by: Helm
       app.kubernetes.io/part-of: camunda-platform
-      app.kubernetes.io/component: zeebe-gateway
+      app.kubernetes.io/component: core
+  serviceName: benchmark-test-core
+  updateStrategy:
+    type: RollingUpdate
+  podManagementPolicy: Parallel
   template:
     metadata:
       labels:
@@ -34,10 +35,10 @@ spec:
         app.kubernetes.io/instance: benchmark-test
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/part-of: camunda-platform
-        app.kubernetes.io/component: zeebe-gateway
-        app.kubernetes.io/version: "SNAPSHOT"
+        app.kubernetes.io/component: core
+        app.kubernetes.io/version: "8.7.0-alpha2"
       annotations:
-        checksum/config: 5f4fd8148098be186ae2347fc681e161a687eea366b1dd43133b9dd7036fdcf4
+        checksum/config: f4dae042c812f15983bdb6cf761dec7e1809acfa8562c7b9dcad02fcf02fb4bc
     spec:
       imagePullSecrets:
         []
@@ -58,40 +59,50 @@ spec:
           - mountPath: /pyroscope
             name: pyroscope
       containers:
-        - name: zeebe-gateway
-          image: camunda/zeebe:SNAPSHOT
+        - name: core
+          image: camunda/camunda:8.7.0-alpha2
           imagePullPolicy: Always
-          ports:
-            - containerPort: 9600
-              name: http
-            - containerPort: 26500
-              name: gateway
-            - containerPort: 26502
-              name: internal
-            - containerPort: 8080
-              name: rest
+          securityContext:
+            allowPrivilegeEscalation: true
+            privileged: true
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true
+            runAsUser: 1000
+            seccompProfile:
+              type: RuntimeDefault
+          command: ["bash", "/usr/local/bin/startup.sh"]
           env:
             - name: CAMUNDA_LICENSE_KEY
               valueFrom:
                 secretKeyRef:
                   name: benchmark-test-camunda-platform-license
                   key: CAMUNDA_LICENSE_KEY
-            - name: ZEEBE_STANDALONE_GATEWAY
-              value: "true"
-            - name: ZEEBE_GATEWAY_CLUSTER_MEMBERID
+            - name: LC_ALL
+              value: C.UTF-8
+            - name: K8S_NAME
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.name
-            - name: ZEEBE_LOG_LEVEL
-              value: "debug"
-            - name: JAVA_TOOL_OPTIONS
-              value: "-XX:+ExitOnOutOfMemoryError"
-            - name: ZEEBE_GATEWAY_CLUSTER_INITIALCONTACTPOINTS
-              value: benchmark-test-zeebe:26502
-            - name: ZEEBE_GATEWAY_CLUSTER_HOST
+            - name: K8S_SERVICE_NAME
+              value: benchmark-test-core
+            - name: K8S_NAMESPACE
               valueFrom:
                 fieldRef:
-                  fieldPath: status.podIP
+                  fieldPath: metadata.namespace
+            - name: JAVA_TOOL_OPTIONS
+              value: "-XX:MaxRAMPercentage=25.0 -XX:+ExitOnOutOfMemoryError -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/usr/local/camunda/data -XX:ErrorFile=/usr/local/camunda/data/zeebe_error%p.log -Xlog:gc*:file=/usr/local/camunda/data/gc.log:time:filecount=7,filesize=8M"
+            - name: K8S_POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: K8S_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: K8S_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
             - name: ZEEBE_LOG_APPENDER
               value: Stackdriver
             - name: ZEEBE_LOG_STACKDRIVER_SERVICENAME
@@ -107,7 +118,7 @@ spec:
             - name: PYROSCOPE_SERVER_ADDRESS
               value: http://pyroscope.pyroscope.svc.cluster.local:4040
             - name: PYROSCOPE_APPLICATION_NAME
-              value: io.camunda.zeebe.gateway
+              value: io.camunda.zeebe.broker
             - name: PYROSCOPE_LOG_LEVEL
               value: debug
             - name: PYROSCOPE_FORMAT
@@ -121,34 +132,24 @@ spec:
             - name: PYROSCOPE_LABELS
               value: namespace=$(K8S_NAMESPACE), pod=$(K8S_NAME)
             - name: SPRING_CONFIG_ADDITIONALLOCATION
-              value: /usr/local/zeebe/config/benchmark-config.yaml
+              value: /usr/local/camunda/config/benchmark-config.yaml
             - name: JAVA_OPTS
               valueFrom:
                 configMapKeyRef:
                   key: java-opts
                   name: zeebe-config
                   optional: true
-          envFrom:
-          volumeMounts:
-            - mountPath: /tmp
-              name: tmp
-            - name: config
-              mountPath: /usr/local/zeebe/config/application.yaml
-              subPath: application.yaml
-            
-            - mountPath: /pyroscope
-              name: pyroscope
-            - mountPath: /usr/local/zeebe/config/benchmark-config.yaml
-              name: benchmark-config
-              subPath: benchmark-config.yaml
-          securityContext:
-            allowPrivilegeEscalation: false
-            privileged: false
-            readOnlyRootFilesystem: true
-            runAsNonRoot: true
-            runAsUser: 1001
-            seccompProfile:
-              type: RuntimeDefault
+          ports:
+            - containerPort: 8080
+              name: http
+            - containerPort: 26501
+              name: command
+            - containerPort: 26502
+              name: internal
+            - containerPort: 9600
+              name: server
+            - containerPort: 26500
+              name: gateway
           readinessProbe:
             httpGet:
               path: /actuator/health/readiness
@@ -161,31 +162,53 @@ spec:
             timeoutSeconds: 1
           resources:
             limits:
-              cpu: 450m
-              memory: 1Gi
+              cpu: 2000m
+              memory: 12Gi
             requests:
-              cpu: 450m
-              memory: 1Gi
+              cpu: 2000m
+              memory: 6Gi
+          volumeMounts:
+            - name: config
+              mountPath: /usr/local/bin/startup.sh
+              subPath: startup.sh
+            - name: data
+              mountPath: /usr/local/camunda/data
+            - name: exporters
+              mountPath: /exporters
+            - mountPath: /tmp
+              name: tmp
+            - name: config
+              mountPath: /usr/local/camunda/config/application.yaml
+              subPath: application.yaml
+            
+            - mountPath: /usr/local/camunda/config/benchmark-config.yaml
+              name: benchmark-config
+              subPath: benchmark-config.yaml
+            - mountPath: /pyroscope
+              name: pyroscope
       volumes:
-        - name: tmp
-          emptyDir: {}
         - name: config
           configMap:
-            name: benchmark-test-zeebe-gateway-configuration
-            defaultMode: 484
+            name: benchmark-test-core-configuration
+            defaultMode: 492
+        - name: exporters
+          emptyDir: {}
+        - name: tmp
+          emptyDir: {}
+          
         - configMap:
             defaultMode: 492
             name: benchmark-config
           name: benchmark-config
         - emptyDir: {}
           name: pyroscope
-      serviceAccountName: benchmark-test-zeebe-gateway
+      serviceAccountName: benchmark-test-core
       securityContext:
         fsGroup: 1001
         runAsNonRoot: true
         seccompProfile:
           type: RuntimeDefault
-  # yamllint disable
+# yamllint disable
       affinity:
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
@@ -194,6 +217,16 @@ spec:
               - key: app.kubernetes.io/component
                 operator: In
                 values:
-                - zeebe-gateway
+                - core
             topologyKey: kubernetes.io/hostname
-  # yamllint enable
+# yamllint enable
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+        annotations:
+          {}
+      spec:
+        accessModes: [ReadWriteOnce]
+        resources:
+          requests:
+            storage: "32Gi"

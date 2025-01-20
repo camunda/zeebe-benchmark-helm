@@ -18,7 +18,7 @@ func TestGoldenCamundaPlatformServiceMonitorDefaults(t *testing.T) {
 
 	chartPath, err := filepath.Abs("../")
 	require.NoError(t, err)
-	templateNames := []string{"zeebe-service-monitor", "zeebe-gateway-service-monitor", "operate-service-monitor"}
+	templateNames := []string{"core-service-monitor"}
 
 	for _, name := range templateNames {
 		suite.Run(t, &golden.TemplateGoldenTest{
@@ -32,7 +32,7 @@ func TestGoldenCamundaPlatformServiceMonitorDefaults(t *testing.T) {
 	}
 }
 
-func TestGoldenCamundaPlatformZeebeDefaults(t *testing.T) {
+func TestGoldenCamundaPlatformCoreDefaults(t *testing.T) {
 	// Test which allows to verify also parent chart templates
 	// This makes sure that properties are correctly set
 	// OR configurations have been changed
@@ -46,50 +46,8 @@ func TestGoldenCamundaPlatformZeebeDefaults(t *testing.T) {
 			ChartPath:      chartPath,
 			Release:        "benchmark-test",
 			Namespace:      "benchmark-" + strings.ToLower(random.UniqueId()),
-			GoldenFileName: "c8-zeebe-" + name,
-			Templates:      []string{"charts/camunda-platform/templates/zeebe/" + name + ".yaml"},
-			SetValues:      map[string]string{"camunda-platform.operate.enabled": "true"},
-		})
-	}
-}
-
-func TestGoldenCamundaPlatformZeebeGatewayDefaults(t *testing.T) {
-	// Test which allows to verify also parent chart templates
-	// This makes sure that properties are correctly set
-	// OR configurations have been changed
-
-	chartPath, err := filepath.Abs("../")
-	require.NoError(t, err)
-	templateNames := []string{"service", "deployment", "configmap"}
-
-	for _, name := range templateNames {
-		suite.Run(t, &golden.TemplateGoldenTest{
-			ChartPath:      chartPath,
-			Release:        "benchmark-test",
-			Namespace:      "benchmark-" + strings.ToLower(random.UniqueId()),
-			GoldenFileName: "c8-zeebe-gateway-" + name,
-			Templates:      []string{"charts/camunda-platform/templates/zeebe-gateway/" + name + ".yaml"},
-			SetValues:      map[string]string{"camunda-platform.operate.enabled": "true"},
-		})
-	}
-}
-
-func TestGoldenCamundaPlatformOperateDefaults(t *testing.T) {
-	// Test which allows to verify also parent chart templates
-	// This makes sure that properties are correctly set
-	// OR configurations have been changed
-
-	chartPath, err := filepath.Abs("../")
-	require.NoError(t, err)
-	templateNames := []string{"deployment", "service", "configmap"}
-
-	for _, name := range templateNames {
-		suite.Run(t, &golden.TemplateGoldenTest{
-			ChartPath:      chartPath,
-			Release:        "benchmark-test",
-			Namespace:      "benchmark-" + strings.ToLower(random.UniqueId()),
-			GoldenFileName: "operate-" + name,
-			Templates:      []string{"charts/camunda-platform/templates/operate/" + name + ".yaml"},
+			GoldenFileName: "c8-core-" + name,
+			Templates:      []string{"charts/camunda-platform/templates/core/" + name + ".yaml"},
 			SetValues:      map[string]string{"camunda-platform.operate.enabled": "true"},
 		})
 	}
