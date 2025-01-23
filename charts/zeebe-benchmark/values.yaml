@@ -366,7 +366,7 @@ camunda-platform:
       heapSize: 3g
       persistence:
         ## @param elasticsearch.master.persistence.size
-        size: 64Gi
+        size: 128Gi
       resources:
         requests:
           cpu: 1
