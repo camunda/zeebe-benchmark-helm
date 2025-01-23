@@ -140,7 +140,7 @@ starter:
   # Starter.replicas defines how many replicas of the application should be deployed
   replicas: 1
   # Starter.rate defines with which rate process instances should be created by the starter
-  rate: 150
+  rate: 60
   # Starter.logLevel defines the logging level for the benchmark starter
   logLevel: "WARN"
   # Starter.processId defines the process ID, that should be used for creating new process instances
