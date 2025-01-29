@@ -15,8 +15,6 @@ global:
   identity:
     auth:
       enabled: false
-  elasticsearch:
-    disableExporter: true
 #################################################################################################
 #################################################################################################
 #################################################################################################
@@ -24,19 +22,14 @@ global:
 
 camunda-platform:
   enabled: true
-  global:
-
-    elasticsearch:
-      disableExporter: true
-
-
   zeebe:
+    clusterSize: 5
     partitionCount: 32
     # Image configuration to configure the zeebe image specifics
     image:
       # Image.repository defines which image repository to use
       repository: camunda/zeebe
-      tag: SNAPSHOT
+      tag: 8.6.5
 
     # Retention can be used to define the data in Elasticsearch (ILM).
     retention:
@@ -62,7 +55,7 @@ camunda-platform:
     image:
       # Image.repository defines which image repository to use
       repository: camunda/zeebe
-      tag: SNAPSHOT
+      tag: 8.6.5
 
     env:
       - name: CAMUNDA_SECURITY_AUTHENTICATION_METHOD
@@ -80,7 +73,18 @@ camunda-platform:
         memory: 8Gi
 
   operate:
-    enabled: false
+    enabled: true
+    image:
+      repository: camunda/operate
+      tag: 8.6.5
+    # Resources configuration to set request and limit configuration for the container https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits
+    resources:
+      requests:
+        cpu: 600m
+        memory: 400Mi
+      limits:
+        cpu: 2000m
+        memory: 2Gi 
 
   # ELASTIC
   elasticsearch:

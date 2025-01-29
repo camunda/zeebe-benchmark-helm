@@ -186,8 +186,6 @@ zeebe:
     # Configure a rate limit for all writes, so that we can visualize flow control metrics.
     zeebe.broker.flowControl.write.enabled: "true"
     zeebe.broker.flowControl.write.limit: 4000
-    zeebe.broker.exporters.camundaexporter.className: "io.camunda.exporter.CamundaExporter"
-    zeebe.broker.exporters.camundaexporter.args.connect.url: "http://zeebe-benchmark-elasticsearch:9200"
     zeebe.broker.experimental.rocksdb.memorylimit: "128MB"
   # Zeebe.profiling configuration for pyroscope profiling
   profiling:
@@ -439,11 +437,11 @@ camunda-platform:
     # Resources configuration to set request and limit configuration for the container https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits
     resources:
       limits:
-        cpu: 450m
-        memory: 1Gi
+        cpu: 2
+        memory: 8Gi
       requests:
-        cpu: 450m
-        memory: 1Gi
+        cpu: 2
+        memory: 8Gi
 
   operate:
     enabled: false
