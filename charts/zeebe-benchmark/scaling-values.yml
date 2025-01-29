@@ -1,0 +1,311 @@
+# Example values file for a realistic Zeebe benchmark.
+global:
+  # Disable global ingress
+  ingress:
+    enabled: false
+  # Image configuration to be used in each sub chart
+  image:
+    # Image.repository defines the repository from which to fetch the docker images
+    repository: "gcr.io/zeebe-io"
+    # Image.tag defines the tag / version which should be used in the chart
+    tag: SNAPSHOT
+    # Image.pullPolicy defines the image pull policy which should be used https://kubernetes.io/docs/concepts/containers/images/#image-pull-policy
+    pullPolicy: Always
+  # Disable Identity completely; both this flag and `camunda-platform.identity.enabled` are required.
+  identity:
+    auth:
+      enabled: false
+
+# DEPRECATED worker configuration for the to be deployed worker application
+worker:
+  # Worker.benchmark.replicas defines how many replicas of the benchmark worker should be deployed
+  replicas: 0 # disabled per default as it is deprecated
+  # Worker.benchmark.capacity defines how many jobs the worker should activate and work on
+  capacity: 60
+
+# Workers configuration for the to be deployed worker application
+#        => New way to deploy workers <=
+workers:
+  benchmark: null
+
+  #####
+  # Request documents from customer
+  customer-notification:
+    # Workers.benchmark.replicas defines how many replicas of the benchmark worker should be deployed
+    replicas: 1
+    # Workers.benchmark.capacity defines how many jobs the worker should activate and work on
+    capacity: 30
+    # Workers.benchmark.jobType defines the job type which should be used by the worker
+    jobType: "customer_notification"
+    # Workers.benchmark.payloadPath defines the path (inside the worker app) to the payload resource
+    # that should be used to complete the corresponding jobs
+    payloadPath: "bpmn/emptyPayload.json"
+    # Workers.benchmark.payloadPath defines the delay of the worker before completing a job
+    completionDelay: 300ms
+    message:
+      name: "dispute_process_receive_documents"
+      correlationVariable: "correlationKey"
+    # Workers.benchmark.logLevel defines the logging level for the benchmark worker
+    logLevel: "INFO"
+    # Workers.benchmark.resources defines the resources for the benchmark worker
+    resources:
+      limits:
+        cpu: 500m
+        memory: 256Mi
+      requests:
+        cpu: 500m
+        memory: 256Mi
+
+  #####
+  # Store information and get customer info
+  extract-data-from-document:
+    # Workers.benchmark.replicas defines how many replicas of the benchmark worker should be deployed
+    replicas: 1
+    # Workers.benchmark.capacity defines how many jobs the worker should activate and work on
+    capacity: 30
+    # Workers.benchmark.jobType defines the job type which should be used by the worker
+    jobType: "extract_data_from_document"
+    # Workers.benchmark.payloadPath defines the path (inside the worker app) to the payload resource
+    # that should be used to complete the corresponding jobs
+    payloadPath: "bpmn/emptyPayload.json"
+    # Workers.benchmark.payloadPath defines the delay of the worker before completing a job
+    completionDelay: 300ms
+    # Workers.benchmark.logLevel defines the logging level for the benchmark worker
+    logLevel: "INFO"
+    # Workers.benchmark.resources defines the resources for the benchmark worker
+    resources:
+      limits:
+        cpu: 500m
+        memory: 256Mi
+      requests:
+        cpu: 500m
+        memory: 256Mi
+
+  ##### 
+  # Request proof from vendor
+  dispute-process-request-proof-from-vendor:
+    # Workers.benchmark.replicas defines how many replicas of the benchmark worker should be deployed
+    replicas: 1
+    # Workers.benchmark.capacity defines how many jobs the worker should activate and work on
+    capacity: 60
+    # Workers.benchmark.threads defines how many threads the worker can use to work on jobs
+    threads: 30
+    # Workers.benchmark.jobType defines the job type which should be used by the worker
+    jobType: "dispute_process_request_proof_from_vendor"
+    # Workers.benchmark.payloadPath defines the path (inside the worker app) to the payload resource
+    # that should be used to complete the corresponding jobs
+    payloadPath: "bpmn/emptyPayload.json"
+    # Workers.benchmark.payloadPath defines the delay of the worker before completing a job
+    completionDelay: 300ms
+    # Workers.dispute-request-documents.message enables sending a message from a worker
+    message:
+      name: "dispute_process_refund_approved"
+      correlationVariable : "correlationKey"
+    # Workers.benchmark.logLevel defines the logging level for the benchmark worker
+    logLevel: "INFO"
+    # Workers.benchmark.resources defines the resources for the benchmark worker
+    resources:
+      limits:
+        cpu: 500m
+        memory: 256Mi
+      requests:
+        cpu: 500m
+        memory: 256Mi
+
+  ######
+  # Get vendor info
+  dispute-process-request-get-vendor-info:
+    # Workers.benchmark.replicas defines how many replicas of the benchmark worker should be deployed
+    replicas: 1
+    # Workers.benchmark.capacity defines how many jobs the worker should activate and work on
+    capacity: 30
+    # Workers.benchmark.jobType defines the job type which should be used by the worker
+    jobType: "dispute_process_request_get_vendor_info"
+    # Workers.benchmark.payloadPath defines the path (inside the worker app) to the payload resource
+    # that should be used to complete the corresponding jobs
+    payloadPath: "bpmn/emptyPayload.json"
+    # Workers.benchmark.payloadPath defines the delay of the worker before completing a job
+    completionDelay: 10ms
+    # Workers.dispute-request-documents.message enables sending a message from a worker
+    # Workers.benchmark.logLevel defines the logging level for the benchmark worker
+    logLevel: "INFO"
+    # Workers.benchmark.resources defines the resources for the benchmark worker
+    resources:
+      limits:
+        cpu: 500m
+        memory: 256Mi
+      requests:
+        cpu: 500m
+        memory: 256Mi
+
+  #####
+  # Refund payment
+  refunding:
+    # Workers.benchmark.replicas defines how many replicas of the benchmark worker should be deployed
+    replicas: 1
+    # Workers.benchmark.capacity defines how many jobs the worker should activate and work on
+    capacity: 30
+    # Workers.benchmark.threads defines how many threads the worker can use to work on jobs
+    threads: 30
+    # Workers.benchmark.jobType defines the job type which should be used by the worker
+    jobType: "refunding"
+    # Workers.benchmark.payloadPath defines the path (inside the worker app) to the payload resource
+    # that should be used to complete the corresponding jobs
+    payloadPath: "bpmn/emptyPayload.json"
+    # Workers.benchmark.payloadPath defines the delay of the worker before completing a job
+    completionDelay: 300ms
+    # Workers.benchmark.logLevel defines the logging level for the benchmark worker
+    logLevel: "INFO"
+    # Workers.benchmark.resources defines the resources for the benchmark worker
+    resources:
+      limits:
+        cpu: 500m
+        memory: 256Mi
+      requests:
+        cpu: 500m
+        memory: 256Mi
+
+  #####
+  # Inform customer about successful claim
+  inform-about-successful-claim:
+    # Workers.benchmark.replicas defines how many replicas of the benchmark worker should be deployed
+    replicas: 1
+    # Workers.benchmark.capacity defines how many jobs the worker should activate and work on
+    capacity: 30
+    # Workers.benchmark.jobType defines the job type which should be used by the worker
+    jobType: "inform_about_successful_claim"
+    # Workers.benchmark.payloadPath defines the path (inside the worker app) to the payload resource
+    # that should be used to complete the corresponding jobs
+    payloadPath: "bpmn/emptyPayload.json"
+    # Workers.benchmark.payloadPath defines the delay of the worker before completing a job
+    completionDelay: 300ms
+    # Workers.benchmark.logLevel defines the logging level for the benchmark worker
+    logLevel: "INFO"
+    # Workers.benchmark.resources defines the resources for the benchmark worker
+    resources:
+      limits:
+        cpu: 500m
+        memory: 256Mi
+      requests:
+        cpu: 500m
+        memory: 256Mi
+
+
+#################################################################################################
+#################################################################################################
+#################################################################################################
+
+
+# Starter configuration for the to be deployed starter application
+starter:
+  # Starter.replicas defines how many replicas of the application should be deployed
+  replicas: 1
+  # Starter.rate defines with which rate process instances should be created by the starter
+  rate: 1
+  # Starter.logLevel defines the logging level for the benchmark starter
+  logLevel: "INFO"
+  # Starter.processId defines the process ID, that should be used for creating new process instances
+  processId: "bankDisputeHandling"
+  # Starter.payloadPath defines the path (inside the starter app) to the payload resource
+  # that should be used to create the corresponding process instance
+  payloadPath: "bpmn/realistic/realisticPayload.json"
+  # Starter.bpmnXmlPath defines the path (inside the starter app) to the main bpmn XML resource that should be deployed
+  bpmnXmlPath: "bpmn/realistic/bankCustomerComplaintDisputeHandling.bpmn"
+  # Starter.extraBpmnModels can be used to specify paths (inside the starter app) to extra resources that should be deployed
+  extraResources: ["bpmn/realistic/refundingProcess.bpmn", "bpmn/realistic/determineFraudRatingConfidence.dmn"]
+  # Starter.businessKey can be used to specify a businessKey variable, inside a unique identifier is stored for
+  # each created process instance
+  businessKey: "customerId"
+
+camunda-platform:
+  enabled: true
+
+  zeebe:
+    # Image configuration to configure the zeebe image specifics
+    image:
+      # Image.repository defines which image repository to use
+      repository: camunda/zeebe
+      tag: SNAPSHOT
+
+    # Retention can be used to define the data in Elasticsearch (ILM).
+    retention:
+      ## @param zeebe.retention.enabled if true, the ILM Policy is created and applied to the index templates.
+      enabled: true
+      ## @param zeebe.retention.minimumAge defines how old the data must be, before the data is deleted as a duration.
+      minimumAge: 1d # set it to a higher value if we run with operate, so operate has enough time to consume the data
+
+    # Resources configuration to set request and limit configuration for the container https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limitsS
+    resources:
+      limits:
+        cpu: 1700m
+        memory: 4Gi
+      requests:
+        cpu: 1350m
+        memory: 4Gi
+
+  zeebeGateway:
+    # Replicas defines how many standalone gateways are deployed
+    replicas: 2
+
+    # Image configuration to configure the zeebe-gateway image specifics
+    image:
+      # Image.repository defines which image repository to use
+      repository: camunda/zeebe
+      tag: SNAPSHOT
+
+    # Resources configuration to set request and limit configuration for the container https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits
+    resources:
+      limits:
+        cpu: 450m
+        memory: 1Gi
+      requests:
+        cpu: 450m
+        memory: 1Gi
+
+  operate:
+    enabled: false
+    image:
+      repository: camunda/operate
+      tag: SNAPSHOT
+    # Resources configuration to set request and limit configuration for the container https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits
+    resources:
+      requests:
+        cpu: 600m
+        memory: 400Mi
+      limits:
+        cpu: 2000m
+        memory: 2Gi
+    env:
+      - name: CAMUNDA_OPERATE_IMPORTERENABLED
+        value: "false"
+
+  # ELASTIC
+  elasticsearch:
+    enabled: true
+    imageTag: 8.9.2
+
+    master:
+      fullnameOverride: elastic
+      nameOverride: elastic
+      # Number of master-elegible replicas to deploy
+      replicaCount: 3
+      pdb:
+        minAvailable: 2
+      # Elasticsearch master-eligible node heap size.
+      # Will be converted to -Xms3g
+      heapSize: 3g
+      # The resources configurations for elasticsearch containers
+      resources:
+        requests:
+          cpu: 1
+          memory: 3Gi
+        limits:
+          cpu: 2
+          memory: 6Gi
+      persistence:
+        # Persistent Volume Storage Class
+        storageClass: "ssd"
+        # Persistent Volume Size
+        size: 128Gi
+        # Persistent Volume Access Modes
+        accessModes: [ "ReadWriteOnce" ]
