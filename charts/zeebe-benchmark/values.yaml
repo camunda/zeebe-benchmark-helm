@@ -183,10 +183,12 @@ zeebe:
     zeebe.broker.data.diskUsageReplicationWatermark: "0.9"
     # Configure index suffix with hour pattern, so we create every hour a new index
     # such that ILM can clean it up quickly
-    zeebe.broker.exporters.elasticsearch.args.index.indexSuffixDatePattern: "yyyy-MM-dd_HH"
     # Configure a rate limit for all writes, so that we can visualize flow control metrics.
     zeebe.broker.flowControl.write.enabled: "true"
     zeebe.broker.flowControl.write.limit: 4000
+    zeebe.broker.exporters.camundaexporter.className: "io.camunda.exporter.CamundaExporter"
+    zeebe.broker.exporters.camundaexporter.args.connect.url: "http://zeebe-benchmark-elasticsearch:9200"
+
   # Zeebe.profiling configuration for pyroscope profiling
   profiling:
     # Zeebe.profiling.enabled if true, enables the pyroscope profiling
