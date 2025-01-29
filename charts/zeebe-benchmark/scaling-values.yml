@@ -33,7 +33,7 @@ workers:
   # Request documents from customer
   customer-notification:
     # Workers.benchmark.replicas defines how many replicas of the benchmark worker should be deployed
-    replicas: 2
+    replicas: 1
     # Workers.benchmark.capacity defines how many jobs the worker should activate and work on
     capacity: 30
     # Workers.benchmark.jobType defines the job type which should be used by the worker
@@ -86,11 +86,11 @@ workers:
   # Request proof from vendor
   dispute-process-request-proof-from-vendor:
     # Workers.benchmark.replicas defines how many replicas of the benchmark worker should be deployed
-    replicas: 2
+    replicas: 1
     # Workers.benchmark.capacity defines how many jobs the worker should activate and work on
     capacity: 60
     # Workers.benchmark.threads defines how many threads the worker can use to work on jobs
-    threads: 30
+    threads: 10
     # Workers.benchmark.jobType defines the job type which should be used by the worker
     jobType: "dispute_process_request_proof_from_vendor"
     # Workers.benchmark.payloadPath defines the path (inside the worker app) to the payload resource
