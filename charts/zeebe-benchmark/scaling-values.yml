@@ -227,6 +227,7 @@ camunda-platform:
 
 
   zeebe:
+    partitionCount: 6
     # Image configuration to configure the zeebe image specifics
     image:
       # Image.repository defines which image repository to use
