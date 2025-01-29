@@ -82,7 +82,7 @@ workers:
   # See below if you want additional workers
   benchmark:
     # Workers.benchmark.replicas defines how many replicas of the benchmark worker should be deployed
-    replicas: 3
+    replicas: 9
     # Workers.benchmark.capacity defines how many jobs the worker should activate and work on
     capacity: 60
     # Workers.benchmark.threads defines how many threads the worker can use to work on jobs
@@ -128,7 +128,7 @@ workers:
 # Starter configuration for the to be deployed starter application
 starter:
   # Starter.replicas defines how many replicas of the application should be deployed
-  replicas: 1
+  replicas: 10
   # Starter.rate defines with which rate process instances should be created by the starter
   rate: 150
   # Starter.logLevel defines the logging level for the benchmark starter
