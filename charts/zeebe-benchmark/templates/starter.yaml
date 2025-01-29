@@ -79,11 +79,11 @@ spec:
                 optional: true
           resources:
             limits:
-              cpu: 250m
-              memory: 256Mi
+              cpu: 1
+              memory: 2Gi
             requests:
-              cpu: 250m
-              memory: 256Mi
+              cpu: 1
+              memory: 2Gi
           ports:
             - containerPort: 9600
               name: "http"
