@@ -107,7 +107,7 @@ helm.dependency-update:
 # helm.install: install the local chart into the current kubernetes cluster/namespace
 .PHONY: helm.install
 helm.install: helm.dependency-update
-	helm install $(releaseName) $(chartPath) --render-subchart-notes
+	helm install $(releaseName) $(chartPath) --render-subchart-notes -f charts/zeebe-benchmark/scaling-values.yml
 
 # helm.uninstall: uninstall the chart and removes all related pvc's
 .PHONY: helm.uninstall
