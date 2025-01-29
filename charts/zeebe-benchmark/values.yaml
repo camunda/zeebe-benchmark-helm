@@ -188,7 +188,7 @@ zeebe:
     zeebe.broker.flowControl.write.limit: 4000
     zeebe.broker.exporters.camundaexporter.className: "io.camunda.exporter.CamundaExporter"
     zeebe.broker.exporters.camundaexporter.args.connect.url: "http://zeebe-benchmark-elasticsearch:9200"
-
+    zeebe.broker.experimental.rocksdb.memorylimit: "128MB"
   # Zeebe.profiling configuration for pyroscope profiling
   profiling:
     # Zeebe.profiling.enabled if true, enables the pyroscope profiling
