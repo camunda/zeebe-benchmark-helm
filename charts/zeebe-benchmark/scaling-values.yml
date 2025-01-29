@@ -243,11 +243,11 @@ camunda-platform:
     # Resources configuration to set request and limit configuration for the container https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limitsS
     resources:
       limits:
-        cpu: 4
-        memory: 8Gi
+        cpu: 3
+        memory: 6Gi
       requests:
-        cpu: 4
-        memory: 8Gi
+        cpu: 3
+        memory: 6Gi
 
   zeebeGateway:
     # Replicas defines how many standalone gateways are deployed

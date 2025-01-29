@@ -342,7 +342,7 @@ camunda-platform:
         memory: 4Gi
 
     nodeSelector:
-      cloud.google.com/gke-nodepool: n2-standard-2
+      cloud.google.com/gke-nodepool: n2-standard-4
 
     # PvcAccessModes can be used to configure the persistent volume claim access mode https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes
     pvcAccessMode: [ "ReadWriteOnce" ]
