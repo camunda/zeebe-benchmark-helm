@@ -49,7 +49,7 @@ camunda-platform:
 
   zeebeGateway:
     # Replicas defines how many standalone gateways are deployed
-    replicas: 2
+    replicas: 5
 
     # Image configuration to configure the zeebe-gateway image specifics
     image:
