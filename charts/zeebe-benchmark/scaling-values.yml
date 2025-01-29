@@ -253,6 +253,12 @@ camunda-platform:
       repository: camunda/zeebe
       tag: SNAPSHOT
 
+    env:
+      - name: CAMUNDA_SECURITY_AUTHENTICATION_METHOD
+        value: "BASIC"
+      - name: CAMUNDA_SECURITY_AUTHENTICATION_BASIC_ALLOWUNAUTHENTICATEDAPIACCESS
+        value: "true"
+
     # Resources configuration to set request and limit configuration for the container https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits
     resources:
       limits:
