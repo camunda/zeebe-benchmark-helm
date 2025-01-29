@@ -245,10 +245,10 @@ camunda-platform:
     resources:
       limits:
         cpu: 3
-        memory: 6Gi
+        memory: 8Gi
       requests:
         cpu: 3
-        memory: 6Gi
+        memory: 8Gi
 
   zeebeGateway:
     # Replicas defines how many standalone gateways are deployed
