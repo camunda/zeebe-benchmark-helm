@@ -73,11 +73,11 @@ camunda-platform:
     # Resources configuration to set request and limit configuration for the container https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits
     resources:
       limits:
-        cpu: 1
-        memory: 2Gi
+        cpu: 2
+        memory: 8Gi
       requests:
-        cpu: 1
-        memory: 2Gi
+        cpu: 2
+        memory: 8Gi
 
   operate:
     enabled: false
