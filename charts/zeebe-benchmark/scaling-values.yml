@@ -31,6 +31,7 @@ camunda-platform:
 
 
   zeebe:
+    clusterSize: 5
     partitionCount: 32
     # Image configuration to configure the zeebe image specifics
     image:
