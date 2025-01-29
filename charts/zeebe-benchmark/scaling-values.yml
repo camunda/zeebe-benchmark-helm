@@ -209,7 +209,7 @@ starter:
   processId: "bankDisputeHandling"
   # Starter.payloadPath defines the path (inside the starter app) to the payload resource
   # that should be used to create the corresponding process instance
-  payloadPath: "bpmn/realistic/realisticPayload.json"
+  payloadPath: "bpmn/realistic/reducedPayload.json"
   # Starter.bpmnXmlPath defines the path (inside the starter app) to the main bpmn XML resource that should be deployed
   bpmnXmlPath: "bpmn/realistic/bankCustomerComplaintDisputeHandling.bpmn"
   # Starter.extraBpmnModels can be used to specify paths (inside the starter app) to extra resources that should be deployed
