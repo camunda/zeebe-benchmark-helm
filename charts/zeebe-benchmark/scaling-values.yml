@@ -15,7 +15,8 @@ global:
   identity:
     auth:
       enabled: false
-
+  elasticsearch:
+    disableExporter: true
 # DEPRECATED worker configuration for the to be deployed worker application
 worker:
   # Worker.benchmark.replicas defines how many replicas of the benchmark worker should be deployed
@@ -219,6 +220,11 @@ starter:
 
 camunda-platform:
   enabled: true
+  global:
+
+    elasticsearch:
+      disableExporter: true
+
 
   zeebe:
     # Image configuration to configure the zeebe image specifics
