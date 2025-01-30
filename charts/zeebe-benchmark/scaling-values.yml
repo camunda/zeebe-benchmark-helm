@@ -36,9 +36,8 @@ camunda-platform:
     # Image configuration to configure the zeebe image specifics
     image:
       # Image.repository defines which image repository to use
-      repository: camunda/zeebe
-      tag: SNAPSHOT
-
+      repository: gcr.io/zeebe-io/zeebe
+      tag: el-hackathon-partition-prefix-benchmark-1611d2cf
     # Retention can be used to define the data in Elasticsearch (ILM).
     retention:
       ## @param zeebe.retention.enabled if true, the ILM Policy is created and applied to the index templates.
@@ -62,9 +61,8 @@ camunda-platform:
     # Image configuration to configure the zeebe-gateway image specifics
     image:
       # Image.repository defines which image repository to use
-      repository: camunda/zeebe
-      tag: SNAPSHOT
-
+      repository: gcr.io/zeebe-io/zeebe
+      tag: el-hackathon-partition-prefix-benchmark-1611d2cf
     env:
       - name: CAMUNDA_SECURITY_AUTHENTICATION_METHOD
         value: "BASIC"
