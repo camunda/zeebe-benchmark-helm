@@ -90,7 +90,7 @@ camunda-platform:
       fullnameOverride: elastic
       nameOverride: elastic
       # Number of master-elegible replicas to deploy
-      replicaCount: 3
+      replicaCount: 5
       pdb:
         minAvailable: 2
       # Elasticsearch master-eligible node heap size.
