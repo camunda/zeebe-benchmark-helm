@@ -107,7 +107,7 @@ helm.dependency-update:
 # helm.install: install the local chart into the current kubernetes cluster/namespace
 .PHONY: helm.install
 helm.install: helm.dependency-update
-	helm install $(releaseName) $(chartPath) --render-subchart-notes -f $(chartPath)/values.yaml -f $(chartPath)/values-realistic-benchmark.yaml
+	helm install $(releaseName) $(chartPath) --render-subchart-notes
 
 # helm.uninstall: uninstall the chart and removes all related pvc's
 .PHONY: helm.uninstall
