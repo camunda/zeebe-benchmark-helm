@@ -38,7 +38,7 @@ spec:
         app.kubernetes.io/component: core
         app.kubernetes.io/version: "8.7.0-alpha2"
       annotations:
-        checksum/config: f4dae042c812f15983bdb6cf761dec7e1809acfa8562c7b9dcad02fcf02fb4bc
+        checksum/config: 5d8dbdb2071289497d1d669b193d31f10f0a1fe8d73cb144aeebbe3d98ec623c
     spec:
       imagePullSecrets:
         []
