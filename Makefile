@@ -22,7 +22,7 @@ go.test: helm.dependency-update
 # go.test-golden-updated: runs the tests with updating the golden files
 .PHONY: go.test-golden-updated
 go.test-golden-updated: helm.dependency-update
-	$(goBin) test ./... -args -update-golden 
+	$(goBin) test ./... -args -update-golden
 
 # go.test-it: runs the integration tests against the current kube context
 .PHONY: go.test-it
@@ -107,7 +107,7 @@ helm.dependency-update:
 # helm.install: install the local chart into the current kubernetes cluster/namespace
 .PHONY: helm.install
 helm.install: helm.dependency-update
-	helm install $(releaseName) $(chartPath) --render-subchart-notes
+	helm install $(releaseName) $(chartPath) --render-subchart-notes -f $(chartPath)/values.yaml -f $(chartPath)/values-realistic-benchmark.yaml
 
 # helm.uninstall: uninstall the chart and removes all related pvc's
 .PHONY: helm.uninstall
