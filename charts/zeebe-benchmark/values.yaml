@@ -193,7 +193,12 @@ zeebe:
     zeebe.broker.data.diskUsageReplicationWatermark: "0.9"
     # Configure index suffix with hour pattern, so we create every hour a new index
     # such that ILM can clean it up quickly
-    zeebe.broker.exporters.elasticsearch.args.index.indexSuffixDatePattern: "yyyy-MM-dd_HH"
+    zeebe.broker.exporters.CamundaExporter.args.archiver.elsRolloverDateFormat: "yyyy-MM-dd_HH"
+    zeebe.broker.exporters.CamundaExporter.args.archiver.rolloverInterval: "1h"
+    # We moved the archiver configuration under retention at some point, but still need to support the previous
+    # versions for now, so the configurations for retention are duplicated
+    zeebe.broker.exporters.CamundaExporter.args.retention.archiver.elsRolloverDateFormat: "yyyy-MM-dd_HH"
+    zeebe.broker.exporters.CamundaExporter.args.retention.archiver.rolloverInterval: "1h"
     # Configure a rate limit for all writes, so that we can visualize flow control metrics.
     zeebe.broker.flowControl.write.enabled: "true"
     zeebe.broker.flowControl.write.limit: 4000
@@ -305,7 +310,7 @@ camunda-platform:
       ## @param core.retention.enabled if true, the ILM Policy is created and applied to the index templates.
       enabled: true
       ## @param core.retention.minimumAge defines how old the data must be, before the data is deleted as a duration.
-      minimumAge: 10m
+      minimumAge: 1h
     # @param core.env can be used to set extra environment variables in each broker container
     env:
       - name: K8S_NAMESPACE
