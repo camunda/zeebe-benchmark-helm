@@ -282,6 +282,8 @@ camunda-platform:
           defaultMode: 0754
       - name: pyroscope
         emptyDir: { }
+      - name: logs
+        emptyDir: { }
     ## @param core.extraVolumeMounts can be used to mount extra volumes for the broker pods, useful for additional exporters
     extraVolumeMounts:
       - name: benchmark-config
@@ -289,6 +291,8 @@ camunda-platform:
         subPath: benchmark-config.yaml
       - name: pyroscope
         mountPath: /pyroscope
+      - name: logs
+        mountPath: /usr/local/camunda/logs
     ## @param core.extraInitContainers (Deprecated - use `initContainers` instead) ExtraInitContainers can be used to set up extra init containers for the broker pods, useful for additional exporters
     extraInitContainers:
       - name: pyroscope
