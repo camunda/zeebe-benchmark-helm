@@ -184,8 +184,8 @@ zeebe:
     zeebe.broker.experimental.consistencyChecks.enablePreconditions: "true"
     zeebe.broker.experimental.consistencyChecks.enableForeignKeyChecks: "true"
     zeebe.broker.executionMetricsExporterEnabled: "true"
-    zeebe.broker.data.diskUsageCommandWatermark: "0.8"
-    zeebe.broker.data.diskUsageReplicationWatermark: "0.9"
+    zeebe.broker.data.disk.freeSpace.processing: "3GB"
+    zeebe.broker.data.disk.freeSpace.replication: "2GB"
     # Configure index suffix with hour pattern, so we create every hour a new index
     # such that ILM can clean it up quickly
     # We need to configure it for the ES exporter AND the CamundaExporter
