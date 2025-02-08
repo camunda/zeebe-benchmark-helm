@@ -186,6 +186,8 @@ spec:
               subPath: benchmark-config.yaml
             - mountPath: /pyroscope
               name: pyroscope
+            - mountPath: /usr/local/camunda/logs
+              name: logs
       volumes:
         - name: config
           configMap:
@@ -202,6 +204,8 @@ spec:
           name: benchmark-config
         - emptyDir: {}
           name: pyroscope
+        - emptyDir: {}
+          name: logs
       serviceAccountName: benchmark-test-core
       securityContext:
         fsGroup: 1001

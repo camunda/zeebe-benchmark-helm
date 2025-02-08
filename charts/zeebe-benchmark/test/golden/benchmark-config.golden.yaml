@@ -11,19 +11,21 @@ metadata:
     app.kubernetes.io/managed-by: Helm
 data: 
   benchmark-config.yaml: | 
-    zeebe.broker.data.diskUsageCommandWatermark: "0.8"
-    zeebe.broker.data.diskUsageReplicationWatermark: "0.9"
+    zeebe.broker.data.disk.freeSpace.processing: 3GB
+    zeebe.broker.data.disk.freeSpace.replication: 2GB
     zeebe.broker.executionMetricsExporterEnabled: "true"
     zeebe.broker.experimental.consistencyChecks.enableForeignKeyChecks: "true"
     zeebe.broker.experimental.consistencyChecks.enablePreconditions: "true"
     zeebe.broker.exporters.CamundaExporter.args.archiver.elsRolloverDateFormat: yyyy-MM-dd_HH
     zeebe.broker.exporters.CamundaExporter.args.archiver.rolloverInterval: 1h
+    zeebe.broker.exporters.CamundaExporter.args.archiver.waitPeriodBeforeArchiving: 30m
     zeebe.broker.exporters.CamundaExporter.args.index.shouldWaitForImporters: false
     zeebe.broker.exporters.CamundaExporter.args.retention.archiver.elsRolloverDateFormat: yyyy-MM-dd_HH
     zeebe.broker.exporters.CamundaExporter.args.retention.archiver.rolloverInterval: 1h
+    zeebe.broker.exporters.CamundaExporter.args.retention.archiver.waitPeriodBeforeArchiving: 30m
     zeebe.broker.exporters.elasticsearch.args.index.indexSuffixDatePattern: yyyy-MM-dd_HH
-    zeebe.broker.flowControl.write.enabled: "true"
+    zeebe.broker.flowControl.write.enabled: "false"
     zeebe.broker.flowControl.write.limit: 4000
-    zeebe.broker.flowControl.write.throttling.enabled: "true"
+    zeebe.broker.flowControl.write.throttling.enabled: "false"
     zeebe.gateway.monitoring.enabled: "true"
     zeebe.gateway.threads.managementThreads: "1"
