@@ -192,10 +192,12 @@ zeebe:
     zeebe.broker.exporters.elasticsearch.args.index.indexSuffixDatePattern: "yyyy-MM-dd_HH"
     zeebe.broker.exporters.CamundaExporter.args.archiver.elsRolloverDateFormat: "yyyy-MM-dd_HH"
     zeebe.broker.exporters.CamundaExporter.args.archiver.rolloverInterval: "1h"
+    zeebe.broker.exporters.CamundaExporter.args.archiver.waitPeriodBeforeArchiving: "30m"
     # We moved the archiver configuration under retention at some point, but still need to support the previous
     # versions for now, so the configurations for retention are duplicated
     zeebe.broker.exporters.CamundaExporter.args.retention.archiver.elsRolloverDateFormat: "yyyy-MM-dd_HH"
     zeebe.broker.exporters.CamundaExporter.args.retention.archiver.rolloverInterval: "1h"
+    zeebe.broker.exporters.CamundaExporter.args.retention.archiver.waitPeriodBeforeArchiving: "30m"
     # For now, disable waiting for exporters, as ther seems to be a bug where nothing is added
     zeebe.broker.exporters.CamundaExporter.args.index.shouldWaitForImporters: false
     # Configure a rate limit for all writes, so that we can visualize flow control metrics.
