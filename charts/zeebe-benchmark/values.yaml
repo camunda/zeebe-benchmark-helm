@@ -201,9 +201,9 @@ zeebe:
     # For now, disable waiting for exporters, as ther seems to be a bug where nothing is added
     zeebe.broker.exporters.CamundaExporter.args.index.shouldWaitForImporters: false
     # Configure a rate limit for all writes, so that we can visualize flow control metrics.
-    zeebe.broker.flowControl.write.enabled: "true"
+    zeebe.broker.flowControl.write.enabled: "false"
     zeebe.broker.flowControl.write.limit: 4000
-    zeebe.broker.flowControl.write.throttling.enabled: "true"
+    zeebe.broker.flowControl.write.throttling.enabled: "false"
   # Zeebe.profiling configuration for pyroscope profiling
   profiling:
     # Zeebe.profiling.enabled if true, enables the pyroscope profiling
