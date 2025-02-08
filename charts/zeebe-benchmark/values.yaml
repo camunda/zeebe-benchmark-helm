@@ -82,11 +82,6 @@ saas:
 # Workers configuration for the to be deployed worker application
 #        => New way to deploy workers <=
 workers:
-  # Workers.benchmark defines the configuration for the default benchmark worker
-  # See below if you want additional workers
-  image:
-    repository: "gcr.io/zeebe-io"
-    tag: SNAPSHOT
   benchmark:
     # Workers.benchmark.replicas defines how many replicas of the benchmark worker should be deployed
     replicas: 3
