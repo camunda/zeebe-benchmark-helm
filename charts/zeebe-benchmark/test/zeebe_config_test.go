@@ -34,26 +34,6 @@ func TestConfigMapTemplate(t *testing.T) {
 	})
 }
 
-func (s *configMapTemplateTest) TestProfilingEnabled() {
-	// given
-	options := &helm.Options{
-		SetValues: map[string]string{
-			"zeebe.profiling.enabled": "true",
-		},
-		KubectlOptions: k8s.NewKubectlOptions("", "", s.namespace),
-	}
-
-	// when
-	output := helm.RenderTemplate(s.T(), options, s.chartPath, s.release, s.templates)
-	var configmap corev1.ConfigMap
-	var javaOptions string
-	helm.UnmarshalK8SYaml(s.T(), output, &configmap)
-	helm.UnmarshalK8SYaml(s.T(), configmap.Data["java-opts"], &javaOptions)
-
-	// then
-	s.Require().Equal("-javaagent:/pyroscope/pyroscope.jar", javaOptions)
-}
-
 func (s *configMapTemplateTest) TestSetZeebeConfig() {
 	// given
 	options := &helm.Options{

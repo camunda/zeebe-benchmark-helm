@@ -43,21 +43,7 @@ spec:
       imagePullSecrets:
         []
       initContainers:
-        - command:
-          - wget
-          - https://github.com/pyroscope-io/pyroscope-java/releases/latest/download/pyroscope.jar
-          - -O
-          - /pyroscope/pyroscope.jar
-          image: alpine
-          name: pyroscope
-          securityContext:
-            allowPrivilegeEscalation: false
-            privileged: false
-            readOnlyRootFilesystem: true
-            runAsUser: 1000
-          volumeMounts:
-          - mountPath: /pyroscope
-            name: pyroscope
+        []
       containers:
         - name: core
           image: camunda/camunda:8.7.0-alpha2
@@ -115,22 +101,6 @@ spec:
               value: INFO
             - name: ZEEBE_LOG_LEVEL
               value: DEBUG
-            - name: PYROSCOPE_SERVER_ADDRESS
-              value: http://pyroscope.pyroscope.svc.cluster.local:4040
-            - name: PYROSCOPE_APPLICATION_NAME
-              value: io.camunda.zeebe.broker
-            - name: PYROSCOPE_LOG_LEVEL
-              value: debug
-            - name: PYROSCOPE_FORMAT
-              value: jfr
-            - name: PYROSCOPE_PROFILER_EVENT
-              value: cpu
-            - name: PYROSCOPE_PROFILER_ALLOC
-              value: "0"
-            - name: PYROSCOPE_PROFILER_LOCK
-              value: "0"
-            - name: PYROSCOPE_LABELS
-              value: namespace=$(K8S_NAMESPACE), pod=$(K8S_NAME)
             - name: SPRING_CONFIG_ADDITIONALLOCATION
               value: /usr/local/camunda/config/benchmark-config.yaml
             - name: JAVA_OPTS
@@ -184,8 +154,6 @@ spec:
             - mountPath: /usr/local/camunda/config/benchmark-config.yaml
               name: benchmark-config
               subPath: benchmark-config.yaml
-            - mountPath: /pyroscope
-              name: pyroscope
             - mountPath: /usr/local/camunda/logs
               name: logs
       volumes:
@@ -202,8 +170,6 @@ spec:
             defaultMode: 492
             name: benchmark-config
           name: benchmark-config
-        - emptyDir: {}
-          name: pyroscope
         - emptyDir: {}
           name: logs
       serviceAccountName: benchmark-test-core

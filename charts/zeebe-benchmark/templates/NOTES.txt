@@ -25,11 +25,5 @@ Other:
  * Publisher replicas={{ .Values.publisher.replicas }}
  * Timer replicas={{ .Values.timer.replicas }}
 
-{{ if .Values.zeebe.profiling.enabled }}
-Profiling enabled. Access pyroscope via port-forwarding:
-
-kubectl -n pyroscope port-forward svc/pyroscope 4040
-
-{{ end }}
 
 
