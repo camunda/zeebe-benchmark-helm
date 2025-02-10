@@ -35,7 +35,7 @@ global:
     ## @param global.image.pullPolicy defines the image pull policy which should be used https://kubernetes.io/docs/concepts/containers/images/#image-pull-policy
     pullPolicy: Always
     ## @param global.image.pullSecrets can be used to configure image pull secrets https://kubernetes.io/docs/concepts/containers/images/#specifying-imagepullsecrets-on-a-pod
-    pullSecrets: [ ]
+    pullSecrets: []
   # Identity configuration to configure identity specifics on global level, which can be accessed by other sub-charts
   identity:
     auth:
@@ -204,10 +204,6 @@ zeebe:
     zeebe.broker.flowControl.write.enabled: "false"
     zeebe.broker.flowControl.write.limit: 4000
     zeebe.broker.flowControl.write.throttling.enabled: "false"
-  # Zeebe.profiling configuration for pyroscope profiling
-  profiling:
-    # Zeebe.profiling.enabled if true, enables the pyroscope profiling
-    enabled: false
 
 camunda-platform:
   identity:
@@ -265,7 +261,7 @@ camunda-platform:
       ## @param core.containerSecurityContext.runAsUser
       runAsUser: 1000
       capabilities:
-        add: [ "NET_ADMIN" ]
+        add: ["NET_ADMIN"]
     javaOpts: >-
       -XX:MaxRAMPercentage=25.0
       -XX:+ExitOnOutOfMemoryError
@@ -280,37 +276,15 @@ camunda-platform:
         configMap:
           name: benchmark-config
           defaultMode: 0754
-      - name: pyroscope
-        emptyDir: { }
       - name: logs
-        emptyDir: { }
+        emptyDir: {}
     ## @param core.extraVolumeMounts can be used to mount extra volumes for the broker pods, useful for additional exporters
     extraVolumeMounts:
       - name: benchmark-config
         mountPath: /usr/local/camunda/config/benchmark-config.yaml
         subPath: benchmark-config.yaml
-      - name: pyroscope
-        mountPath: /pyroscope
       - name: logs
         mountPath: /usr/local/camunda/logs
-    ## @param core.extraInitContainers (Deprecated - use `initContainers` instead) ExtraInitContainers can be used to set up extra init containers for the broker pods, useful for additional exporters
-    extraInitContainers:
-      - name: pyroscope
-        image: alpine
-        command: [ 'wget', 'https://github.com/pyroscope-io/pyroscope-java/releases/latest/download/pyroscope.jar', '-O', '/pyroscope/pyroscope.jar' ]
-        volumeMounts:
-          - name: pyroscope
-            mountPath: /pyroscope
-        # We have to configure the security context to not run as Root
-        securityContext:
-          ## @param securityContext.allowPrivilegeEscalation
-          allowPrivilegeEscalation: false
-          ## @param securityContext.privileged
-          privileged: false
-          ## @param securityContext.readOnlyRootFilesystem
-          readOnlyRootFilesystem: true
-          ## @param securityContext.runAsUser
-          runAsUser: 1000
     retention:
       ## @param core.retention.enabled if true, the ILM Policy is created and applied to the index templates.
       enabled: true
@@ -339,22 +313,6 @@ camunda-platform:
         value: INFO
       - name: ZEEBE_LOG_LEVEL
         value: DEBUG
-      - name: PYROSCOPE_SERVER_ADDRESS
-        value: "http://pyroscope.pyroscope.svc.cluster.local:4040"
-      - name: PYROSCOPE_APPLICATION_NAME
-        value: "io.camunda.zeebe.broker"
-      - name: PYROSCOPE_LOG_LEVEL
-        value: "debug"
-      - name: PYROSCOPE_FORMAT
-        value: "jfr"
-      - name: PYROSCOPE_PROFILER_EVENT
-        value: "cpu"
-      - name: PYROSCOPE_PROFILER_ALLOC
-        value: "0"
-      - name: PYROSCOPE_PROFILER_LOCK
-        value: "0"
-      - name: PYROSCOPE_LABELS
-        value: "namespace=$(K8S_NAMESPACE), pod=$(K8S_NAME)"
       # To be able to load a separate/additional configuration
       # See https://github.com/camunda/camunda-platform-helm/issues/2197
       - name: SPRING_CONFIG_ADDITIONALLOCATION

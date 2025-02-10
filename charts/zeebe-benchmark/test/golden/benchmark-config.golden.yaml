@@ -9,7 +9,7 @@ metadata:
     app.kubernetes.io/instance: benchmark-test
     app.kubernetes.io/version: "8.2.5"
     app.kubernetes.io/managed-by: Helm
-data: 
+data:
   benchmark-config.yaml: | 
     zeebe.broker.data.disk.freeSpace.processing: 3GB
     zeebe.broker.data.disk.freeSpace.replication: 2GB

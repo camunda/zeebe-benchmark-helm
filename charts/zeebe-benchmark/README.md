@@ -216,8 +216,6 @@ For more information about Zeebe, visit [Zeebe Overview](https://docs.camunda.io
 |-|-|-|-|
 | `zeebe` | | Configuration to configure Zeebe and Gateway | |
 | | `config` | Can be used to configure Zeebe Broker and Gateway additional without the need of overwriting all environment variables from the dependency chart. | `{}` |
-| | `profiling` | Configuration for pyroscope profiling. | |
-| | `profiling.enabled` | If true, enables the pyroscope profiling. | `false` |
 
 ## Development
 

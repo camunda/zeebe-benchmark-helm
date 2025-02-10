@@ -231,22 +231,6 @@ camunda-platform:
         value: INFO
       - name: ZEEBE_LOG_LEVEL
         value: DEBUG
-      - name: PYROSCOPE_SERVER_ADDRESS
-        value: "http://pyroscope.pyroscope.svc.cluster.local:4040"
-      - name: PYROSCOPE_APPLICATION_NAME
-        value: "io.camunda.zeebe.broker"
-      - name: PYROSCOPE_LOG_LEVEL
-        value: "debug"
-      - name: PYROSCOPE_FORMAT
-        value: "jfr"
-      - name: PYROSCOPE_PROFILER_EVENT
-        value: "cpu"
-      - name: PYROSCOPE_PROFILER_ALLOC
-        value: "0"
-      - name: PYROSCOPE_PROFILER_LOCK
-        value: "0"
-      - name: PYROSCOPE_LABELS
-        value: "namespace=$(K8S_NAMESPACE), pod=$(K8S_NAME)"
       # To be able to load a separate/additional configuration
       # See https://github.com/camunda/camunda-platform-helm/issues/2197
       - name: SPRING_CONFIG_ADDITIONALLOCATION
