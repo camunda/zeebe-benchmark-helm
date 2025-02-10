@@ -22,5 +22,5 @@ spec:
           containers:
             - image: "curlimages/curl:7.87.0"
               name: curl
-              args: ["-L", "-v", "-X", "POST", "http://benchmark-test-zeebe-gateway:9600/actuator/rebalance"]
+              args: ["-L", "-v", "-X", "POST", "http://benchmark-test-core:9600/actuator/rebalance"]
           restartPolicy: OnFailure

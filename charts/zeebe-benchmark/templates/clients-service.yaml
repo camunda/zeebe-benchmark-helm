@@ -28,5 +28,5 @@ spec:
   - honorLabels: true
     # since - is not supported directly, we have to use the index function and quote "camunda-platform"
     interval: {{ index .Values "camunda-platform" "prometheusServiceMonitor" "scrapeInterval" }}
-    path: /prometheus
+    path: /metrics
     port: http

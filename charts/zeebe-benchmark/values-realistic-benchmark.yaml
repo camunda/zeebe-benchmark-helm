@@ -63,7 +63,7 @@ workers:
         cpu: 500m
         memory: 256Mi
 
-  ##### 
+  #####
   # Request proof from vendor
   dispute-process-request-proof-from-vendor:
     # Workers.benchmark.replicas defines how many replicas of the benchmark worker should be deployed
@@ -82,7 +82,7 @@ workers:
     # Workers.dispute-request-documents.message enables sending a message from a worker
     message:
       name: "dispute_process_refund_approved"
-      correlationVariable : "correlationKey"
+      correlationVariable: "correlationKey"
     # Workers.benchmark.logLevel defines the logging level for the benchmark worker
     logLevel: "INFO"
     # Workers.benchmark.resources defines the resources for the benchmark worker
@@ -172,11 +172,9 @@ workers:
         cpu: 500m
         memory: 256Mi
 
-
 #################################################################################################
 #################################################################################################
 #################################################################################################
-
 
 # Starter configuration for the to be deployed starter application
 starter:
@@ -194,7 +192,11 @@ starter:
   # Starter.bpmnXmlPath defines the path (inside the starter app) to the main bpmn XML resource that should be deployed
   bpmnXmlPath: "bpmn/realistic/bankCustomerComplaintDisputeHandling.bpmn"
   # Starter.extraBpmnModels can be used to specify paths (inside the starter app) to extra resources that should be deployed
-  extraResources: ["bpmn/realistic/refundingProcess.bpmn", "bpmn/realistic/determineFraudRatingConfidence.dmn"]
+  extraResources:
+    [
+      "bpmn/realistic/refundingProcess.bpmn",
+      "bpmn/realistic/determineFraudRatingConfidence.dmn",
+    ]
   # Starter.businessKey can be used to specify a businessKey variable, inside a unique identifier is stored for
   # each created process instance
   businessKey: "customerId"
@@ -269,7 +271,6 @@ camunda-platform:
       ## @param core.image.tag can be set to overwrite the global tag, which should be used in that chart
       tag: SNAPSHOT
 
-
     ## @param core.logLevel defines the log level which is used
     logLevel: info
 
@@ -315,4 +316,4 @@ camunda-platform:
         # Persistent Volume Size
         size: 128Gi
         # Persistent Volume Access Modes
-        accessModes: [ "ReadWriteOnce" ]
+        accessModes: ["ReadWriteOnce"]

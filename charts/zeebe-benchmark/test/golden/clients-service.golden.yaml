@@ -36,5 +36,5 @@ spec:
   - honorLabels: true
     # since - is not supported directly, we have to use the index function and quote "camunda-platform"
     interval: 30s
-    path: /prometheus
+    path: /metrics
     port: http

@@ -93,7 +93,7 @@ data:
                 prefix: "zeebe-record"
               retention:
                 enabled: true
-                minimumAge: "10m"
+                minimumAge: "1h"
                 policyName: "core-record-retention-policy"
           CamundaExporter:
             className: "io.camunda.exporter.CamundaExporter"
@@ -103,7 +103,7 @@ data:
                 url: "http://benchmark-test-elasticsearch:9200"
               retention:
                 enabled: true
-                minimumAge: "10m"
+                minimumAge: "1h"
                 policyName: "core-record-retention-policy"
               createSchema: true
 
@@ -165,7 +165,7 @@ data:
           gatewayAddress: "benchmark-test-core:26500"
         archiver:
           ilmEnabled: true
-          ilmMinAgeForDeleteArchivedIndices: 10m
+          ilmMinAgeForDeleteArchivedIndices: 1h
 
       #
       # Camunda Tasklist Configuration.
@@ -207,6 +207,6 @@ data:
           restAddress: "http://benchmark-test-core:8080"
         archiver:
           ilmEnabled: true
-          ilmMinAgeForDeleteArchivedIndices: 10m
+          ilmMinAgeForDeleteArchivedIndices: 1h
 
   log4j2.xml: |

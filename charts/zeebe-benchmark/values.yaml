@@ -82,11 +82,6 @@ saas:
 # Workers configuration for the to be deployed worker application
 #        => New way to deploy workers <=
 workers:
-  # Workers.benchmark defines the configuration for the default benchmark worker
-  # See below if you want additional workers
-  image:
-    repository: "gcr.io/zeebe-io"
-    tag: SNAPSHOT
   benchmark:
     # Workers.benchmark.replicas defines how many replicas of the benchmark worker should be deployed
     replicas: 3
@@ -189,15 +184,26 @@ zeebe:
     zeebe.broker.experimental.consistencyChecks.enablePreconditions: "true"
     zeebe.broker.experimental.consistencyChecks.enableForeignKeyChecks: "true"
     zeebe.broker.executionMetricsExporterEnabled: "true"
-    zeebe.broker.data.diskUsageCommandWatermark: "0.8"
-    zeebe.broker.data.diskUsageReplicationWatermark: "0.9"
+    zeebe.broker.data.disk.freeSpace.processing: "3GB"
+    zeebe.broker.data.disk.freeSpace.replication: "2GB"
     # Configure index suffix with hour pattern, so we create every hour a new index
     # such that ILM can clean it up quickly
+    # We need to configure it for the ES exporter AND the CamundaExporter
     zeebe.broker.exporters.elasticsearch.args.index.indexSuffixDatePattern: "yyyy-MM-dd_HH"
+    zeebe.broker.exporters.CamundaExporter.args.archiver.elsRolloverDateFormat: "yyyy-MM-dd_HH"
+    zeebe.broker.exporters.CamundaExporter.args.archiver.rolloverInterval: "1h"
+    zeebe.broker.exporters.CamundaExporter.args.archiver.waitPeriodBeforeArchiving: "30m"
+    # We moved the archiver configuration under retention at some point, but still need to support the previous
+    # versions for now, so the configurations for retention are duplicated
+    zeebe.broker.exporters.CamundaExporter.args.retention.archiver.elsRolloverDateFormat: "yyyy-MM-dd_HH"
+    zeebe.broker.exporters.CamundaExporter.args.retention.archiver.rolloverInterval: "1h"
+    zeebe.broker.exporters.CamundaExporter.args.retention.archiver.waitPeriodBeforeArchiving: "30m"
+    # For now, disable waiting for exporters, as ther seems to be a bug where nothing is added
+    zeebe.broker.exporters.CamundaExporter.args.index.shouldWaitForImporters: false
     # Configure a rate limit for all writes, so that we can visualize flow control metrics.
-    zeebe.broker.flowControl.write.enabled: "true"
+    zeebe.broker.flowControl.write.enabled: "false"
     zeebe.broker.flowControl.write.limit: 4000
-    zeebe.broker.flowControl.write.throttling.enabled: "true"
+    zeebe.broker.flowControl.write.throttling.enabled: "false"
   # Zeebe.profiling configuration for pyroscope profiling
   profiling:
     # Zeebe.profiling.enabled if true, enables the pyroscope profiling
@@ -276,6 +282,8 @@ camunda-platform:
           defaultMode: 0754
       - name: pyroscope
         emptyDir: { }
+      - name: logs
+        emptyDir: { }
     ## @param core.extraVolumeMounts can be used to mount extra volumes for the broker pods, useful for additional exporters
     extraVolumeMounts:
       - name: benchmark-config
@@ -283,6 +291,8 @@ camunda-platform:
         subPath: benchmark-config.yaml
       - name: pyroscope
         mountPath: /pyroscope
+      - name: logs
+        mountPath: /usr/local/camunda/logs
     ## @param core.extraInitContainers (Deprecated - use `initContainers` instead) ExtraInitContainers can be used to set up extra init containers for the broker pods, useful for additional exporters
     extraInitContainers:
       - name: pyroscope
@@ -305,7 +315,7 @@ camunda-platform:
       ## @param core.retention.enabled if true, the ILM Policy is created and applied to the index templates.
       enabled: true
       ## @param core.retention.minimumAge defines how old the data must be, before the data is deleted as a duration.
-      minimumAge: 10m
+      minimumAge: 1h
     # @param core.env can be used to set extra environment variables in each broker container
     env:
       - name: K8S_NAMESPACE
