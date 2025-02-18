@@ -129,9 +129,6 @@ workers:
 
 # Starter configuration for the to be deployed starter application
 starter:
-  image:
-    repository: "gcr.io/zeebe-io"
-    tag: SNAPSHOT
   # Starter.replicas defines how many replicas of the application should be deployed
   replicas: 1
   # Starter.rate defines with which rate process instances should be created by the starter
@@ -229,6 +226,8 @@ camunda-platform:
     enabled: false
 
   core:
+    image:
+      tag: "SNAPSHOT"
     ## @param core.clusterSize defines the amount of brokers (=replicas), which are deployed via helm
     clusterSize: 3
     ## @param core.partitionCount defines how many partitions are set up in the cluster
