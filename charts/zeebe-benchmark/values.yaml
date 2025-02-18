@@ -205,6 +205,9 @@ zeebe:
     zeebe.broker.flowControl.write.enabled: "false"
     zeebe.broker.flowControl.write.limit: 4000
     zeebe.broker.flowControl.write.throttling.enabled: "false"
+    # Disable the importers
+    camunda.tasklist.importerEnabled: "false"
+    camunda.operate.importerEnabled: "false"
 
 camunda-platform:
   identity:
