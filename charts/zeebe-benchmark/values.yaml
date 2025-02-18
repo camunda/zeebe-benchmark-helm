@@ -229,15 +229,15 @@ camunda-platform:
     image:
       tag: "SNAPSHOT"
     ## @param core.clusterSize defines the amount of brokers (=replicas), which are deployed via helm
-    clusterSize: 3
+    clusterSize: "3"
     ## @param core.partitionCount defines how many partitions are set up in the cluster
-    partitionCount: 3
+    partitionCount: "3"
     ## @param core.replicationFactor defines how each partition is replicated, the value defines the number of nodes
-    replicationFactor: 3
+    replicationFactor: "3"
     ## @param core.cpuThreadCount defines how many threads can be used for the processing on each broker pod
-    cpuThreadCount: 3
+    cpuThreadCount: "3"
     ## @param core.ioThreadCount defines how many threads can be used for the exporting on each broker pod
-    ioThreadCount: 3
+    ioThreadCount: "3"
     ## @extra core.resources configuration to set request and limit configuration for the container https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits
     ## @extra core.resources.requests
     ## @param core.resources.requests.cpu
