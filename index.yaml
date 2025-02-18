@@ -3,6 +3,143 @@ entries:
   zeebe-benchmark:
   - annotations:
       artifacthub.io/changes: |
+        - kind: added
+          description: "enable flow control throttling in normal benchmarks."
+        - kind: added
+          description: "increase disk size for elastic search in normal benchmarks."
+        - kind: added
+          description: "fix golden files."
+        - kind: added
+          description: "fetch images from global."
+        - kind: added
+          description: "re-enable zeebe config, set global image."
+        - kind: added
+          description: "remap the values.yaml to fit the new chart."
+        - kind: added
+          description: "fetch a different image for starters and workers."
+        - kind: added
+          description: "add the option to fetch image form a different repo in starters and workers."
+        - kind: added
+          description: "append dependency to "0.0.0-8.7.0-alpha2""
+        - kind: added
+          description: "print active profiles"
+        - kind: added
+          description: "increase resources of single core app"
+        - kind: added
+          description: "switch to camunda "core" component, instead of individual zeebe, tasklist, operate component"
+        - kind: added
+          description: "increase disk size to 64GB."
+        - kind: added
+          description: "increase ES memory for the benchmarks."
+        - kind: fixed
+          description: "operate value set in golden tests is not supported"
+        - kind: fixed
+          description: "increase throughput by decreasing payload"
+        - kind: fixed
+          description: "reduce workload for regular benchmarks"
+        - kind: fixed
+          description: "core values are expected as strings now"
+        - kind: fixed
+          description: "set core image tag to snapshot"
+        - kind: fixed
+          description: "disable operate and tasklist importers until they are compatible"
+        - kind: fixed
+          description: "adjust archiver/retention config schema"
+        - kind: fixed
+          description: "disable ES deprecation warnings"
+        - kind: fixed
+          description: "remove broken profiling support"
+        - kind: fixed
+          description: "fix file logging on non-root file system"
+        - kind: fixed
+          description: "disable flow control to stabilize benchmarks"
+        - kind: fixed
+          description: "archive faster than the rollover interval"
+        - kind: fixed
+          description: "use non-deprecated config values"
+        - kind: fixed
+          description: "remove unnecessary 'image-worker' deployment"
+        - kind: fixed
+          description: "use new scrapping endpoint after project update"
+        - kind: fixed
+          description: "point leader balancing job to the right service"
+        - kind: fixed
+          description: "fix golden files."
+        - kind: fixed
+          description: "fix golden files."
+        - kind: fixed
+          description: "reduce rate of PI/s in starter for normal benchmarks."
+        - kind: fixed
+          description: "remove OPERATE_LOG env vars."
+        - kind: fixed
+          description: "fix golden tests."
+        - kind: fixed
+          description: "remove global values in values-realistic-benchmark.yaml"
+        - kind: fixed
+          description: "fix the way we display active profiles."
+        - kind: fixed
+          description: "add env variables to realistic benchmark"
+        - kind: fixed
+          description: "add operate stackdriver env variables to core app"
+        - kind: fixed
+          description: "add operate resources to core app"
+        - kind: fixed
+          description: "run operate and tasklist in realistic benchmark"
+        - kind: fixed
+          description: "only print operate in notes if it's enabled"
+        - kind: fixed
+          description: "fix maintainer name."
+        - kind: fixed
+          description: "fix tests to accommodate the changes in charts refactorings."
+        - kind: fixed
+          description: "replace release tag"
+        - kind: fixed
+          description: "disable camunda platform correctly"
+        - kind: changed
+          description: "remove unneeded camunda-platform overrides from realistic workload"
+        - kind: changed
+          description: "remove unneeded identity value"
+        - kind: changed
+          description: "remove unneeded K8S env vars"
+        - kind: changed
+          description: "disable waiting for importers for now"
+        - kind: changed
+          description: "configure hourly retention policy"
+        - kind: changed
+          description: "remove unused, and rename appropriately golden files."
+      artifacthub.io/containsSecurityUpdates: "false"
+      artifacthub.io/links: |
+        - name: Zeebe Repo
+          url: https://github.com/camunda/camunda
+        - name: Zeebe Docs
+          url: https://docs.camunda.io/docs/components/zeebe/zeebe-overview/
+    apiVersion: v2
+    appVersion: 8.2.5
+    created: "2025-02-18T11:46:14.780531353Z"
+    dependencies:
+    - condition: camunda-platform.enabled
+      name: camunda-platform
+      repository: oci://ghcr.io/camunda/helm
+      version: 0.0.0-rc-alpha-8.8
+    - condition: prometheus-elasticsearch-exporter.enabled
+      name: prometheus-elasticsearch-exporter
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 6.4.0
+    description: A Helm chart for Zeebe benchmarks
+    digest: 64b6190939e3f2565f0565b4bdcbfe52df34cb03677abdc4d08cbc4564585f9a
+    maintainers:
+    - email: christopher.zell@camunda.com
+      name: ChrisKujawa
+    name: zeebe-benchmark
+    sources:
+    - https://github.com/camunda/zeebe-benchmark-helm
+    - https://github.com/camunda/camunda
+    type: application
+    urls:
+    - https://github.com/camunda/zeebe-benchmark-helm/releases/download/zeebe-benchmark-0.3.9/zeebe-benchmark-0.3.9.tgz
+    version: 0.3.9
+  - annotations:
+      artifacthub.io/changes: |
         - kind: changed
           description: "disable importer"
       artifacthub.io/containsSecurityUpdates: "false"
@@ -1282,4 +1419,4 @@ entries:
     urls:
     - https://github.com/camunda/zeebe-benchmark-helm/releases/download/zeebe-benchmark-0.1.2/zeebe-benchmark-0.1.2.tgz
     version: 0.1.2
-generated: "2024-11-13T08:18:45.405764105Z"
+generated: "2025-02-18T11:46:14.780788142Z"
