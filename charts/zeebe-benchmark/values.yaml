@@ -90,7 +90,7 @@ workers:
     jobType: "benchmark-task"
     # Workers.benchmark.payloadPath defines the path (inside the worker app) to the payload resource
     # that should be used to complete the corresponding jobs
-    payloadPath: "bpmn/big_payload.json"
+    payloadPath: "bpmn/typical_payload.json"
     # Workers.benchmark.payloadPath defines the delay of the worker before completing a job
     completionDelay: 50ms
     # Workers.benchmark.logLevel defines the logging level for the benchmark worker
@@ -129,7 +129,7 @@ starter:
   # Starter.replicas defines how many replicas of the application should be deployed
   replicas: 1
   # Starter.rate defines with which rate process instances should be created by the starter
-  rate: 30
+  rate: 120
   # Starter.logLevel defines the logging level for the benchmark starter
   logLevel: "WARN"
   # Starter.processId defines the process ID, that should be used for creating new process instances
