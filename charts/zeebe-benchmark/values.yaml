@@ -129,14 +129,14 @@ starter:
   # Starter.replicas defines how many replicas of the application should be deployed
   replicas: 1
   # Starter.rate defines with which rate process instances should be created by the starter
-  rate: 60
+  rate: 30
   # Starter.logLevel defines the logging level for the benchmark starter
   logLevel: "WARN"
   # Starter.processId defines the process ID, that should be used for creating new process instances
   processId: "benchmark"
   # Starter.payloadPath defines the path (inside the starter app) to the payload resource
   # that should be used to create the corresponding process instance
-  payloadPath: "bpmn/big_payload.json"
+  payloadPath: "bpmn/typical_payload.json"
   # Starter.bpmnXmlPath defines the path (inside the starter app) to the main bpmn XML resource that should be deployed
   bpmnXmlPath: "bpmn/one_task.bpmn"
   # Starter.extraBpmnModels can be used to specify paths (inside the starter app) to extra resources that should be deployed
