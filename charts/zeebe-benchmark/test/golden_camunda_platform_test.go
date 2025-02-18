@@ -27,7 +27,6 @@ func TestGoldenCamundaPlatformServiceMonitorDefaults(t *testing.T) {
 			Namespace:      "benchmark-" + strings.ToLower(random.UniqueId()),
 			GoldenFileName: "c8-" + name,
 			Templates:      []string{"charts/camunda-platform/templates/service-monitor/" + name + ".yaml"},
-			SetValues:      map[string]string{"camunda-platform.operate.enabled": "true"},
 		})
 	}
 }
@@ -48,7 +47,6 @@ func TestGoldenCamundaPlatformCoreDefaults(t *testing.T) {
 			Namespace:      "benchmark-" + strings.ToLower(random.UniqueId()),
 			GoldenFileName: "c8-core-" + name,
 			Templates:      []string{"charts/camunda-platform/templates/core/" + name + ".yaml"},
-			SetValues:      map[string]string{"camunda-platform.operate.enabled": "true"},
 		})
 	}
 }

@@ -41,9 +41,6 @@ global:
     auth:
       enabled: false
 
-identity:
-  enabled: false
-
 # Saas configuration to run benchmarks against Camunda SaaS environment
 saas:
   # Saas.enabled if true enables the benchmark to run against Camunda SaaS
@@ -93,7 +90,7 @@ workers:
     jobType: "benchmark-task"
     # Workers.benchmark.payloadPath defines the path (inside the worker app) to the payload resource
     # that should be used to complete the corresponding jobs
-    payloadPath: "bpmn/big_payload.json"
+    payloadPath: "bpmn/typical_payload.json"
     # Workers.benchmark.payloadPath defines the delay of the worker before completing a job
     completionDelay: 50ms
     # Workers.benchmark.logLevel defines the logging level for the benchmark worker
@@ -129,20 +126,17 @@ workers:
 
 # Starter configuration for the to be deployed starter application
 starter:
-  image:
-    repository: "gcr.io/zeebe-io"
-    tag: SNAPSHOT
   # Starter.replicas defines how many replicas of the application should be deployed
   replicas: 1
   # Starter.rate defines with which rate process instances should be created by the starter
-  rate: 60
+  rate: 120
   # Starter.logLevel defines the logging level for the benchmark starter
   logLevel: "WARN"
   # Starter.processId defines the process ID, that should be used for creating new process instances
   processId: "benchmark"
   # Starter.payloadPath defines the path (inside the starter app) to the payload resource
   # that should be used to create the corresponding process instance
-  payloadPath: "bpmn/big_payload.json"
+  payloadPath: "bpmn/typical_payload.json"
   # Starter.bpmnXmlPath defines the path (inside the starter app) to the main bpmn XML resource that should be deployed
   bpmnXmlPath: "bpmn/one_task.bpmn"
   # Starter.extraBpmnModels can be used to specify paths (inside the starter app) to extra resources that should be deployed
@@ -189,21 +183,25 @@ zeebe:
     # Configure index suffix with hour pattern, so we create every hour a new index
     # such that ILM can clean it up quickly
     # We need to configure it for the ES exporter AND the CamundaExporter
-    zeebe.broker.exporters.elasticsearch.args.index.indexSuffixDatePattern: "yyyy-MM-dd_HH"
-    zeebe.broker.exporters.CamundaExporter.args.archiver.elsRolloverDateFormat: "yyyy-MM-dd_HH"
+    zeebe.broker.exporters.elasticsearch.args.index.indexSuffixDatePattern: "yyyy-MM-dd-HH"
+    zeebe.broker.exporters.CamundaExporter.args.archiver.elsRolloverDateFormat: "yyyy-MM-dd-HH"
     zeebe.broker.exporters.CamundaExporter.args.archiver.rolloverInterval: "1h"
-    zeebe.broker.exporters.CamundaExporter.args.archiver.waitPeriodBeforeArchiving: "30m"
+    zeebe.broker.exporters.CamundaExporter.args.archiver.rolloverBatchSize: 10
+    zeebe.broker.exporters.CamundaExporter.args.archiver.waitPeriodBeforeArchiving: "1m"
     # We moved the archiver configuration under retention at some point, but still need to support the previous
     # versions for now, so the configurations for retention are duplicated
-    zeebe.broker.exporters.CamundaExporter.args.retention.archiver.elsRolloverDateFormat: "yyyy-MM-dd_HH"
-    zeebe.broker.exporters.CamundaExporter.args.retention.archiver.rolloverInterval: "1h"
-    zeebe.broker.exporters.CamundaExporter.args.retention.archiver.waitPeriodBeforeArchiving: "30m"
+    zeebe.broker.exporters.CamundaExporter.args.archiver.retention.enabled: "true"
+    zeebe.broker.exporters.CamundaExporter.args.archiver.retention.minimumAge: "1h"
+    zeebe.broker.exporters.CamundaExporter.args.archiver.retention.policyName: "camunda-retention-policy"
     # For now, disable waiting for exporters, as ther seems to be a bug where nothing is added
     zeebe.broker.exporters.CamundaExporter.args.index.shouldWaitForImporters: false
     # Configure a rate limit for all writes, so that we can visualize flow control metrics.
     zeebe.broker.flowControl.write.enabled: "false"
     zeebe.broker.flowControl.write.limit: 4000
     zeebe.broker.flowControl.write.throttling.enabled: "false"
+    # Disable the importers
+    camunda.tasklist.importerEnabled: "false"
+    camunda.operate.importerEnabled: "false"
 
 camunda-platform:
   identity:
@@ -225,16 +223,18 @@ camunda-platform:
     enabled: false
 
   core:
+    image:
+      tag: "SNAPSHOT"
     ## @param core.clusterSize defines the amount of brokers (=replicas), which are deployed via helm
-    clusterSize: 3
+    clusterSize: "3"
     ## @param core.partitionCount defines how many partitions are set up in the cluster
-    partitionCount: 3
+    partitionCount: "3"
     ## @param core.replicationFactor defines how each partition is replicated, the value defines the number of nodes
-    replicationFactor: 3
+    replicationFactor: "3"
     ## @param core.cpuThreadCount defines how many threads can be used for the processing on each broker pod
-    cpuThreadCount: 3
+    cpuThreadCount: "3"
     ## @param core.ioThreadCount defines how many threads can be used for the exporting on each broker pod
-    ioThreadCount: 3
+    ioThreadCount: "3"
     ## @extra core.resources configuration to set request and limit configuration for the container https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits
     ## @extra core.resources.requests
     ## @param core.resources.requests.cpu
@@ -292,14 +292,6 @@ camunda-platform:
       minimumAge: 1h
     # @param core.env can be used to set extra environment variables in each broker container
     env:
-      - name: K8S_NAMESPACE
-        valueFrom:
-          fieldRef:
-            fieldPath: metadata.namespace
-      - name: K8S_NAME
-        valueFrom:
-          fieldRef:
-            fieldPath: metadata.name
       # Enable JSON logging for google cloud stackdriver
       - name: ZEEBE_LOG_APPENDER
         value: Stackdriver
@@ -343,6 +335,8 @@ camunda-platform:
         limits:
           cpu: 2
           memory: 6Gi
+    extraConfig:
+      logger.org.elasticsearch.deprecation: "OFF"
 
   # Change these settings to configure a different way to collect metrics
   prometheusServiceMonitor:
