@@ -343,6 +343,8 @@ camunda-platform:
         limits:
           cpu: 2
           memory: 6Gi
+    extraConfig:
+      logger.org.elasticsearch.deprecation: "OFF"
 
   # Change these settings to configure a different way to collect metrics
   prometheusServiceMonitor:
