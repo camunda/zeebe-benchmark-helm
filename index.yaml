@@ -3,6 +3,41 @@ entries:
   zeebe-benchmark:
   - annotations:
       artifacthub.io/changes: |
+        - kind: fixed
+          description: "increase default throughput to 150 PI/s again"
+      artifacthub.io/containsSecurityUpdates: "false"
+      artifacthub.io/links: |
+        - name: Zeebe Repo
+          url: https://github.com/camunda/camunda
+        - name: Zeebe Docs
+          url: https://docs.camunda.io/docs/components/zeebe/zeebe-overview/
+    apiVersion: v2
+    appVersion: 8.2.5
+    created: "2025-02-18T12:28:36.750927583Z"
+    dependencies:
+    - condition: camunda-platform.enabled
+      name: camunda-platform
+      repository: oci://ghcr.io/camunda/helm
+      version: 0.0.0-rc-alpha-8.8
+    - condition: prometheus-elasticsearch-exporter.enabled
+      name: prometheus-elasticsearch-exporter
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 6.4.0
+    description: A Helm chart for Zeebe benchmarks
+    digest: d4c5b516d1e4c75b0b2e7a0f852c416d3fd119f06f58f265d7483d09c61523ce
+    maintainers:
+    - email: christopher.zell@camunda.com
+      name: ChrisKujawa
+    name: zeebe-benchmark
+    sources:
+    - https://github.com/camunda/zeebe-benchmark-helm
+    - https://github.com/camunda/camunda
+    type: application
+    urls:
+    - https://github.com/camunda/zeebe-benchmark-helm/releases/download/zeebe-benchmark-0.3.10/zeebe-benchmark-0.3.10.tgz
+    version: 0.3.10
+  - annotations:
+      artifacthub.io/changes: |
         - kind: added
           description: "enable flow control throttling in normal benchmarks."
         - kind: added
@@ -1419,4 +1454,4 @@ entries:
     urls:
     - https://github.com/camunda/zeebe-benchmark-helm/releases/download/zeebe-benchmark-0.1.2/zeebe-benchmark-0.1.2.tgz
     version: 0.1.2
-generated: "2025-02-18T11:46:14.780788142Z"
+generated: "2025-02-18T12:28:36.751175867Z"
