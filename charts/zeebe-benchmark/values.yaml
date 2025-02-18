@@ -41,9 +41,6 @@ global:
     auth:
       enabled: false
 
-identity:
-  enabled: false
-
 # Saas configuration to run benchmarks against Camunda SaaS environment
 saas:
   # Saas.enabled if true enables the benchmark to run against Camunda SaaS
