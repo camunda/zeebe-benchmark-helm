@@ -321,6 +321,8 @@ camunda-platform:
   ## @extra elasticsearch
   elasticsearch:
     master:
+      fullnameOverride: elastic
+      nameOverride: elastic
       ## @param elasticsearch.master.replicaCount defines number of master-elegible replicas to deploy
       replicaCount: 3
       ## @param elasticsearch.master.heapSize
