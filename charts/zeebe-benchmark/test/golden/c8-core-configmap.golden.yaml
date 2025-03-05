@@ -20,10 +20,9 @@ data:
 
     exec /usr/local/camunda/bin/camunda
   application.yaml: |
-    
     spring:
       profiles:
-        active: "operate,tasklist,broker,auth"
+        active: "identity,operate,tasklist,broker,consolidated-auth"
 
     management:
       server:
@@ -117,8 +116,20 @@ data:
           enabled: true
 
       security:
+        authentication:
+          method: "basic"
+          basic:
+            allowUnauthenticatedApiAccess: false
         authorizations:
-          enabled: false
+          enabled: true
+        initialization:
+          users:
+            - username: "demo"
+              password: "demo"
+              name: "Demo User"
+              email: "demo@demo.com"
+        multiTenancy:
+            enabled: false
 
       #
       # Camunda Database Configuration.
