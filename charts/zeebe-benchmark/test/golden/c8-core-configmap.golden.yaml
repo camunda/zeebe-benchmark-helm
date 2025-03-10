@@ -90,20 +90,12 @@ data:
               url: "http://benchmark-test-elasticsearch:9200"
               index:
                 prefix: "zeebe-record"
-              retention:
-                enabled: true
-                minimumAge: "1h"
-                policyName: "core-record-retention-policy"
           CamundaExporter:
             className: "io.camunda.exporter.CamundaExporter"
             args:
               connect:
                 type: elasticsearch
                 url: "http://benchmark-test-elasticsearch:9200"
-              retention:
-                enabled: true
-                minimumAge: "1h"
-                policyName: "core-record-retention-policy"
               createSchema: true
 
     camunda:
@@ -118,10 +110,9 @@ data:
       security:
         authentication:
           method: "basic"
-          basic:
-            allowUnauthenticatedApiAccess: false
+          unprotectedApi: true
         authorizations:
-          enabled: true
+          enabled: false
         initialization:
           users:
             - username: "demo"
@@ -146,7 +137,7 @@ data:
       #
       operate:
         persistentSessionsEnabled: true
-      
+
         # ELS instance to store Operate data
         elasticsearch:
           # Operate index prefix.
@@ -174,9 +165,6 @@ data:
         zeebe:
           # Gateway address
           gatewayAddress: "benchmark-test-core:26500"
-        archiver:
-          ilmEnabled: true
-          ilmMinAgeForDeleteArchivedIndices: 1h
 
       #
       # Camunda Tasklist Configuration.
@@ -216,8 +204,5 @@ data:
           # Gateway address
           gatewayAddress: benchmark-test-core:26500
           restAddress: "http://benchmark-test-core:8080"
-        archiver:
-          ilmEnabled: true
-          ilmMinAgeForDeleteArchivedIndices: 1h
 
   log4j2.xml: |
