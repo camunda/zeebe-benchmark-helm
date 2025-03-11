@@ -36,9 +36,10 @@ global:
     pullPolicy: Always
     ## @param global.image.pullSecrets can be used to configure image pull secrets https://kubernetes.io/docs/concepts/containers/images/#specifying-imagepullsecrets-on-a-pod
     pullSecrets: []
-  # Identity configuration to configure identity specifics on global level, which can be accessed by other sub-charts
-  identity:
-    auth:
+  security:
+    authentication:
+      unprotectedApi: true
+    authorizations:
       enabled: false
 
 # Saas configuration to run benchmarks against Camunda SaaS environment
@@ -321,6 +322,8 @@ camunda-platform:
   ## @extra elasticsearch
   elasticsearch:
     master:
+      fullnameOverride: elastic
+      nameOverride: elastic
       ## @param elasticsearch.master.replicaCount defines number of master-elegible replicas to deploy
       replicaCount: 3
       ## @param elasticsearch.master.heapSize

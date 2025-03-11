@@ -38,7 +38,7 @@ spec:
         app.kubernetes.io/component: core
         app.kubernetes.io/version: "SNAPSHOT"
       annotations:
-        checksum/config: 81feafb58f94983b12ab5e7890d39028acc3cb57e0b532b421faf9df5fd5e02a
+        checksum/config: 743096a8952b2149b9dee612b9d5989ef4e153ed114a8746d191fa4b7519d8f3
     spec:
       imagePullSecrets:
         []
@@ -101,6 +101,9 @@ spec:
                   key: java-opts
                   name: zeebe-config
                   optional: true
+          envFrom:
+            - configMapRef:
+                name: benchmark-test-camunda-platform-documentstore-env-vars
           ports:
             - containerPort: 8080
               name: http
