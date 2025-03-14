@@ -3,6 +3,47 @@ entries:
   zeebe-benchmark:
   - annotations:
       artifacthub.io/changes: |
+        - kind: added
+          description: "configure retention for exporters"
+        - kind: fixed
+          description: "disable identity"
+        - kind: fixed
+          description: "truncate es name"
+        - kind: changed
+          description: "rename archiver to history for camunda exporter settings"
+      artifacthub.io/containsSecurityUpdates: "false"
+      artifacthub.io/links: |
+        - name: Zeebe Repo
+          url: https://github.com/camunda/camunda
+        - name: Zeebe Docs
+          url: https://docs.camunda.io/docs/components/zeebe/zeebe-overview/
+    apiVersion: v2
+    appVersion: 8.2.5
+    created: "2025-03-14T13:30:58.817094101Z"
+    dependencies:
+    - condition: camunda-platform.enabled
+      name: camunda-platform
+      repository: oci://ghcr.io/camunda/helm
+      version: 0.0.0-rc-alpha-8.8
+    - condition: prometheus-elasticsearch-exporter.enabled
+      name: prometheus-elasticsearch-exporter
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 6.4.0
+    description: A Helm chart for Zeebe benchmarks
+    digest: a47c98e5c8510f8893eeb5876cf042d111a6e6d87ce516f68c0e6e89ef8fce54
+    maintainers:
+    - email: christopher.zell@camunda.com
+      name: ChrisKujawa
+    name: zeebe-benchmark
+    sources:
+    - https://github.com/camunda/zeebe-benchmark-helm
+    - https://github.com/camunda/camunda
+    type: application
+    urls:
+    - https://github.com/camunda/zeebe-benchmark-helm/releases/download/zeebe-benchmark-0.3.11/zeebe-benchmark-0.3.11.tgz
+    version: 0.3.11
+  - annotations:
+      artifacthub.io/changes: |
         - kind: fixed
           description: "increase default throughput to 150 PI/s again"
       artifacthub.io/containsSecurityUpdates: "false"
@@ -1454,4 +1495,4 @@ entries:
     urls:
     - https://github.com/camunda/zeebe-benchmark-helm/releases/download/zeebe-benchmark-0.1.2/zeebe-benchmark-0.1.2.tgz
     version: 0.1.2
-generated: "2025-02-18T12:28:36.751175867Z"
+generated: "2025-03-14T13:30:58.81742594Z"
