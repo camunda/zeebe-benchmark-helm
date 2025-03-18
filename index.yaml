@@ -4,6 +4,41 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: added
+          description: "upgrade to 13.0.0-alpha2 charts"
+      artifacthub.io/containsSecurityUpdates: "false"
+      artifacthub.io/links: |
+        - name: Zeebe Repo
+          url: https://github.com/camunda/camunda
+        - name: Zeebe Docs
+          url: https://docs.camunda.io/docs/components/zeebe/zeebe-overview/
+    apiVersion: v2
+    appVersion: 8.2.5
+    created: "2025-03-18T15:18:15.244345013Z"
+    dependencies:
+    - condition: camunda-platform.enabled
+      name: camunda-platform
+      repository: https://helm.camunda.io
+      version: 13.0.0-alpha2
+    - condition: prometheus-elasticsearch-exporter.enabled
+      name: prometheus-elasticsearch-exporter
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 6.4.0
+    description: A Helm chart for Zeebe benchmarks
+    digest: 6ab1b11f64cafae870e5841880fd061f9c8525f3e0c9af83ada9b3628b06a804
+    maintainers:
+    - email: christopher.zell@camunda.com
+      name: ChrisKujawa
+    name: zeebe-benchmark
+    sources:
+    - https://github.com/camunda/zeebe-benchmark-helm
+    - https://github.com/camunda/camunda
+    type: application
+    urls:
+    - https://github.com/camunda/zeebe-benchmark-helm/releases/download/zeebe-benchmark-0.3.12/zeebe-benchmark-0.3.12.tgz
+    version: 0.3.12
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
           description: "configure retention for exporters"
         - kind: fixed
           description: "disable identity"
@@ -1495,4 +1530,4 @@ entries:
     urls:
     - https://github.com/camunda/zeebe-benchmark-helm/releases/download/zeebe-benchmark-0.1.2/zeebe-benchmark-0.1.2.tgz
     version: 0.1.2
-generated: "2025-03-14T13:30:58.81742594Z"
+generated: "2025-03-18T15:18:15.244654487Z"
