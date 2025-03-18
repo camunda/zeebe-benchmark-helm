@@ -9,8 +9,8 @@ sources:
   - https://github.com/camunda/camunda
 dependencies:
   - name: camunda-platform
-    repository: "oci://ghcr.io/camunda/helm"
-    version: "0.0.0-rc-alpha-8.8"
+    repository: "https://helm.camunda.io"
+    version: "13.0.0-alpha2"
     condition: "camunda-platform.enabled"
   - name: prometheus-elasticsearch-exporter
     repository: "https://prometheus-community.github.io/helm-charts"
