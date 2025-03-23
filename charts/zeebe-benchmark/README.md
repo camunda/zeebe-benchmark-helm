@@ -73,6 +73,29 @@ and much closer to production systems.
 For more details, follow the Camunda Platform 8
 [local Kubernetes cluster guide](https://docs.camunda.io/docs/self-managed/platform-deployment/helm-kubernetes/guides/local-kubernetes-cluster/).
 
+### Running against Saas
+
+If you want to run the helm Benchmark against a Camunda Saas 
+cluster you need to run through the following steps:
+
+1. Create a new API client in the intended cluster.
+2. From the environment vars in the newly created client we need to copy the 
+   following to our `values.yaml` under `saas.credentials`.
+```yaml
+saas.credentials:
+    clientId: ZEEBE_CLIENT_ID 
+    clientSecret: ZEEBE_CLIENT_SECRET 
+    zeebeAddress: ZEEBE_ADDRESS
+    authServer: ZEEBE_AUTHORIZATION_SERVER_URL
+```
+3. Set `saas.enabled` to true. 
+4. Run the helm installation normally.
+
+This will deploy the processes used in the benchmark in the cluster and 
+then the starter will create a fixed amount of new process instances per 
+second. Optionally we can adjust the starter rate of PIs per second under 
+`starter.rate`.
+
 ## Uninstalling Charts
 
 You can remove these charts by running:
