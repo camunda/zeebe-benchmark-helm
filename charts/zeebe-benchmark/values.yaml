@@ -187,7 +187,7 @@ zeebe:
     zeebe.broker.exporters.elasticsearch.args.index.indexSuffixDatePattern: "yyyy-MM-dd-HH"
     zeebe.broker.exporters.CamundaExporter.args.history.elsRolloverDateFormat: "yyyy-MM-dd-HH"
     zeebe.broker.exporters.CamundaExporter.args.history.rolloverInterval: "1h"
-    zeebe.broker.exporters.CamundaExporter.args.history.rolloverBatchSize: 10
+    zeebe.broker.exporters.CamundaExporter.args.history.rolloverBatchSize: 300
     zeebe.broker.exporters.CamundaExporter.args.history.waitPeriodBeforeArchiving: "1m"
     # We moved the archiver configuration under retention at some point, but still need to support the previous
     # versions for now, so the configurations for retention are duplicated
@@ -203,6 +203,7 @@ zeebe:
     # Disable the importers
     camunda.tasklist.importerEnabled: "false"
     camunda.operate.importerEnabled: "false"
+    camunda.operate.elasticsearch.numberOfShards: 3
 
 camunda-platform:
   identity:
