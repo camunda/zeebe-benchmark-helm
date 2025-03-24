@@ -11,6 +11,7 @@ metadata:
     app.kubernetes.io/managed-by: Helm
 data:
   benchmark-config.yaml: | 
+    camunda.operate.elasticsearch.numberOfShards: 3
     camunda.operate.importerEnabled: "false"
     camunda.tasklist.importerEnabled: "false"
     zeebe.broker.data.disk.freeSpace.processing: 3GB
@@ -22,7 +23,7 @@ data:
     zeebe.broker.exporters.CamundaExporter.args.history.retention.enabled: "true"
     zeebe.broker.exporters.CamundaExporter.args.history.retention.minimumAge: 1h
     zeebe.broker.exporters.CamundaExporter.args.history.retention.policyName: camunda-retention-policy
-    zeebe.broker.exporters.CamundaExporter.args.history.rolloverBatchSize: 10
+    zeebe.broker.exporters.CamundaExporter.args.history.rolloverBatchSize: 300
     zeebe.broker.exporters.CamundaExporter.args.history.rolloverInterval: 1h
     zeebe.broker.exporters.CamundaExporter.args.history.waitPeriodBeforeArchiving: 1m
     zeebe.broker.exporters.CamundaExporter.args.index.shouldWaitForImporters: false
