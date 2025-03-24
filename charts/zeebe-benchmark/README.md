@@ -75,19 +75,13 @@ For more details, follow the Camunda Platform 8
 
 ### Running against Saas
 
-If you want to run the helm Benchmark against a Camunda Saas 
-cluster you need to run through the following steps:
+If you want to run the helm Benchmark against a Camunda Saas, or other 
+Camunda kubernetes deployment (such as in Google cloud, AWS etc.), you 
+need to run through the following steps:
 
 1. Create a new API client in the intended cluster.
-2. From the environment vars in the newly created client we need to copy the 
-   following to our `values.yaml` under `saas.credentials`.
-```yaml
-saas.credentials:
-    clientId: ZEEBE_CLIENT_ID 
-    clientSecret: ZEEBE_CLIENT_SECRET 
-    zeebeAddress: ZEEBE_ADDRESS
-    authServer: ZEEBE_AUTHORIZATION_SERVER_URL
-```
+2. From the environment vars in the newly created client we need to copy 
+   them to our `values.yaml` under `saas.credentials` [here](https://github.com/camunda/zeebe-benchmark-helm/blob/751c7b35e8041da9c5e7a75232cb4d43942e6ac3/charts/zeebe-benchmark/values.yaml#L45-L78).
 3. Set `saas.enabled` to true. 
 4. Run the helm installation normally.
 
