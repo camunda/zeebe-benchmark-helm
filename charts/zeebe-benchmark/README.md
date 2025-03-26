@@ -80,9 +80,20 @@ Camunda kubernetes deployment (such as in Google cloud, AWS etc.), you
 need to run through the following steps:
 
 1. Create a new API client in the intended cluster.
-2. From the environment vars in the newly created client we need to copy 
+2. Download environment vars Under "Env Vars" tab
+3. From the environment vars in the newly created client we need to copy
    them to our `values.yaml` under `saas.credentials` [here](https://github.com/camunda/zeebe-benchmark-helm/blob/751c7b35e8041da9c5e7a75232cb4d43942e6ac3/charts/zeebe-benchmark/values.yaml#L45-L78).
-3. Set `saas.enabled` to true. 
+   Set `saas.enabled` to true.
+   This can be done with a script
+
+    ```sh
+    # export env vars
+    # eg source ~/Downloads/CamundaCloudMgmtAPI-Client-download-test.txt
+
+    # require yq
+    ./scripts/update-values-saas-from-env.sh
+    ```
+
 4. Run the helm installation normally.
 
 This will deploy the processes used in the benchmark in the cluster and 
