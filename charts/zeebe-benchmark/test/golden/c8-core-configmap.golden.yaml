@@ -93,7 +93,7 @@ data:
               retention:
                 enabled: true
                 minimumAge: "1h"
-                policyName: "core-record-retention-policy"
+                policyName: "camunda-retention-policy"
           CamundaExporter:
             className: "io.camunda.exporter.CamundaExporter"
             args:
@@ -101,16 +101,16 @@ data:
                 type: elasticsearch
                 url: "http://benchmark-test-elasticsearch:9200"
               history:
-                elsRolloverDateFormat: "date"
-                rolloverInterval: "1d"
-                rolloverBatchSize: 100
-                waitPeriodBeforeArchiving: "1h"
+                elsRolloverDateFormat: "yyyy-MM-dd-HH"
+                rolloverInterval: "1h"
+                rolloverBatchSize: 300
+                waitPeriodBeforeArchiving: "1m"
                 delayBetweenRuns: 2000
                 maxDelayBetweenRuns: 60000
                 retention:
                   enabled: true
                   minimumAge: "1h"
-                  policyName: "core-record-retention-policy"
+                  policyName: "camunda-retention-policy"
               createSchema: true
 
     camunda:
