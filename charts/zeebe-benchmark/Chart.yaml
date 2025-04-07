@@ -2,7 +2,7 @@ apiVersion: v2
 name: zeebe-benchmark
 description: A Helm chart for Zeebe benchmarks
 type: application
-version: 0.3.12
+version: 0.3.13
 appVersion: "8.2.5"
 sources:
   - https://github.com/camunda/zeebe-benchmark-helm
