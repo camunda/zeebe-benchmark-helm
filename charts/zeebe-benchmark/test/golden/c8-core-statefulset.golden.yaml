@@ -76,7 +76,7 @@ spec:
                 fieldRef:
                   fieldPath: metadata.namespace
             - name: JAVA_TOOL_OPTIONS
-              value: "-XX:MaxRAMPercentage=25.0 -XX:+ExitOnOutOfMemoryError -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/usr/local/camunda/data -XX:ErrorFile=/usr/local/camunda/data/zeebe_error%p.log -Xlog:gc*:file=/usr/local/camunda/data/gc.log:time:filecount=7,filesize=8M"
+              value: "-XX:MaxRAMPercentage=25.0 -XX:+ExitOnOutOfMemoryError -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/usr/local/camunda/data -XX:ErrorFile=/usr/local/camunda/data/zeebe_error%p.log -XX:NativeMemoryTracking=summary -Xlog:gc*:file=/usr/local/camunda/data/gc.log:time:filecount=7,filesize=8M"
             - name: K8S_POD_NAME
               valueFrom:
                 fieldRef:

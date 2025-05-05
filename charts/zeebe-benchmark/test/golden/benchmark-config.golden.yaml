@@ -14,6 +14,7 @@ data:
     camunda.database.retention.enabled: "true"
     camunda.database.retention.minimumAge: 0s
     camunda.database.retention.policyName: camunda-retention-policy
+    camunda.flags.jfr.metrics: "true"
     camunda.operate.elasticsearch.numberOfShards: 3
     camunda.operate.importerEnabled: "false"
     camunda.tasklist.importerEnabled: "false"
