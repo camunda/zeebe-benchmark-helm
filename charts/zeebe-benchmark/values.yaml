@@ -212,6 +212,8 @@ zeebe:
     # https://www.elastic.co/guide/en/elasticsearch/reference/current/ilm-index-lifecycle.html#ilm-phase-transitions
     camunda.database.retention.minimumAge: "0s"
     camunda.database.retention.policyName: "camunda-retention-policy"
+    #Metrics:
+    camunda.flags.jfr.metrics: "true"
 
 camunda-platform:
   identity:
@@ -278,6 +280,7 @@ camunda-platform:
       -XX:+HeapDumpOnOutOfMemoryError
       -XX:HeapDumpPath=/usr/local/camunda/data
       -XX:ErrorFile=/usr/local/camunda/data/zeebe_error%p.log
+      -XX:NativeMemoryTracking=summary
       -Xlog:gc*:file=/usr/local/camunda/data/gc.log:time:filecount=7,filesize=8M
 
     # Zeebe config
