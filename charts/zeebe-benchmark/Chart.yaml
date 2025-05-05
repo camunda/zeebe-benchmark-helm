@@ -26,4 +26,4 @@ annotations:
     - name: Zeebe Docs
       url: https://docs.camunda.io/docs/components/zeebe/zeebe-overview/
   artifacthub.io/containsSecurityUpdates: "false"
-  artifacthub.io/changes: "- kind: added\n  description: \"upgrade to 13.0.0-alpha2 charts\"\n"
+  artifacthub.io/changes: "- kind: added\n  description: \"increase load\"\n- kind: added\n  description: \"add NMT and enable camunda custom jfr metrics\"\n"

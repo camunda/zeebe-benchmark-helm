@@ -2,19 +2,19 @@ The changelog is automatically generated using [git-chglog](https://github.com/g
 and it follows [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) format.
 
 
-<a name="zeebe-benchmark-0.3.12"></a>
-## [zeebe-benchmark-0.3.12](https://github.com/camunda/camunda-platform-helm/compare/zeebe-benchmark-0.3.11...zeebe-benchmark-0.3.12) (2025-03-18)
+<a name="zeebe-benchmark-0.3.14"></a>
+## [zeebe-benchmark-0.3.14](https://github.com/camunda/camunda-platform-helm/compare/zeebe-benchmark-0.3.13...zeebe-benchmark-0.3.14) (2025-05-05)
 
 ### Feat
 
-* upgrade to 13.0.0-alpha2 charts
+* increase load
+* add NMT and enable camunda custom jfr metrics
 
 ### Test
 
-* regenerate golden files
+* update golden files
 
 ### Pull Requests
 
-* Merge pull request [#241](https://github.com/camunda/camunda-platform-helm/issues/241) from camunda/234-stable-chart-version
-* Merge pull request [#240](https://github.com/camunda/camunda-platform-helm/issues/240) from camunda/release
+* Merge pull request [#250](https://github.com/camunda/camunda-platform-helm/issues/250) from camunda/release
 
