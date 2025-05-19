@@ -260,6 +260,10 @@ camunda-platform:
       limits:
         cpu: 2000m
         memory: 12Gi
+
+    nodeSelector:
+      cloud.google.com/gke-nodepool: n2-standard-2
+
     ## @param core.pvcSize defines the persistent volume claim size, which is used by each broker pod https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims
     pvcSize: "64Gi"
     ## @param core.pvcStorageClassName can be used to set the storage class name which should be used by the persistent volume claim.
