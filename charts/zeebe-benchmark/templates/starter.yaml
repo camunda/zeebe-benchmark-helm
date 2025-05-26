@@ -46,6 +46,11 @@ spec:
                 {{- if .Values.starter.payloadPath }}
                 -Dapp.starter.payloadPath={{ .Values.starter.payloadPath | quote }}
                 {{- end }}
+                {{- if eq .Values.global.security.authentication.method "basic" and not .Values.global.security.authentication.unprotectedApi }}
+                -Dapp.authenticationMode=basic
+                -Dapp.basicAuth.username={{ .Values.shared.basicAuth.username | quote }}
+                -Dapp.basicAuth.password={{ .Values.shared.basicAuth.password | quote }}
+                {{- end }}
                 -XX:+HeapDumpOnOutOfMemoryError
             {{- if .Values.starter.logLevel }}
             - name: LOG_LEVEL
