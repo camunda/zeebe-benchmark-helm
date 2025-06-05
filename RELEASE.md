@@ -24,6 +24,11 @@ Locally, run:
 make release.chores
 ```
 
+> [!Note]
+>
+> If you use podman, you will run into issues with this.
+> As workaround you can install [git-chglog](https://github.com/git-chglog/git-chglog) and run `make release.chores chgLogCmd="git-chglog"`.
+
 This action will:
 
 - Locally pull latest updates to the `main` branch.
