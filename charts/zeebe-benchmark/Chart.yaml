@@ -26,4 +26,4 @@ annotations:
     - name: Zeebe Docs
       url: https://docs.camunda.io/docs/components/zeebe/zeebe-overview/
   artifacthub.io/containsSecurityUpdates: "false"
-  artifacthub.io/changes: "- kind: fixed\n  description: \"use right node pool\"\n- kind: fixed\n  description: \"set disruption budget\"\n- kind: fixed\n  description: \"set correct node selector\"\n- kind: fixed\n  description: \"set right storageClass\"\n"
+  artifacthub.io/changes: "- kind: fixed\n  description: \"reduce memory consumption\"\n"
