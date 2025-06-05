@@ -23,6 +23,7 @@ data:
     zeebe.broker.executionMetricsExporterEnabled: "true"
     zeebe.broker.experimental.consistencyChecks.enableForeignKeyChecks: "true"
     zeebe.broker.experimental.consistencyChecks.enablePreconditions: "true"
+    zeebe.broker.experimental.rocksdb.memoryLimit: 64MB
     zeebe.broker.exporters.CamundaExporter.args.history.elsRolloverDateFormat: yyyy-MM-dd-HH
     zeebe.broker.exporters.CamundaExporter.args.history.retention.enabled: "true"
     zeebe.broker.exporters.CamundaExporter.args.history.retention.minimumAge: 0s

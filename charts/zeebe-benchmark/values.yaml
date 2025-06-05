@@ -214,6 +214,9 @@ zeebe:
     camunda.database.retention.policyName: "camunda-retention-policy"
     #Metrics:
     camunda.flags.jfr.metrics: "true"
+    # RocksDB memory limit setting, limits the overall RocksDB memory usage
+    # ZEEBE_BROKER_EXPERIMENTAL_ROCKSDB_MEMORYLIMIT
+    zeebe.broker.experimental.rocksdb.memoryLimit: "64MB"
 
 camunda-platform:
   identity:
@@ -256,10 +259,10 @@ camunda-platform:
     resources:
       requests:
         cpu: 2000m
-        memory: 6Gi
+        memory: 2Gi
       limits:
         cpu: 2000m
-        memory: 12Gi
+        memory: 2Gi
 
     nodeSelector:
       cloud.google.com/gke-nodepool: n2-standard-4
