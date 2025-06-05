@@ -2,21 +2,18 @@ The changelog is automatically generated using [git-chglog](https://github.com/g
 and it follows [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) format.
 
 
-<a name="zeebe-benchmark-0.3.15"></a>
-## [zeebe-benchmark-0.3.15](https://github.com/camunda/camunda-platform-helm/compare/zeebe-benchmark-0.3.14...zeebe-benchmark-0.3.15) (2025-05-19)
+<a name="zeebe-benchmark-0.3.16"></a>
+## [zeebe-benchmark-0.3.16](https://github.com/camunda/camunda-platform-helm/compare/zeebe-benchmark-0.3.15...zeebe-benchmark-0.3.16) (2025-06-05)
 
 ### Fix
 
-* use right node pool
-* set disruption budget
-* set correct node selector
-* set right storageClass
+* reduce memory consumption
 
 ### Test
 
-* update golden files
+* regenerate golden files
 
 ### Pull Requests
 
-* Merge pull request [#255](https://github.com/camunda/camunda-platform-helm/issues/255) from camunda/release
+* Merge pull request [#257](https://github.com/camunda/camunda-platform-helm/issues/257) from camunda/release
 
