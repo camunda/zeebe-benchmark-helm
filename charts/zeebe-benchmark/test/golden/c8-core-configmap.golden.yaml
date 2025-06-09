@@ -21,6 +21,10 @@ data:
     exec /usr/local/camunda/bin/camunda
   application.yaml: |
     spring:
+      servlet:
+        multipart:
+          max-file-size: "10MB"
+          max-request-size: "10MB"
       profiles:
         active: "identity,operate,tasklist,broker,consolidated-auth"
 
@@ -109,9 +113,6 @@ data:
                 maxDelayBetweenRuns: 60000
                 retention:
                   enabled: true
-                  minimumAge: "1h"
-                  policyName: "core-record-retention-policy"
-              createSchema: true
 
     camunda:
       persistent:
@@ -136,6 +137,9 @@ data:
               email: "demo@demo.com"
         multiTenancy:
             enabled: false
+      identity:
+        clientId: "core"
+        audience: "core-api"
 
       #
       # Camunda Database Configuration.
@@ -144,14 +148,20 @@ data:
         type: elasticsearch
         # Cluster name
         clusterName: elasticsearch
-        # Elasticsearch full url
+        # Database full url
         url: "http://benchmark-test-elasticsearch:9200"
+        retention:
+          enabled: true
+          minimumAge: "1h"
+          policyName: "core-record-retention-policy"
 
       #
       # Camunda Operate Configuration.
       #
       operate:
         persistentSessionsEnabled: true
+        identity:
+          redirectRootUrl: "http://localhost:8082/operate"
 
         # ELS instance to store Operate data
         elasticsearch:
@@ -188,6 +198,8 @@ data:
       # Camunda Tasklist Configuration.
       #
       tasklist:
+        identity:
+          redirectRootUrl: "http://localhost:8082/tasklist"
 
         # Set Tasklist username and password.
         # If user with <username> does not exists it will be created.

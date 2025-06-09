@@ -38,7 +38,7 @@ spec:
         app.kubernetes.io/component: core
         app.kubernetes.io/version: "SNAPSHOT"
       annotations:
-        checksum/config: cbb5db66295c67fa2f818d0cadd937f8c9308a59b2eef7b142bbadf00e3a2730
+        checksum/config: c3a3c9484582cb17cc24a466a0bb8fce6d52aa455aa936bcef7ceaaf04334851
     spec:
       imagePullSecrets:
         []
@@ -75,6 +75,11 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.namespace
+            - name: VALUES_CAMUNDA_CORE_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: to-be-removed
+                  key: identity-core-client-token
             - name: JAVA_TOOL_OPTIONS
               value: "-XX:MaxRAMPercentage=25.0 -XX:+ExitOnOutOfMemoryError -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/usr/local/camunda/data -XX:ErrorFile=/usr/local/camunda/data/zeebe_error%p.log -XX:NativeMemoryTracking=summary -Xlog:gc*:file=/usr/local/camunda/data/gc.log:time:filecount=7,filesize=8M"
             - name: K8S_POD_NAME
@@ -188,7 +193,9 @@ spec:
             topologyKey: kubernetes.io/hostname
 # yamllint enable
   volumeClaimTemplates:
-    - metadata:
+    - apiVersion: v1
+      kind: PersistentVolumeClaim
+      metadata:
         name: data
         annotations:
           {}

@@ -41,6 +41,12 @@ global:
       unprotectedApi: true
     authorizations:
       enabled: false
+  # To be removed once https://github.com/camunda/camunda-platform-helm/issues/3478 is resolved
+  identity:
+    auth:
+      core:
+        existingSecret:
+          name: "to-be-removed"
 
 # Saas configuration to run benchmarks against Camunda SaaS environment
 saas:
