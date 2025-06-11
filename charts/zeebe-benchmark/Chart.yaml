@@ -26,4 +26,4 @@ annotations:
     - name: Zeebe Docs
       url: https://docs.camunda.io/docs/components/zeebe/zeebe-overview/
   artifacthub.io/containsSecurityUpdates: "false"
-  artifacthub.io/changes: "- kind: added\n  description: \"upgrade camunda-platform to 13.0.0-alpha4.2\"\n"
+  artifacthub.io/changes: "- kind: fixed\n  description: \"disable identity\"\n"
