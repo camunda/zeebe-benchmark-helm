@@ -173,6 +173,7 @@ leaderBalancing:
 
 # Zeebe configuration to configure Zeebe and Gateway
 zeebe:
+  fullnameOverride: zeebe
   # Zeebe.config can be used to configure Zeebe Broker and Gateway additional without the need of overwriting all
   # environment variables from the dependency chart.
   # Allows to set configurations via --set, like --set zeebe.config.zeebe.broker.cluster.replicationFactor=3
@@ -360,7 +361,7 @@ camunda-platform:
         ## @param elasticsearch.master.persistence.size
         size: 128Gi
         storageClass: "ssd"
-        accessModes: [ "ReadWriteOnce" ]
+        accessModes: ["ReadWriteOnce"]
       resources:
         requests:
           cpu: 1
