@@ -54,6 +54,11 @@ spec:
                 -Dapp.worker.messageName={{ $worker.message.name | quote }}
                 -Dapp.worker.correlationKeyVariableName={{ $worker.message.correlationVariable | quote }}
                 {{- end }}
+                {{- if eq .Values.global.security.authentication.method "basic" and not .Values.global.security.authentication.unprotectedApi }}
+                -Dapp.authenticationMode=basic
+                -Dapp.basicAuth.username={{ .Values.shared.basicAuth.username | quote }}
+                -Dapp.basicAuth.password={{ .Values.shared.basicAuth.password | quote }}
+                {{- end }}
                 -XX:+HeapDumpOnOutOfMemoryError
             {{- if $worker.logLevel }}
             - name: LOG_LEVEL

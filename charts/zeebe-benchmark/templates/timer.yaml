@@ -29,6 +29,11 @@ spec:
                 -XX:+HeapDumpOnOutOfMemoryError
                 -Dapp.starter.bpmnXmlPath=bpmn/timerProcess.bpmn
                 -Dapp.starter.processId=timerProcess
+                {{- if eq .Values.global.security.authentication.method "basic" and not .Values.global.security.authentication.unprotectedApi }}
+                -Dapp.authenticationMode=basic
+                -Dapp.basicAuth.username={{ .Values.shared.basicAuth.username | quote }}
+                -Dapp.basicAuth.password={{ .Values.shared.basicAuth.password | quote }}
+                {{- end }}
             - name: LOG_LEVEL
               value: "warn"
           envFrom:
