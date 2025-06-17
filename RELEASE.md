@@ -24,6 +24,11 @@ Locally, run:
 make release.chores
 ```
 
+> [!Note]
+>
+> If you use podman, you will run into issues with this.
+> As workaround you can install [git-chglog](https://github.com/git-chglog/git-chglog) and run `make release.chores chgLogCmd="git-chglog"`.
+
 This action will:
 
 - Locally pull latest updates to the `main` branch.
@@ -32,6 +37,12 @@ This action will:
 - Generate release notes and make a commit.
 - Push updated `release` branch to the repo.
 - Generate a link to open a PR with prefilled title and template.
+
+> [!Note]
+>
+> If you are using macOS or Windows, the `make release.chores` command might not work as expected.
+> Instead, you can run the [Chart - Prepare Release](https://github.com/camunda/zeebe-benchmark-helm/actions/workflows/chart-prepare-release.yaml) workflow.
+> The link to open the pull request will be shown in the workflow logs.
 
 Next, all that you need to open the PR using the generated link and follow th checklist there.
 

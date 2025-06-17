@@ -38,7 +38,7 @@ spec:
         app.kubernetes.io/component: core
         app.kubernetes.io/version: "SNAPSHOT"
       annotations:
-        checksum/config: cbb5db66295c67fa2f818d0cadd937f8c9308a59b2eef7b142bbadf00e3a2730
+        checksum/config: e4b34b404bcdaf2ee038c4df7d0246f14796fb0f9273f6838c59c6ac6250bd03
     spec:
       imagePullSecrets:
         []
@@ -76,7 +76,7 @@ spec:
                 fieldRef:
                   fieldPath: metadata.namespace
             - name: JAVA_TOOL_OPTIONS
-              value: "-XX:MaxRAMPercentage=25.0 -XX:+ExitOnOutOfMemoryError -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/usr/local/camunda/data -XX:ErrorFile=/usr/local/camunda/data/zeebe_error%p.log -Xlog:gc*:file=/usr/local/camunda/data/gc.log:time:filecount=7,filesize=8M"
+              value: "-XX:MaxRAMPercentage=25.0 -XX:+ExitOnOutOfMemoryError -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/usr/local/camunda/data -XX:ErrorFile=/usr/local/camunda/data/zeebe_error%p.log -XX:NativeMemoryTracking=summary -Xlog:gc*:file=/usr/local/camunda/data/gc.log:time:filecount=7,filesize=8M"
             - name: K8S_POD_NAME
               valueFrom:
                 fieldRef:
@@ -128,10 +128,10 @@ spec:
           resources:
             limits:
               cpu: 2000m
-              memory: 12Gi
+              memory: 2Gi
             requests:
               cpu: 2000m
-              memory: 6Gi
+              memory: 2Gi
           volumeMounts:
             - name: config
               mountPath: /usr/local/bin/startup.sh
@@ -173,6 +173,8 @@ spec:
         runAsNonRoot: true
         seccompProfile:
           type: RuntimeDefault
+      nodeSelector:
+        cloud.google.com/gke-nodepool: n2-standard-4
 # yamllint disable
       affinity:
         podAntiAffinity:
@@ -186,12 +188,15 @@ spec:
             topologyKey: kubernetes.io/hostname
 # yamllint enable
   volumeClaimTemplates:
-    - metadata:
+    - apiVersion: v1
+      kind: PersistentVolumeClaim
+      metadata:
         name: data
         annotations:
           {}
       spec:
         accessModes: [ReadWriteOnce]
+        storageClassName: ssd
         resources:
           requests:
             storage: "64Gi"

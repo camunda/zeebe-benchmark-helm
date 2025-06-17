@@ -141,8 +141,12 @@ release.bump-chart-version-and-commit: .release.bump-chart-version
 
 .PHONY: .release.generate-notes
 .release.generate-notes:
+ifdef chgLogCmd
+	bash scripts/generate-release-notes.sh;
+else
 	docker run --rm -w /data -v `pwd`:/data --entrypoint sh $(gitChglog) \
 		-c "apk add bash grep yq; bash scripts/generate-release-notes.sh"
+endif
 
 .PHONY: release.generate-notes-and-commit
 release.generate-notes-and-commit: .release.generate-notes
@@ -154,7 +158,9 @@ release.generate-pr-url:
 	@echo "\n\n###################################\n"
 	@echo "Open the release PR using this URL:"
 	@echo "https://github.com/camunda/zeebe-benchmark-helm/compare/release?expand=1&template=release_template.md&title=Release%20Zeebe%20Benchmark%20Helm%20Chart%20v$(chartVersion)"
-	xdg-open "https://github.com/camunda/zeebe-benchmark-helm/compare/release?expand=1&template=release_template.md&title=Release%20Zeebe%20Benchmark%20Helm%20Chart%20v$(chartVersion)"
+	@if [ "$$CI" != "true" ]; then \
+	  xdg-open "https://github.com/camunda/zeebe-benchmark-helm/compare/release?expand=1&template=release_template.md&title=Release%20Zeebe%20Benchmark%20Helm%20Chart%20v$(chartVersion)"; \
+	fi
 	@echo "\n###################################\n\n"
 
 .PHONY: release.chores
