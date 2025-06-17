@@ -80,10 +80,20 @@ Camunda kubernetes deployment (such as in Google cloud, AWS etc.), you
 need to run through the following steps:
 
 1. Create a new API client in the intended cluster.
-2. From the environment vars in the newly created client we need to copy 
-   them to our `values.yaml` under `saas.credentials` [here](https://github.com/camunda/zeebe-benchmark-helm/blob/751c7b35e8041da9c5e7a75232cb4d43942e6ac3/charts/zeebe-benchmark/values.yaml#L45-L78).
-3. Set `saas.enabled` to true. 
-4. Run the helm installation normally.
+2. Download environment vars Under "Env Vars" tab
+3. [Source](https://linuxcommand.org/lc3_man_pages/sourceh.html) the downloaded file, containing the environment variables (e.g. `source Credentials.yaml`)
+4. Run the following install command (please replace `PREFIX` with your initials)
+
+```yaml
+helm install PREFIX-saas-load-test zeebe-benchmark/zeebe-benchmark \
+  --set camunda-platform.enabled=false \
+  --set saas.enabled=true \
+  --set saas.credentials.clientId="$ZEEBE_CLIENT_ID" \
+  --set saas.credentials.clientSecret="$ZEEBE_CLIENT_SECRET" \
+  --set saas.credentials.zeebeAddress="$ZEEBE_ADDRESS" \
+  --set saas.credentials.authServer="$ZEEBE_AUTHORIZATION_SERVER_URL"
+```
+
 
 This will deploy the processes used in the benchmark in the cluster and 
 then the starter will create a fixed amount of new process instances per 
