@@ -30,7 +30,7 @@ spec:
                 -Dapp.brokerUrl=http://{{ $.Release.Name }}-core:26500
                 -Dapp.brokerRestUrl=http://{{ $.Release.Name }}-core:8080
                 {{- end }}
-                -Dapp.preferRest={{ .Values.global.preferRest }}
+                -Dapp.preferRest={{ $.Values.global.preferRest.enabled }}
                 -Dzeebe.client.requestTimeout=62000
                 {{- if $worker.capacity }}
                 -Dapp.worker.capacity={{ $worker.capacity }}
