@@ -24,6 +24,9 @@
 
 # Global configuration for variables which can be accessed by all sub charts
 global:
+  # PreferRest allows to configure benchmark applications to make use of the REST API, instead of the gRPC API.
+  preferRest:
+    enabled: false
   # Disable global ingress
   ingress:
     enabled: false

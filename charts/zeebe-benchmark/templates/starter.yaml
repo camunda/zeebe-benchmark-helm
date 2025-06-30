@@ -27,7 +27,9 @@ spec:
                 -Dapp.tls=true
                 {{- else }}
                 -Dapp.brokerUrl={{ $.Release.Name }}-core:26500
+                -Dapp.brokerRestUrl={{ $.Release.Name }}-core:8080
                 {{- end }}
+                -Dapp.preferRest={{ .Values.global.preferRest }}
                 -Dapp.starter.rate={{ .Values.starter.rate }}
                 -Dapp.starter.durationLimit=0
                 -Dzeebe.client.requestTimeout=62000
