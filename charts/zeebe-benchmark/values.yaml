@@ -42,6 +42,7 @@ global:
   security:
     authentication:
       unprotectedApi: true
+      method: basic
     authorizations:
       enabled: false
   identity:
@@ -82,6 +83,17 @@ saas:
     zeebeAddress:
     # SaaS.credentials.authServer to define the authentication server to retrieve JWT tokens
     authServer: "https://login.cloud.ultrawombat.com/oauth/token"
+
+
+# Shared configuration across workers and starters
+shared:
+  basicAuth:
+    # Shared.basicAuth.username defines the username for basic authentication. Only used if global.security.authentication.basic is true
+    # and global.security.authentication.unprotectedApi is false
+    username: "demo"
+    # Shared.basicAuth.password defines the password for basic authentication. Only used if global.security.authentication.basic is true
+    # and global.security.authentication.unprotectedApi is false
+    password: "demo"
 
 # Workers configuration for the to be deployed worker application
 #        => New way to deploy workers <=
