@@ -2,14 +2,24 @@ The changelog is automatically generated using [git-chglog](https://github.com/g
 and it follows [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) format.
 
 
-<a name="zeebe-benchmark-0.3.19"></a>
-## [zeebe-benchmark-0.3.19](https://github.com/camunda/camunda-platform-helm/compare/zeebe-benchmark-0.3.18...zeebe-benchmark-0.3.19) (2025-06-12)
+<a name="zeebe-benchmark-0.3.20"></a>
+## [zeebe-benchmark-0.3.20](https://github.com/camunda/camunda-platform-helm/compare/zeebe-benchmark-0.3.19...zeebe-benchmark-0.3.20) (2025-07-02)
+
+### Docs
+
+* update README.md
 
 ### Feat
 
-* add fullnameOverride for zeebe
+* configure REST API usage
+
+### Fix
+
+* update template tests
+* set the values correctly
+* use protocol
 
 ### Pull Requests
 
-* Merge pull request [#266](https://github.com/camunda/camunda-platform-helm/issues/266) from camunda/release
+* Merge pull request [#268](https://github.com/camunda/camunda-platform-helm/issues/268) from camunda/release
 
