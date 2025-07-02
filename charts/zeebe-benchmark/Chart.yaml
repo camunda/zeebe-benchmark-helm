@@ -2,7 +2,7 @@ apiVersion: v2
 name: zeebe-benchmark
 description: A Helm chart for Zeebe benchmarks
 type: application
-version: 0.3.19
+version: 0.3.20
 appVersion: "8.2.5"
 sources:
   - https://github.com/camunda/zeebe-benchmark-helm
@@ -26,4 +26,4 @@ annotations:
     - name: Zeebe Docs
       url: https://docs.camunda.io/docs/components/zeebe/zeebe-overview/
   artifacthub.io/containsSecurityUpdates: "false"
-  artifacthub.io/changes: "- kind: added\n  description: \"add fullnameOverride for zeebe\"\n"
+  artifacthub.io/changes: "- kind: added\n  description: \"configure REST API usage\"\n- kind: fixed\n  description: \"update template tests\"\n- kind: fixed\n  description: \"set the values correctly\"\n- kind: fixed\n  description: \"use protocol\"\n"
