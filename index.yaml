@@ -4,6 +4,47 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: added
+          description: "configure REST API usage"
+        - kind: fixed
+          description: "update template tests"
+        - kind: fixed
+          description: "set the values correctly"
+        - kind: fixed
+          description: "use protocol"
+      artifacthub.io/containsSecurityUpdates: "false"
+      artifacthub.io/links: |
+        - name: Zeebe Repo
+          url: https://github.com/camunda/camunda
+        - name: Zeebe Docs
+          url: https://docs.camunda.io/docs/components/zeebe/zeebe-overview/
+    apiVersion: v2
+    appVersion: 8.2.5
+    created: "2025-07-02T07:06:33.878654305Z"
+    dependencies:
+    - condition: camunda-platform.enabled
+      name: camunda-platform
+      repository: https://helm.camunda.io
+      version: 13.0.0-alpha4.2
+    - condition: prometheus-elasticsearch-exporter.enabled
+      name: prometheus-elasticsearch-exporter
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 6.4.0
+    description: A Helm chart for Zeebe benchmarks
+    digest: 12d187568f168fdf74e7eab52b3c989e37d4973508098f87cc6f81107efe684c
+    maintainers:
+    - email: christopher.zell@camunda.com
+      name: ChrisKujawa
+    name: zeebe-benchmark
+    sources:
+    - https://github.com/camunda/zeebe-benchmark-helm
+    - https://github.com/camunda/camunda
+    type: application
+    urls:
+    - https://github.com/camunda/zeebe-benchmark-helm/releases/download/zeebe-benchmark-0.3.20/zeebe-benchmark-0.3.20.tgz
+    version: 0.3.20
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: added
           description: "add fullnameOverride for zeebe"
       artifacthub.io/containsSecurityUpdates: "false"
       artifacthub.io/links: |
@@ -1783,4 +1824,4 @@ entries:
     urls:
     - https://github.com/camunda/zeebe-benchmark-helm/releases/download/zeebe-benchmark-0.1.2/zeebe-benchmark-0.1.2.tgz
     version: 0.1.2
-generated: "2025-06-12T14:22:07.308569831Z"
+generated: "2025-07-02T07:06:33.879043584Z"
