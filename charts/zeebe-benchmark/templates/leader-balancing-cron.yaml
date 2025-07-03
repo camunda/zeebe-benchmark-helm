@@ -18,6 +18,6 @@ spec:
           containers:
             - image: "curlimages/curl:7.87.0"
               name: curl
-              args: ["-L", "-v", "-X", "POST", "http://{{ .Release.Name }}-core:9600/actuator/rebalance"]
+              args: ["-L", "-v", "-X", "POST", "http://camunda:9600/actuator/rebalance"]
           restartPolicy: OnFailure
 {{- end }}

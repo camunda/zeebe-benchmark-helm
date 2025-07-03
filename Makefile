@@ -116,6 +116,12 @@ helm.uninstall:
 	-kubectl delete pvc -l app.kubernetes.io/instance=$(releaseName)
 	-kubectl delete pvc -l release=$(releaseName)
 
+# helm.clean: cleans the resources deployed by the previous chart
+.PHONY: helm.clean
+helm.clean:
+	-kubectl delete pvc -l app.kubernetes.io/name=elasticsearch
+	-kubectl delete pvc -l app=camunda-platform
+
 # helm.dry-run: run an install dry-run with the local chart
 .PHONY: helm.dry-run
 helm.dry-run: helm.dependency-update

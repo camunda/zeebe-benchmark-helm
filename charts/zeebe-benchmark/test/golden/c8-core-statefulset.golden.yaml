@@ -23,7 +23,7 @@ spec:
       app.kubernetes.io/managed-by: Helm
       app.kubernetes.io/part-of: camunda-platform
       app.kubernetes.io/component: core
-  serviceName: benchmark-test-core
+  serviceName: camunda
   updateStrategy:
     type: RollingUpdate
   podManagementPolicy: Parallel
@@ -38,7 +38,7 @@ spec:
         app.kubernetes.io/component: core
         app.kubernetes.io/version: "SNAPSHOT"
       annotations:
-        checksum/config: e4b34b404bcdaf2ee038c4df7d0246f14796fb0f9273f6838c59c6ac6250bd03
+        checksum/config: f92e32442b0c0f270b5057593663f11e0dc4d9eae842245f1457a0a108013547
     spec:
       imagePullSecrets:
         []
@@ -70,7 +70,7 @@ spec:
                 fieldRef:
                   fieldPath: metadata.name
             - name: K8S_SERVICE_NAME
-              value: benchmark-test-core
+              value: camunda
             - name: K8S_NAMESPACE
               valueFrom:
                 fieldRef:
@@ -154,7 +154,7 @@ spec:
       volumes:
         - name: config
           configMap:
-            name: benchmark-test-core-configuration
+            name: camunda-configuration
             defaultMode: 492
         - name: exporters
           emptyDir: {}
@@ -167,7 +167,7 @@ spec:
           name: benchmark-config
         - emptyDir: {}
           name: logs
-      serviceAccountName: benchmark-test-core
+      serviceAccountName: camunda
       securityContext:
         fsGroup: 1001
         runAsNonRoot: true

@@ -25,8 +25,8 @@ spec:
             - name: JDK_JAVA_OPTIONS
               value: >-
                 -Dconfig.override_with_env_vars=true
-                -Dapp.brokerUrl=http://benchmark-test-core:26500
-                -Dapp.brokerRestUrl=http://benchmark-test-core:8080
+                -Dapp.brokerUrl=http://camunda:26500
+                -Dapp.brokerRestUrl=http://camunda:8080
                 -Dapp.preferRest=false
                 -Dapp.starter.rate=150
                 -Dapp.starter.durationLimit=0
