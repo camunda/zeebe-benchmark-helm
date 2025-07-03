@@ -2,7 +2,7 @@
 # Source: zeebe-benchmark/charts/camunda-platform/templates/core/configmap.yaml
 kind: ConfigMap
 metadata:
-  name: benchmark-test-core-configuration
+  name: camunda-configuration
   labels:
     app: camunda-platform
     app.kubernetes.io/name: camunda-platform
@@ -184,7 +184,7 @@ data:
         # Zeebe instance
         zeebe:
           # Gateway address
-          gatewayAddress: "benchmark-test-core:26500"
+          gatewayAddress: "camunda:26500"
         archiver:
           ilmEnabled: true
           ilmMinAgeForDeleteArchivedIndices: 1h
@@ -225,8 +225,8 @@ data:
         # Zeebe instance
         zeebe:
           # Gateway address
-          gatewayAddress: benchmark-test-core:26500
-          restAddress: "http://benchmark-test-core:8080"
+          gatewayAddress: camunda:26500
+          restAddress: "http://camunda:8080"
         archiver:
           ilmEnabled: true
           ilmMinAgeForDeleteArchivedIndices: 1h
