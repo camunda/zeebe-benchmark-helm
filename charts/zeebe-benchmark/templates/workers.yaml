@@ -27,8 +27,8 @@ spec:
                 {{- if $.Values.saas.enabled }}
                 -Dapp.tls=true
                 {{- else }}
-                -Dapp.brokerUrl=http://{{ $.Release.Name }}-core:26500
-                -Dapp.brokerRestUrl=http://{{ $.Release.Name }}-core:8080
+                -Dapp.brokerUrl=http://camunda:26500
+                -Dapp.brokerRestUrl=http://camunda:8080
                 {{- end }}
                 -Dapp.preferRest={{ $.Values.global.preferRest.enabled }}
                 -Dzeebe.client.requestTimeout=62000
