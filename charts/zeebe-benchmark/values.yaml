@@ -86,7 +86,7 @@ saas:
 # Workers configuration for the to be deployed worker application
 #        => New way to deploy workers <=
 workers:
-  benchmark:
+  worker:
     # Workers.benchmark.replicas defines how many replicas of the benchmark worker should be deployed
     replicas: 3
     # Workers.benchmark.capacity defines how many jobs the worker should activate and work on
@@ -245,6 +245,7 @@ camunda-platform:
     enabled: false
 
   core:
+    fullnameOverride: camunda
     image:
       tag: "SNAPSHOT"
     ## @param core.clusterSize defines the amount of brokers (=replicas), which are deployed via helm

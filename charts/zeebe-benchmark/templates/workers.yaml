@@ -2,22 +2,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ $workerName }}-worker
+  name: {{ $workerName }}
   labels:
-    app: {{ $workerName }}-worker
+    app: {{ $workerName }}
 spec:
   selector:
     matchLabels:
-      app: {{ $workerName }}-worker
+      app: {{ $workerName }}
   replicas: {{ $worker.replicas | default 3}}
   template:
     metadata:
       labels:
-        app: {{ $workerName }}-worker
+        app: {{ $workerName }}
         app.kubernetes.io/component: zeebe-client
     spec:
       containers:
-        - name: {{ $workerName }}-worker
+        - name: {{ $workerName }}
           image: "{{ $.Values.global.image.repository }}/worker:{{ $.Values.global.image.tag }}"
           imagePullPolicy: {{ $.Values.global.image.pullPolicy }}
           env:
@@ -27,8 +27,8 @@ spec:
                 {{- if $.Values.saas.enabled }}
                 -Dapp.tls=true
                 {{- else }}
-                -Dapp.brokerUrl=http://{{ $.Release.Name }}-core:26500
-                -Dapp.brokerRestUrl=http://{{ $.Release.Name }}-core:8080
+                -Dapp.brokerUrl=http://camunda:26500
+                -Dapp.brokerRestUrl=http://camunda:8080
                 {{- end }}
                 -Dapp.preferRest={{ $.Values.global.preferRest.enabled }}
                 -Dzeebe.client.requestTimeout=62000
