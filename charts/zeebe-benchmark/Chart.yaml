@@ -26,4 +26,4 @@ annotations:
     - name: Zeebe Docs
       url: https://docs.camunda.io/docs/components/zeebe/zeebe-overview/
   artifacthub.io/containsSecurityUpdates: "false"
-  artifacthub.io/changes: "- kind: added\n  description: \"configure REST API usage\"\n- kind: fixed\n  description: \"update template tests\"\n- kind: fixed\n  description: \"set the values correctly\"\n- kind: fixed\n  description: \"use protocol\"\n"
+  artifacthub.io/changes: "- kind: fixed\n  description: \"use correct service name\"\n- kind: changed\n  description: \"improve deployment names\"\n"
