@@ -28,7 +28,7 @@ data:
 
     # Operate configuration file
     camunda.operate:
-    
+
       # ELS instance to store Operate data
       elasticsearch:
         # Cluster name

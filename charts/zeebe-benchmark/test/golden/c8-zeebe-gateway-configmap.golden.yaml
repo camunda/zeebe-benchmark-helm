@@ -29,6 +29,7 @@ data:
       port: "8080"
     zeebe:
       gateway:
+        enable: true
         monitoring:
           host: 0.0.0.0
           port: "9600"

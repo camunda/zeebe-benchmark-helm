@@ -37,7 +37,7 @@ spec:
         app.kubernetes.io/component: operate
         app.kubernetes.io/version: "SNAPSHOT"
       annotations:
-        checksum/config: b80d0970df74f955b54c4e039b14f58098da5d676fafcaed25fbaff900013453
+        checksum/config: 98ffa0d2f1848f4dffc68a2f364c2e0518a692e7e40d3011a2bc28f6a3ad072d
     spec:
       imagePullSecrets:
         []
@@ -54,6 +54,14 @@ spec:
             seccompProfile:
               type: RuntimeDefault
           env:
+            - name: OPERATE_LOG_APPENDER
+              value: Stackdriver
+            - name: OPERATE_LOG_STACKDRIVER_SERVICENAME
+              value: operate
+            - name: OPERATE_LOG_STACKDRIVER_SERVICEVERSION
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
           resources:
             limits:
               cpu: 2000m

@@ -38,7 +38,7 @@ spec:
         app.kubernetes.io/component: zeebe-broker
         app.kubernetes.io/version: "SNAPSHOT"
       annotations:
-        checksum/config: 499bbd401adeb5d710e43685f146335086024a4b748c87d9256618b1423f97b1
+        checksum/config: fd8a10aeb56f6e59170ccdc303a21785f692ec741cbec3273c0a245269a3a62d
     spec:
       imagePullSecrets:
         []
@@ -235,7 +235,9 @@ spec:
             topologyKey: kubernetes.io/hostname
 # yamllint enable
   volumeClaimTemplates:
-    - metadata:
+    - apiVersion: v1
+      kind: PersistentVolumeClaim
+      metadata:
         name: data
         annotations:
           {}

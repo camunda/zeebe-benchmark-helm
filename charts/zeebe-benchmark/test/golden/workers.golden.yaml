@@ -25,7 +25,7 @@ spec:
             - name: JDK_JAVA_OPTIONS
               value: >-
                 -Dconfig.override_with_env_vars=true
-                -Dapp.brokerUrl=benchmark-test-zeebe-gateway:26500
+                -Dapp.brokerUrl=http://benchmark-test-zeebe-gateway:26500
                 -Dzeebe.client.requestTimeout=62000
                 -Dapp.worker.capacity=60
                 -Dapp.worker.threads=10
@@ -74,7 +74,7 @@ spec:
             - name: JDK_JAVA_OPTIONS
               value: >-
                 -Dconfig.override_with_env_vars=true
-                -Dapp.brokerUrl=benchmark-test-zeebe-gateway:26500
+                -Dapp.brokerUrl=http://benchmark-test-zeebe-gateway:26500
                 -Dzeebe.client.requestTimeout=62000
                 -Dapp.worker.capacity=10
                 -Dapp.worker.pollingDelay=1ms
