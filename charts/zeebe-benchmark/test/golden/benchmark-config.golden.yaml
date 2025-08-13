@@ -33,8 +33,8 @@ data:
     zeebe.broker.exporters.CamundaExporter.args.history.waitPeriodBeforeArchiving: 1m
     zeebe.broker.exporters.CamundaExporter.args.index.shouldWaitForImporters: false
     zeebe.broker.exporters.elasticsearch.args.index.indexSuffixDatePattern: yyyy-MM-dd-HH
-    zeebe.broker.flowControl.write.enabled: "false"
+    zeebe.broker.flowControl.write.enabled: "true"
     zeebe.broker.flowControl.write.limit: 4000
-    zeebe.broker.flowControl.write.throttling.enabled: "false"
+    zeebe.broker.flowControl.write.throttling.enabled: "true"
     zeebe.gateway.monitoring.enabled: "true"
     zeebe.gateway.threads.managementThreads: "1"
