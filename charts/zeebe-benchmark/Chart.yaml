@@ -26,4 +26,4 @@ annotations:
     - name: Zeebe Docs
       url: https://docs.camunda.io/docs/components/zeebe/zeebe-overview/
   artifacthub.io/containsSecurityUpdates: "false"
-  artifacthub.io/changes: "- kind: added\n  description: \"enable write throttling to avoid exporting backlog\"\n"
+  artifacthub.io/changes: "- kind: fixed\n  description: \"remove \"benchmark\" to \"worker\"\"\n"
