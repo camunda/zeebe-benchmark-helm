@@ -3,6 +3,41 @@ entries:
   zeebe-benchmark:
   - annotations:
       artifacthub.io/changes: |
+        - kind: fixed
+          description: "remove "benchmark" to "worker""
+      artifacthub.io/containsSecurityUpdates: "false"
+      artifacthub.io/links: |
+        - name: Zeebe Repo
+          url: https://github.com/camunda/camunda
+        - name: Zeebe Docs
+          url: https://docs.camunda.io/docs/components/zeebe/zeebe-overview/
+    apiVersion: v2
+    appVersion: 8.2.5
+    created: "2025-08-29T11:04:19.020240769Z"
+    dependencies:
+    - condition: camunda-platform.enabled
+      name: camunda-platform
+      repository: https://helm.camunda.io
+      version: 13.0.0-alpha4.2
+    - condition: prometheus-elasticsearch-exporter.enabled
+      name: prometheus-elasticsearch-exporter
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 6.4.0
+    description: A Helm chart for Zeebe benchmarks
+    digest: 0f3c4ede845401fe2af36f76fc5782d04b984240aea09f013b1e493f16642e18
+    maintainers:
+    - email: christopher.zell@camunda.com
+      name: ChrisKujawa
+    name: zeebe-benchmark
+    sources:
+    - https://github.com/camunda/zeebe-benchmark-helm
+    - https://github.com/camunda/camunda
+    type: application
+    urls:
+    - https://github.com/camunda/zeebe-benchmark-helm/releases/download/zeebe-benchmark-0.3.22/zeebe-benchmark-0.3.22.tgz
+    version: 0.3.22
+  - annotations:
+      artifacthub.io/changes: |
         - kind: added
           description: "enable write throttling to avoid exporting backlog"
       artifacthub.io/containsSecurityUpdates: "false"
@@ -1859,4 +1894,4 @@ entries:
     urls:
     - https://github.com/camunda/zeebe-benchmark-helm/releases/download/zeebe-benchmark-0.1.2/zeebe-benchmark-0.1.2.tgz
     version: 0.1.2
-generated: "2025-08-13T14:34:45.139065045Z"
+generated: "2025-08-29T11:04:19.020608159Z"
