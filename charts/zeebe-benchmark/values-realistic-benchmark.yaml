@@ -1,6 +1,6 @@
 # Workers configuration for the to be deployed worker application
 workers:
-  benchmark: null
+  worker: null
 
   #####
   # Request documents from customer
