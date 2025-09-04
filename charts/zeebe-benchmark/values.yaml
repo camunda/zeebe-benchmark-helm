@@ -203,8 +203,6 @@ zeebe:
     # https://www.elastic.co/guide/en/elasticsearch/reference/current/ilm-index-lifecycle.html#ilm-phase-transitions
     zeebe.broker.exporters.CamundaExporter.args.history.retention.minimumAge: "0s"
     zeebe.broker.exporters.CamundaExporter.args.history.retention.policyName: "camunda-retention-policy"
-    # For now, disable waiting for exporters, as ther seems to be a bug where nothing is added
-    zeebe.broker.exporters.CamundaExporter.args.index.shouldWaitForImporters: false
     # Configure a rate limit for all writes, so that we can visualize flow control metrics.
     zeebe.broker.flowControl.write.enabled: "true"
     zeebe.broker.flowControl.write.limit: 4000
