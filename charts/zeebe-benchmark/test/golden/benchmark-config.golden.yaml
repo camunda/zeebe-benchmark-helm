@@ -10,7 +10,13 @@ metadata:
     app.kubernetes.io/version: "8.2.5"
     app.kubernetes.io/managed-by: Helm
 data:
-  benchmark-config.yaml: | 
+  benchmark-config.yaml: |
+    # Temporary override to fix ES url value coming from charts.
+    camunda:
+      data:
+        secondary-storage:
+          elasticsearch:
+            url: "http://benchmark-test-elasticsearch:9200"
     camunda.database.retention.enabled: "true"
     camunda.database.retention.minimumAge: 0s
     camunda.database.retention.policyName: camunda-retention-policy
