@@ -26,4 +26,4 @@ annotations:
     - name: Zeebe Docs
       url: https://docs.camunda.io/docs/components/zeebe/zeebe-overview/
   artifacthub.io/containsSecurityUpdates: "false"
-  artifacthub.io/changes: "- kind: fixed\n  description: \"remove \"benchmark\" to \"worker\"\"\n"
+  artifacthub.io/changes: "- kind: fixed\n  description: \"golden files.\"\n- kind: fixed\n  description: \"temporarily override value coming from charts of camunda.data.secondary-storage.elasticsearch.url\"\n- kind: changed\n  description: \"remove wait for importers\"\n"
