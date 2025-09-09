@@ -4,4 +4,11 @@ metadata:
   name: benchmark-config
   labels: {{- include "zeebe-benchmark.labels" . | nindent 4 }}
 data:
-  benchmark-config.yaml: | {{ .Values.zeebe.config | toYaml | nindent 4 }}
+  benchmark-config.yaml: |
+    # Temporary override to fix ES url value coming from charts.
+    camunda:
+      data:
+        secondary-storage:
+          elasticsearch:
+            url: "http://{{ .Release.Name }}-elasticsearch:9200"
+    {{- .Values.zeebe.config | toYaml | nindent 4 }}
