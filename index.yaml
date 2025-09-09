@@ -4,6 +4,45 @@ entries:
   - annotations:
       artifacthub.io/changes: |
         - kind: fixed
+          description: "golden files."
+        - kind: fixed
+          description: "temporarily override value coming from charts of camunda.data.secondary-storage.elasticsearch.url"
+        - kind: changed
+          description: "remove wait for importers"
+      artifacthub.io/containsSecurityUpdates: "false"
+      artifacthub.io/links: |
+        - name: Zeebe Repo
+          url: https://github.com/camunda/camunda
+        - name: Zeebe Docs
+          url: https://docs.camunda.io/docs/components/zeebe/zeebe-overview/
+    apiVersion: v2
+    appVersion: 8.2.5
+    created: "2025-09-09T13:25:10.570324919Z"
+    dependencies:
+    - condition: camunda-platform.enabled
+      name: camunda-platform
+      repository: https://helm.camunda.io
+      version: 13.0.0-alpha4.2
+    - condition: prometheus-elasticsearch-exporter.enabled
+      name: prometheus-elasticsearch-exporter
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 6.4.0
+    description: A Helm chart for Zeebe benchmarks
+    digest: f362245daba24cc3a9642412dc0d8dc228d970671dbbfd9d89888589302bd1a1
+    maintainers:
+    - email: christopher.zell@camunda.com
+      name: ChrisKujawa
+    name: zeebe-benchmark
+    sources:
+    - https://github.com/camunda/zeebe-benchmark-helm
+    - https://github.com/camunda/camunda
+    type: application
+    urls:
+    - https://github.com/camunda/zeebe-benchmark-helm/releases/download/zeebe-benchmark-0.3.24/zeebe-benchmark-0.3.24.tgz
+    version: 0.3.24
+  - annotations:
+      artifacthub.io/changes: |
+        - kind: fixed
           description: "remove "benchmark" to "worker""
       artifacthub.io/containsSecurityUpdates: "false"
       artifacthub.io/links: |
@@ -1894,4 +1933,4 @@ entries:
     urls:
     - https://github.com/camunda/zeebe-benchmark-helm/releases/download/zeebe-benchmark-0.1.2/zeebe-benchmark-0.1.2.tgz
     version: 0.1.2
-generated: "2025-08-29T11:04:19.020608159Z"
+generated: "2025-09-09T13:25:10.570524423Z"
