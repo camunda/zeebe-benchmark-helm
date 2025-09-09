@@ -2,8 +2,8 @@ The changelog is automatically generated using [git-chglog](https://github.com/g
 and it follows [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) format.
 
 
-<a name="zeebe-benchmark-0.3.23"></a>
-## [zeebe-benchmark-0.3.23](https://github.com/camunda/camunda-platform-helm/compare/zeebe-benchmark-0.3.22...zeebe-benchmark-0.3.23) (2025-09-09)
+<a name="zeebe-benchmark-0.3.24"></a>
+## [zeebe-benchmark-0.3.24](https://github.com/camunda/camunda-platform-helm/compare/zeebe-benchmark-0.3.22...zeebe-benchmark-0.3.24) (2025-09-09)
 
 ### Fix
 
