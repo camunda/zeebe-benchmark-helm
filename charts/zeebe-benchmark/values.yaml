@@ -39,11 +39,6 @@ global:
     pullPolicy: Always
     ## @param global.image.pullSecrets can be used to configure image pull secrets https://kubernetes.io/docs/concepts/containers/images/#specifying-imagepullsecrets-on-a-pod
     pullSecrets: []
-  security:
-    authentication:
-      unprotectedApi: true
-    authorizations:
-      enabled: false
   identity:
     auth:
       enabled: false
@@ -242,7 +237,12 @@ camunda-platform:
   postgresql:
     enabled: false
 
-  core:
+  orchestration:
+    security:
+      authentication:
+        unprotectedApi: true
+      authorizations:
+        enabled: false
     fullnameOverride: camunda
     image:
       tag: "SNAPSHOT"

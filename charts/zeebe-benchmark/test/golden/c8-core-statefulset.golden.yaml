@@ -1,16 +1,16 @@
 ---
-# Source: zeebe-benchmark/charts/camunda-platform/templates/core/statefulset.yaml
+# Source: zeebe-benchmark/charts/camunda-platform/templates/orchestration/statefulset.yaml
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: benchmark-test-zeebe
+  name: camunda
   labels:
     app: camunda-platform
     app.kubernetes.io/name: camunda-platform
     app.kubernetes.io/instance: benchmark-test
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: camunda-platform
-    app.kubernetes.io/component: core
+    app.kubernetes.io/component: zeebe-broker
     app.kubernetes.io/version: "SNAPSHOT"
   annotations:
 spec:
@@ -22,7 +22,7 @@ spec:
       app.kubernetes.io/instance: benchmark-test
       app.kubernetes.io/managed-by: Helm
       app.kubernetes.io/part-of: camunda-platform
-      app.kubernetes.io/component: core
+      app.kubernetes.io/component: zeebe-broker
   serviceName: camunda
   updateStrategy:
     type: RollingUpdate
@@ -35,17 +35,17 @@ spec:
         app.kubernetes.io/instance: benchmark-test
         app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/part-of: camunda-platform
-        app.kubernetes.io/component: core
+        app.kubernetes.io/component: zeebe-broker
         app.kubernetes.io/version: "SNAPSHOT"
       annotations:
-        checksum/config: f92e32442b0c0f270b5057593663f11e0dc4d9eae842245f1457a0a108013547
+        checksum/config: 3bbdffefd74e5e49bfe99d5ac4b22c2f9ba90f021dbe5c2e13fccd239815411a
     spec:
       imagePullSecrets:
         []
       initContainers:
         []
       containers:
-        - name: core
+        - name: orchestration
           image: camunda/camunda:SNAPSHOT
           imagePullPolicy: Always
           securityContext:
@@ -58,11 +58,7 @@ spec:
               type: RuntimeDefault
           command: ["bash", "/usr/local/bin/startup.sh"]
           env:
-            - name: CAMUNDA_LICENSE_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: benchmark-test-camunda-platform-license
-                  key: CAMUNDA_LICENSE_KEY
+            
             - name: LC_ALL
               value: C.UTF-8
             - name: K8S_NAME
@@ -101,6 +97,7 @@ spec:
                   key: java-opts
                   name: zeebe-config
                   optional: true
+            
           envFrom:
             - configMapRef:
                 name: benchmark-test-camunda-platform-documentstore-env-vars
@@ -117,7 +114,7 @@ spec:
               name: gateway
           readinessProbe:
             httpGet:
-              path: /actuator/health/readiness
+              path: /orchestration/actuator/health/readiness
               scheme: HTTP
               port: 9600
             initialDelaySeconds: 30
@@ -184,7 +181,7 @@ spec:
               - key: app.kubernetes.io/component
                 operator: In
                 values:
-                - core
+                - zeebe-broker
             topologyKey: kubernetes.io/hostname
 # yamllint enable
   volumeClaimTemplates:

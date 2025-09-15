@@ -1,5 +1,5 @@
 ---
-# Source: zeebe-benchmark/charts/camunda-platform/templates/core/configmap.yaml
+# Source: zeebe-benchmark/charts/camunda-platform/templates/orchestration/configmap.yaml
 kind: ConfigMap
 metadata:
   name: camunda-configuration
@@ -9,7 +9,7 @@ metadata:
     app.kubernetes.io/instance: benchmark-test
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/part-of: camunda-platform
-    app.kubernetes.io/component: core
+    app.kubernetes.io/component: zeebe-broker
     app.kubernetes.io/version: "SNAPSHOT"
 apiVersion: v1
 data:
@@ -18,7 +18,11 @@ data:
     export ZEEBE_BROKER_CLUSTER_NODEID="${ZEEBE_BROKER_CLUSTER_NODEID:-$[${K8S_NAME##*-} * 1 + 0]}"
     echo "export ZEEBE_BROKER_CLUSTER_NODEID=${ZEEBE_BROKER_CLUSTER_NODEID}"
 
-    exec /usr/local/camunda/bin/camunda
+    if [ "${ZEEBE_RESTORE}" = "true" ]; then
+      exec /usr/local/camunda/bin/restore --backupId=${ZEEBE_RESTORE_FROM_BACKUP_ID}
+    else
+      exec /usr/local/camunda/bin/camunda
+    fi
   application.yaml: |
     spring:
       servlet:
@@ -26,17 +30,19 @@ data:
           max-file-size: "10MB"
           max-request-size: "10MB"
       profiles:
-        active: "identity,operate,tasklist,broker,consolidated-auth"
+        active: "identity,tasklist,operate,broker,consolidated-auth"
 
     management:
       server:
         port: 9600
+        base-path: "/orchestration"
 
     server:
-      forward-headers-strategy: none
+      forward-headers-strategy: native
       address: 0.0.0.0
       port: 8080
       servlet:
+        context-path: "/orchestration"
 
     zeebe:
       host: 0.0.0.0
@@ -50,6 +56,8 @@ data:
           network:
             host: 0.0.0.0
             port: 26500
+          multitenancy:
+            enabled: false
 
         # zeebe.broker.network
         network:
@@ -66,9 +74,9 @@ data:
           # As it depends on the Pod name, which cannot be templated at the installation time.
           # nodeId:
           initialContactPoints:
-            - benchmark-test-zeebe-0.${K8S_SERVICE_NAME}:26502
-            - benchmark-test-zeebe-1.${K8S_SERVICE_NAME}:26502
-            - benchmark-test-zeebe-2.${K8S_SERVICE_NAME}:26502
+            - camunda-0.${K8S_SERVICE_NAME}:26502
+            - camunda-1.${K8S_SERVICE_NAME}:26502
+            - camunda-2.${K8S_SERVICE_NAME}:26502
           clusterSize: "3"
           replicationFactor: "3"
           partitionsCount: "3"
@@ -76,10 +84,11 @@ data:
 
         # zeebe.broker.data
         data:
-          snapshotPeriod: 5m
-          freeSpace:
-            processing: 2GB
-            replication: 3GB
+          snapshotPeriod: "5m"
+          disk:
+            freeSpace:
+              processing: "2GB"
+              replication: "1GB"
 
         # zeebe.broker.threads
         threads:
@@ -88,17 +97,7 @@ data:
 
         # zeebe.broker.exporters
         exporters:
-          elasticsearch:
-            className: "io.camunda.zeebe.exporter.ElasticsearchExporter"
-            args:
-              url: "http://benchmark-test-elasticsearch:9200"
-              index:
-                prefix: "zeebe-record"
-              retention:
-                enabled: true
-                minimumAge: "1h"
-                policyName: "core-record-retention-policy"
-          CamundaExporter:
+          camundaexporter:
             className: "io.camunda.exporter.CamundaExporter"
             args:
               connect:
@@ -113,8 +112,16 @@ data:
                 maxDelayBetweenRuns: 60000
                 retention:
                   enabled: true
+                  minimumAge: "1h"
+                  policyName: "camunda-history-retention-policy"
+                  usageMetricsMinimumAge: "730d"
+                  usageMetricsPolicyName: "camunda-usage-metrics-retention-policy"
 
     camunda:
+      data:
+        secondary-storage:
+          elasticsearch:
+            url: "http://benchmark-test-elasticsearch:9200"
       persistent:
         sessions:
           enabled: true
@@ -135,8 +142,11 @@ data:
               password: "demo"
               name: "Demo User"
               email: "demo@demo.com"
+          default-roles.admin.users:
+            - "demo"
         multiTenancy:
-            enabled: false
+          checksEnabled: false
+          apiEnabled: true
 
       #
       # Camunda Database Configuration.
@@ -150,13 +160,15 @@ data:
         retention:
           enabled: true
           minimumAge: "1h"
-          policyName: "core-record-retention-policy"
+          policyName: "camunda-history-retention-policy"
 
       #
       # Camunda Operate Configuration.
       #
       operate:
         persistentSessionsEnabled: true
+        multiTenancy:
+          enabled: false
 
         # ELS instance to store Operate data
         elasticsearch:
@@ -193,6 +205,8 @@ data:
       # Camunda Tasklist Configuration.
       #
       tasklist:
+        multiTenancy:
+          enabled: false
 
         # Set Tasklist username and password.
         # If user with <username> does not exists it will be created.
@@ -226,7 +240,7 @@ data:
         zeebe:
           # Gateway address
           gatewayAddress: camunda:26500
-          restAddress: "http://camunda:8080"
+          restAddress: "http://camunda:8080/orchestration"
         archiver:
           ilmEnabled: true
           ilmMinAgeForDeleteArchivedIndices: 1h
