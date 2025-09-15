@@ -19,4 +19,4 @@ spec:
       # since - is not supported directly, we have to use the index function and quote "camunda-platform"
       interval: {{ index .Values "camunda-platform" "prometheusServiceMonitor" "scrapeInterval" }}
       path: /actuator/prometheus
-      port: http
+      port: server
