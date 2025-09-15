@@ -37,7 +37,6 @@ data:
     zeebe.broker.exporters.CamundaExporter.args.history.rolloverBatchSize: 300
     zeebe.broker.exporters.CamundaExporter.args.history.rolloverInterval: 1h
     zeebe.broker.exporters.CamundaExporter.args.history.waitPeriodBeforeArchiving: 1m
-    zeebe.broker.exporters.elasticsearch.args.index.indexSuffixDatePattern: yyyy-MM-dd-HH
     zeebe.broker.flowControl.write.enabled: "true"
     zeebe.broker.flowControl.write.limit: 4000
     zeebe.broker.flowControl.write.throttling.enabled: "true"

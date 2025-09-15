@@ -18,7 +18,7 @@ func TestGoldenCamundaPlatformServiceMonitorDefaults(t *testing.T) {
 
 	chartPath, err := filepath.Abs("../")
 	require.NoError(t, err)
-	templateNames := []string{"core-service-monitor"}
+	templateNames := []string{"orchestration-service-monitor"}
 
 	for _, name := range templateNames {
 		suite.Run(t, &golden.TemplateGoldenTest{
@@ -46,7 +46,7 @@ func TestGoldenCamundaPlatformCoreDefaults(t *testing.T) {
 			Release:        "benchmark-test",
 			Namespace:      "benchmark-" + strings.ToLower(random.UniqueId()),
 			GoldenFileName: "c8-core-" + name,
-			Templates:      []string{"charts/camunda-platform/templates/core/" + name + ".yaml"},
+			Templates:      []string{"charts/camunda-platform/templates/orchestration/" + name + ".yaml"},
 		})
 	}
 }

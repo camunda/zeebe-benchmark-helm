@@ -1,0 +1,23 @@
+---
+# Source: zeebe-benchmark/charts/camunda-platform/templates/service-monitor/orchestration-service-monitor.yaml
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: benchmark-test-camunda-platform-orchestration
+  labels:
+    app: camunda-platform
+    app.kubernetes.io/name: camunda-platform
+    app.kubernetes.io/instance: benchmark-test
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/part-of: camunda-platform
+    release: monitoring
+spec:
+  selector:
+    matchLabels:
+      app: camunda-platform
+      app.kubernetes.io/component: orchestration
+  endpoints:
+    - honorLabels: true
+      path: /orchestration/actuator/prometheus
+      port: server
+      interval: 30s
