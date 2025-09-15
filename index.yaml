@@ -3,6 +3,53 @@ entries:
   zeebe-benchmark:
   - annotations:
       artifacthub.io/changes: |
+        - kind: added
+          description: "add separate service monitor"
+        - kind: added
+          description: "update to chart to alpha8"
+        - kind: fixed
+          description: "introduce new service to scrape metrics"
+        - kind: fixed
+          description: "use the right port"
+        - kind: fixed
+          description: "unset contextPath"
+        - kind: fixed
+          description: "remove ELS exporter setting"
+        - kind: changed
+          description: "remove obsolete golden file"
+      artifacthub.io/containsSecurityUpdates: "false"
+      artifacthub.io/links: |
+        - name: Zeebe Repo
+          url: https://github.com/camunda/camunda
+        - name: Zeebe Docs
+          url: https://docs.camunda.io/docs/components/zeebe/zeebe-overview/
+    apiVersion: v2
+    appVersion: 8.2.5
+    created: "2025-09-15T19:10:01.526386243Z"
+    dependencies:
+    - condition: camunda-platform.enabled
+      name: camunda-platform
+      repository: https://helm.camunda.io
+      version: 13.0.0-alpha8
+    - condition: prometheus-elasticsearch-exporter.enabled
+      name: prometheus-elasticsearch-exporter
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 6.4.0
+    description: A Helm chart for Zeebe benchmarks
+    digest: 5b6a378932169df1d4c487b3de198d4ba0c1fbaf9f8348d6b9c3d641a3a15903
+    maintainers:
+    - email: christopher.zell@camunda.com
+      name: ChrisKujawa
+    name: zeebe-benchmark
+    sources:
+    - https://github.com/camunda/zeebe-benchmark-helm
+    - https://github.com/camunda/camunda
+    type: application
+    urls:
+    - https://github.com/camunda/zeebe-benchmark-helm/releases/download/zeebe-benchmark-0.3.25/zeebe-benchmark-0.3.25.tgz
+    version: 0.3.25
+  - annotations:
+      artifacthub.io/changes: |
         - kind: fixed
           description: "golden files."
         - kind: fixed
@@ -1933,4 +1980,4 @@ entries:
     urls:
     - https://github.com/camunda/zeebe-benchmark-helm/releases/download/zeebe-benchmark-0.1.2/zeebe-benchmark-0.1.2.tgz
     version: 0.1.2
-generated: "2025-09-09T13:25:10.570524423Z"
+generated: "2025-09-15T19:10:01.526581336Z"
