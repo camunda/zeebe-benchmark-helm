@@ -35,14 +35,12 @@ data:
     management:
       server:
         port: 9600
-        base-path: "/orchestration"
 
     server:
       forward-headers-strategy: native
       address: 0.0.0.0
       port: 8080
       servlet:
-        context-path: "/orchestration"
 
     zeebe:
       host: 0.0.0.0
@@ -240,7 +238,7 @@ data:
         zeebe:
           # Gateway address
           gatewayAddress: camunda:26500
-          restAddress: "http://camunda:8080/orchestration"
+          restAddress: "http://camunda:8080"
         archiver:
           ilmEnabled: true
           ilmMinAgeForDeleteArchivedIndices: 1h
