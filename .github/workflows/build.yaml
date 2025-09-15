@@ -6,7 +6,7 @@ on:
   pull_request: { }
 
 env:
-  HELM_VERSION: 3.11.1
+  HELM_VERSION: 3.13.1
 
 jobs:
   build:

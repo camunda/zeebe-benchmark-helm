@@ -13,10 +13,31 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app.kubernetes.io/component: zeebe-broker
+      app.kubernetes.io/component: zeebe-gateway
   endpoints:
     - honorLabels: true
       # since - is not supported directly, we have to use the index function and quote "camunda-platform"
       interval: {{ index .Values "camunda-platform" "prometheusServiceMonitor" "scrapeInterval" }}
       path: /actuator/prometheus
-      port: http
+      port: server
+---
+# We need to add a service for the brokers as well, as the current service and gateway service have clashing labels
+# causing to duplicate the metrics on scraping
+# See https://github.com/camunda/camunda-platform-helm/issues/4165
+apiVersion: v1
+kind: Service
+metadata:
+  name: benchmark-zeebe-gateway
+  labels:
+    app.kubernetes.io/component: zeebe-gateway
+    {{- include "zeebe-benchmark.labels" . | nindent 4 }}
+spec:
+  selector:
+    app: camunda-platform
+    app.kubernetes.io/component: zeebe-broker
+    app.kubernetes.io/name: camunda-platform
+    app.kubernetes.io/part-of: camunda-platform
+  ports:
+    - name: server
+      port: 9600
+---
