@@ -243,6 +243,9 @@ camunda-platform:
       authorizations:
         enabled: false
     fullnameOverride: camunda
+    # The upstream helm chart set this value to orchestration, which was a breaking change
+    # until this is fixed we set it back to null
+    contextPath: null
     image:
       tag: "SNAPSHOT"
     ## @param core.clusterSize defines the amount of brokers (=replicas), which are deployed via helm
