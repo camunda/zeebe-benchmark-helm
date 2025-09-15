@@ -186,7 +186,6 @@ zeebe:
     # Configure index suffix with hour pattern, so we create every hour a new index
     # such that ILM can clean it up quickly
     # We need to configure it for the ES exporter AND the CamundaExporter
-    zeebe.broker.exporters.elasticsearch.args.index.indexSuffixDatePattern: "yyyy-MM-dd-HH"
     zeebe.broker.exporters.CamundaExporter.args.history.elsRolloverDateFormat: "yyyy-MM-dd-HH"
     zeebe.broker.exporters.CamundaExporter.args.history.rolloverInterval: "1h"
     zeebe.broker.exporters.CamundaExporter.args.history.rolloverBatchSize: 300
