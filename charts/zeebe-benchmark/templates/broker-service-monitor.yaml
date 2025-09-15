@@ -1,0 +1,22 @@
+# This ServiceMonitor is used to configure Prometheus to scrape metrics from Zeebe Broker components
+# We need to maintain this file separately since the camunda-platform chart does not properly configure the
+# service monitor as it is already point to the orchestration component but the statefulset is still using
+# the zeebe-broker label. This is a bug in the camunda-platform chart and should be fixed in future releases.
+# See: https://github.com/camunda/camunda-platform-helm/blob/962845257273ecc7de91f6a97d9a106a33eed4cf/charts/camunda-platform-8.8/templates/service-monitor/orchestration-service-monitor.yaml#L12
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: broker-service-monitor
+  labels:
+    release: monitoring
+    {{- include "zeebe-benchmark.labels" . | nindent 4 }}
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: zeebe-broker
+  endpoints:
+    - honorLabels: true
+      # since - is not supported directly, we have to use the index function and quote "camunda-platform"
+      interval: {{ index .Values "camunda-platform" "prometheusServiceMonitor" "scrapeInterval" }}
+      path: /actuator/prometheus
+      port: http
