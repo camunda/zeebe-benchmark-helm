@@ -2,23 +2,34 @@ The changelog is automatically generated using [git-chglog](https://github.com/g
 and it follows [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) format.
 
 
-<a name="zeebe-benchmark-0.3.24"></a>
-## [zeebe-benchmark-0.3.24](https://github.com/camunda/camunda-platform-helm/compare/zeebe-benchmark-0.3.22...zeebe-benchmark-0.3.24) (2025-09-09)
+<a name="zeebe-benchmark-0.3.25"></a>
+## [zeebe-benchmark-0.3.25](https://github.com/camunda/camunda-platform-helm/compare/zeebe-benchmark-0.3.24...zeebe-benchmark-0.3.25) (2025-09-15)
+
+### Build
+
+* gofmt
+
+### Feat
+
+* add separate service monitor
+* update to chart to alpha8
 
 ### Fix
 
-* golden files.
-* temporarily override value coming from charts of camunda.data.secondary-storage.elasticsearch.url
+* introduce new service to scrape metrics
+* use the right port
+* unset contextPath
+* remove ELS exporter setting
 
 ### Refactor
 
-* remove wait for importers
+* remove obsolete golden file
 
 ### Test
 
-* update golden files
+* regenerate golden files
 
 ### Pull Requests
 
-* Merge pull request [#277](https://github.com/camunda/camunda-platform-helm/issues/277) from camunda/release
+* Merge pull request [#281](https://github.com/camunda/camunda-platform-helm/issues/281) from camunda/release
 
