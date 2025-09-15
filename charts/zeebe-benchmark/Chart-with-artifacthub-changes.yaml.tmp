@@ -2,7 +2,7 @@ apiVersion: v2
 name: zeebe-benchmark
 description: A Helm chart for Zeebe benchmarks
 type: application
-version: 0.3.24
+version: 0.3.25
 appVersion: "8.2.5"
 sources:
   - https://github.com/camunda/zeebe-benchmark-helm
@@ -10,7 +10,7 @@ sources:
 dependencies:
   - name: camunda-platform
     repository: "https://helm.camunda.io"
-    version: "13.0.0-alpha4.2"
+    version: "13.0.0-alpha8"
     condition: "camunda-platform.enabled"
   - name: prometheus-elasticsearch-exporter
     repository: "https://prometheus-community.github.io/helm-charts"
@@ -26,4 +26,4 @@ annotations:
     - name: Zeebe Docs
       url: https://docs.camunda.io/docs/components/zeebe/zeebe-overview/
   artifacthub.io/containsSecurityUpdates: "false"
-  artifacthub.io/changes: "- kind: fixed\n  description: \"golden files.\"\n- kind: fixed\n  description: \"temporarily override value coming from charts of camunda.data.secondary-storage.elasticsearch.url\"\n- kind: changed\n  description: \"remove wait for importers\"\n"
+  artifacthub.io/changes: "- kind: added\n  description: \"add separate service monitor\"\n- kind: added\n  description: \"update to chart to alpha8\"\n- kind: fixed\n  description: \"introduce new service to scrape metrics\"\n- kind: fixed\n  description: \"use the right port\"\n- kind: fixed\n  description: \"unset contextPath\"\n- kind: fixed\n  description: \"remove ELS exporter setting\"\n- kind: changed\n  description: \"remove obsolete golden file\"\n"
