@@ -30,13 +30,13 @@ data:
     zeebe.broker.experimental.consistencyChecks.enableForeignKeyChecks: "true"
     zeebe.broker.experimental.consistencyChecks.enablePreconditions: "true"
     zeebe.broker.experimental.rocksdb.memoryLimit: 64MB
-    zeebe.broker.exporters.CamundaExporter.args.history.elsRolloverDateFormat: yyyy-MM-dd-HH
-    zeebe.broker.exporters.CamundaExporter.args.history.retention.enabled: "true"
-    zeebe.broker.exporters.CamundaExporter.args.history.retention.minimumAge: 0s
-    zeebe.broker.exporters.CamundaExporter.args.history.retention.policyName: camunda-retention-policy
-    zeebe.broker.exporters.CamundaExporter.args.history.rolloverBatchSize: 300
-    zeebe.broker.exporters.CamundaExporter.args.history.rolloverInterval: 1h
-    zeebe.broker.exporters.CamundaExporter.args.history.waitPeriodBeforeArchiving: 1m
+    zeebe.broker.exporters.camundaexporter.args.history.elsRolloverDateFormat: yyyy-MM-dd-HH
+    zeebe.broker.exporters.camundaexporter.args.history.retention.enabled: "true"
+    zeebe.broker.exporters.camundaexporter.args.history.retention.minimumAge: 0s
+    zeebe.broker.exporters.camundaexporter.args.history.retention.policyName: camunda-retention-policy
+    zeebe.broker.exporters.camundaexporter.args.history.rolloverBatchSize: 300
+    zeebe.broker.exporters.camundaexporter.args.history.rolloverInterval: 1h
+    zeebe.broker.exporters.camundaexporter.args.history.waitPeriodBeforeArchiving: 1m
     zeebe.broker.flowControl.write.enabled: "true"
     zeebe.broker.flowControl.write.limit: 4000
     zeebe.broker.flowControl.write.throttling.enabled: "true"
