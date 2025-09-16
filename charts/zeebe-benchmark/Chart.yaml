@@ -26,4 +26,4 @@ annotations:
     - name: Zeebe Docs
       url: https://docs.camunda.io/docs/components/zeebe/zeebe-overview/
   artifacthub.io/containsSecurityUpdates: "false"
-  artifacthub.io/changes: "- kind: added\n  description: \"add separate service monitor\"\n- kind: added\n  description: \"update to chart to alpha8\"\n- kind: fixed\n  description: \"introduce new service to scrape metrics\"\n- kind: fixed\n  description: \"use the right port\"\n- kind: fixed\n  description: \"unset contextPath\"\n- kind: fixed\n  description: \"remove ELS exporter setting\"\n- kind: changed\n  description: \"remove obsolete golden file\"\n"
+  artifacthub.io/changes: "- kind: fixed\n  description: \"case sensitivity in CamundaExporter configuration\"\n"
