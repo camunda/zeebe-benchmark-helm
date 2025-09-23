@@ -47,6 +47,26 @@ global:
   identity:
     auth:
       enabled: false
+  elasticsearch:
+    enabled: false
+
+  postgresql:
+    enabled: true
+    auth:
+      postgresPassword: "somepassword"
+      username: camunda
+      password: camunda
+      database: camunda
+
+postgresql:
+  primary:
+    resources:
+      requests:
+        cpu: 2000m
+        memory: 512Mi
+      limits:
+        cpu: 2000m
+        memory: 512Mi
 
 # Saas configuration to run benchmarks against Camunda SaaS environment
 saas:
@@ -191,18 +211,33 @@ zeebe:
     # Configure index suffix with hour pattern, so we create every hour a new index
     # such that ILM can clean it up quickly
     # We need to configure it for the ES exporter AND the CamundaExporter
-    zeebe.broker.exporters.elasticsearch.args.index.indexSuffixDatePattern: "yyyy-MM-dd-HH"
-    zeebe.broker.exporters.CamundaExporter.args.history.elsRolloverDateFormat: "yyyy-MM-dd-HH"
-    zeebe.broker.exporters.CamundaExporter.args.history.rolloverInterval: "1h"
-    zeebe.broker.exporters.CamundaExporter.args.history.rolloverBatchSize: 300
-    zeebe.broker.exporters.CamundaExporter.args.history.waitPeriodBeforeArchiving: "1m"
+    #zeebe.broker.exporters.elasticsearch.args.index.indexSuffixDatePattern: "yyyy-MM-dd-HH"
+    zeebe.broker.exporters.CamundaExporter: {}
+    zeebe.broker.exporters.rdbms:
+      className: "io.camunda.db.rdbms.exporter.RdbmsExporter"
+      args:
+        flushInterval: PT0.5S
+        queueSize: 4000
+        history:
+          defaultHistoryTTL: PT1M
+          defaultBatchOperationHistoryTTL: PT24H
+          batchOperationCancelProcessInstanceHistoryTTL: PT24H
+          batchOperationMigrateProcessInstanceHistoryTTL: PT240H
+          batchOperationModifyProcessInstanceHistoryTTL: PT24H
+          batchOperationResolveIncidentHistoryTTL: PT24H
+          minHistoryCleanupInterval: PT1S
+          maxHistoryCleanupInterval: PT1H
+          historyCleanupBatchSize: 1000
+    #zeebe.broker.exporters.CamundaExporter.args.history.rolloverInterval: "1h"
+    #zeebe.broker.exporters.CamundaExporter.args.history.rolloverBatchSize: 300
+    #zeebe.broker.exporters.CamundaExporter.args.history.waitPeriodBeforeArchiving: "1m"
     # We moved the archiver configuration under retention at some point, but still need to support the previous
     # versions for now, so the configurations for retention are duplicated
-    zeebe.broker.exporters.CamundaExporter.args.history.retention.enabled: "true"
+    #zeebe.broker.exporters.CamundaExporter.args.history.retention.enabled: "true"
     # 0s causes ILM to move data asap - it is normally the default
     # https://www.elastic.co/guide/en/elasticsearch/reference/current/ilm-index-lifecycle.html#ilm-phase-transitions
-    zeebe.broker.exporters.CamundaExporter.args.history.retention.minimumAge: "0s"
-    zeebe.broker.exporters.CamundaExporter.args.history.retention.policyName: "camunda-retention-policy"
+    #zeebe.broker.exporters.CamundaExporter.args.history.retention.minimumAge: "0s"
+    #zeebe.broker.exporters.CamundaExporter.args.history.retention.policyName: "camunda-retention-policy"
     # Configure a rate limit for all writes, so that we can visualize flow control metrics.
     zeebe.broker.flowControl.write.enabled: "true"
     zeebe.broker.flowControl.write.limit: 4000
@@ -222,6 +257,16 @@ zeebe:
     # RocksDB memory limit setting, limits the overall RocksDB memory usage
     # ZEEBE_BROKER_EXPERIMENTAL_ROCKSDB_MEMORYLIMIT
     zeebe.broker.experimental.rocksdb.memoryLimit: "64MB"
+    camunda.data.secondary-storage.type: "rdbms"
+    camunda.persistent.sessions.enabled: "false"
+    camunda.database.type: "rdbms"
+    camunda.database.url: "jdbc:postgresql://cthiel-rdbms-postgresql:5432/camunda"
+    camunda.database.username: "camunda"
+    camunda.database.password: "camunda"
+
+    camunda.tasklist.database: null
+    camunda.operate.database: null
+    camunda.operate.persistentSessionsEnabled: "false"
 
 camunda-platform:
   identity:
@@ -322,6 +367,12 @@ camunda-platform:
         minimumAge: 1h
     # @param core.env can be used to set extra environment variables in each broker container
     env:
+      - name: "SERVER_SERVLET_CONTEXT_PATH"
+        value: "/"
+      - name: "SERVER_SERVLET_SESSION_COOKIE_NAME"
+        value: "camunda-session"
+      - name: "SPRING_PROFILES_ACTIVE"
+        value: "broker, rdbms, rdbmsPostgres"
       # Enable JSON logging for google cloud stackdriver
       - name: ZEEBE_LOG_APPENDER
         value: Stackdriver
@@ -350,29 +401,7 @@ camunda-platform:
   ## @section Elasticsearch Parameters
   ## @extra elasticsearch
   elasticsearch:
-    master:
-      fullnameOverride: elastic
-      nameOverride: elastic
-      ## @param elasticsearch.master.replicaCount defines number of master-elegible replicas to deploy
-      replicaCount: 3
-      pdb:
-        minAvailable: 2
-      ## @param elasticsearch.master.heapSize
-      heapSize: 3g
-      persistence:
-        ## @param elasticsearch.master.persistence.size
-        size: 128Gi
-        storageClass: "ssd"
-        accessModes: ["ReadWriteOnce"]
-      resources:
-        requests:
-          cpu: 1
-          memory: 3Gi
-        limits:
-          cpu: 2
-          memory: 6Gi
-    extraConfig:
-      logger.org.elasticsearch.deprecation: "OFF"
+    enabled: false
 
   # Change these settings to configure a different way to collect metrics
   prometheusServiceMonitor:
@@ -382,18 +411,4 @@ camunda-platform:
     scrapeInterval: 30s
 
 prometheus-elasticsearch-exporter:
-  es:
-    ## Address (host and port) of the Elasticsearch node we should connect to.
-    ## This could be a local node (localhost:9200, for instance), or the address
-    ## of a remote Elasticsearch server. When basic auth is needed,
-    ## specify as: <proto>://<user>:<password>@<host>:<port>. e.g., http://admin:pass@localhost:9200.
-    ##
-    uri: "http://{{ .Release.Name }}-elasticsearch:9200"
-  serviceMonitor:
-    ## If true, a ServiceMonitor CRD is created for a prometheus operator
-    ## https://github.com/coreos/prometheus-operator
-    ##
-    enabled: true
-    # Labels used by the service monitor, specific to our prometheus installation
-    labels:
-      release: monitoring
+  enabled: false
