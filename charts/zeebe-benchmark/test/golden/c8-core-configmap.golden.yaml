@@ -110,7 +110,7 @@ data:
                 maxDelayBetweenRuns: 60000
                 retention:
                   enabled: true
-                  minimumAge: "1h"
+                  minimumAge: "70m"
                   policyName: "camunda-history-retention-policy"
                   usageMetricsMinimumAge: "730d"
                   usageMetricsPolicyName: "camunda-usage-metrics-retention-policy"
@@ -157,7 +157,7 @@ data:
         url: "http://benchmark-test-elasticsearch:9200"
         retention:
           enabled: true
-          minimumAge: "1h"
+          minimumAge: "70m"
           policyName: "camunda-history-retention-policy"
 
       #
@@ -197,7 +197,7 @@ data:
           gatewayAddress: "camunda:26500"
         archiver:
           ilmEnabled: true
-          ilmMinAgeForDeleteArchivedIndices: 1h
+          ilmMinAgeForDeleteArchivedIndices: 70m
 
       #
       # Camunda Tasklist Configuration.
@@ -241,6 +241,6 @@ data:
           restAddress: "http://camunda:8080"
         archiver:
           ilmEnabled: true
-          ilmMinAgeForDeleteArchivedIndices: 1h
+          ilmMinAgeForDeleteArchivedIndices: 70m
 
   log4j2.xml: |
