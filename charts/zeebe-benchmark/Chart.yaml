@@ -26,4 +26,4 @@ annotations:
     - name: Zeebe Docs
       url: https://docs.camunda.io/docs/components/zeebe/zeebe-overview/
   artifacthub.io/containsSecurityUpdates: "false"
-  artifacthub.io/changes: "- kind: fixed\n  description: \"case sensitivity in CamundaExporter configuration\"\n"
+  artifacthub.io/changes: "- kind: added\n  description: \"change retention to 1h.\"\n- kind: fixed\n  description: \"golden files.\"\n- kind: fixed\n  description: \"change retention to 70m for safety\"\n- kind: fixed\n  description: \"fix golden files.\"\n"
