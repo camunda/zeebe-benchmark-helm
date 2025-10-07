@@ -347,6 +347,14 @@ camunda-platform:
             name: zeebe-config
             key: java-opts
             optional: true
+      - name: ZEEBE_BROKER_DATA_BACKUP_STORE
+        value: gcs
+      - name: ZEEBE_BROKER_DATA_BACKUP_GCS_BUCKETNAME
+        value: zeebe-load-test-backups
+      - name: ZEEBE_BROKER_DATA_BACKUP_GCS_BASEPATH
+        valueFrom:
+          fieldRef:
+            fieldPath: metadata.namespace
 
   ############################################
   ## @section Elasticsearch Parameters
