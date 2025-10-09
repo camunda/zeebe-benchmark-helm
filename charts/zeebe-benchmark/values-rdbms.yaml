@@ -1,0 +1,76 @@
+global:
+  # disable secondary storage on global level. This is needed to survive the helm chart validation for either
+  # elasticsearch or opensearch to be set
+  noSecondaryStorage: true
+
+  # Validation error: When "global.noSecondaryStorage" is enabled, both Elasticsearch and OpenSearch must be disabled
+  elasticsearch:
+    enabled: false
+
+# add a new postgresql instance for orchestration cluster as secondary storage
+orchestration-postgresql:
+  enabled: true
+  auth:
+    postgresPassword: "somepassword"
+    username: camunda
+    password: camunda
+    database: camunda
+  image:
+    # TODO: replace with no legacy image
+    repository: bitnamilegacy/postgresql
+  primary:
+    # default resources for postgres are not sufficient for running Zeebe with default starter/worker benchmark setup
+    resources:
+      requests:
+        cpu: 2000m
+        memory: 512Mi
+      limits:
+        cpu: 2000m
+        memory: 512Mi
+
+# Zeebe configuration to configure Zeebe and Gateway
+zeebe:
+  config:
+    # set only the profile to "broker" to disable all webapps (operate, tasklist, optimize)
+    spring.profiles.active: "broker"
+
+    # This is a hack. Without the Operate configuration somehow an invalid server.servlet object is created, which Spring Boot cannot parse (some ConversionException)
+    # We need to set some random properties here to make it parseable again
+    server.servlet:
+      contextPath: "/"
+      session.cookie.name: "camunda-session"
+
+    # configure the rdbms secondary storage
+    camunda.data.secondary-storage.type: "rdbms"
+    camunda.data.secondary-storage.rdbms:
+      # TODO {{ .Release.Name }} is not templated because the values-rdbms.yaml is not processed by tpl engine
+#      url: "jdbc:postgresql://{{ .Release.Name }}-orchestration-postgresql:5432/camunda"
+      url: "jdbc:postgresql://cthiel-rdbms-orchestration-postgresql:5432/camunda"
+      username: "camunda"
+      password: "camunda"
+
+    # rdbms does not support persistent sessions
+    camunda.persistent.sessions.enabled: false
+
+    # with global.noSecondaryStorage set to true this variable is set to "none" and needs to be overridden here to "rdbms"
+    # Otherwise the legacy-properties-check of the unified configuration will fail
+    camunda.database.type: "rdbms"
+
+    # default setting is to "elasticsearch", but we want to disable it
+    camunda.tasklist.database: null
+    camunda.operate.database: null
+
+    zeebe.broker.exporters: {}
+
+camunda-platform:
+  # use the newest snapshot version for newest unified configuration features
+  image:
+    tag: "8.9.0-SNAPSHOT"
+
+  # disable startup of elastic search pods
+  elasticsearch:
+    enabled: false
+
+# disable prometheus exporter for elasticsearch
+prometheus-elasticsearch-exporter:
+  enabled: false
