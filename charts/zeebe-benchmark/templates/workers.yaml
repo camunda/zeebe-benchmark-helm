@@ -62,7 +62,7 @@ spec:
               value: {{ $worker.logLevel | quote }}
             {{- end }}
             {{- if $.Values.saas.enabled }}
-            - name: ZEEBE_ADDRESS
+            - name: ZEEBE_REST_ADDRESS
               valueFrom:
                 secretKeyRef:
                   name: {{ include "zeebe-benchmark.credentials-name" $ }}
@@ -82,6 +82,23 @@ spec:
                 secretKeyRef:
                   name: {{ include "zeebe-benchmark.credentials-name" $ }}
                   key: authServer
+            - name: ZEEBE_TOKEN_AUDIENCE
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "zeebe-benchmark.credentials-name" $ }}
+                  key: authorizationAudience
+            - name: ZEEBE_AUTH_TYPE
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "zeebe-benchmark.credentials-name" $ }}
+                  key: authType
+            - name: ZEEBE_GRPC_ADDRESS
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "zeebe-benchmark.credentials-name" $ }}
+                  key: zeebeGrpcAddress
+            - name: TLS
+              value: "true"
             {{- end }}
           {{- if $worker.resources }}
           resources:
