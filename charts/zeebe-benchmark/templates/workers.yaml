@@ -97,8 +97,6 @@ spec:
                 secretKeyRef:
                   name: {{ include "zeebe-benchmark.credentials-name" $ }}
                   key: zeebeGrpcAddress
-            - name: TLS
-              value: "true"
             {{- end }}
           {{- if $worker.resources }}
           resources:
