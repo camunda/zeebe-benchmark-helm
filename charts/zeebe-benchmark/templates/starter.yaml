@@ -58,7 +58,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: {{ include "zeebe-benchmark.credentials-name" $ }}
-                  key: zeebeAddress
+                  key: zeebeRestAddress
             - name: ZEEBE_CLIENT_ID
               valueFrom:
                 secretKeyRef:

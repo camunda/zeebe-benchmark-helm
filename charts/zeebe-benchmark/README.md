@@ -90,7 +90,7 @@ helm install PREFIX-saas-load-test zeebe-benchmark/zeebe-benchmark \
   --set saas.enabled=true \
   --set saas.credentials.clientId="$ZEEBE_CLIENT_ID" \
   --set saas.credentials.clientSecret="$ZEEBE_CLIENT_SECRET" \
-  --set saas.credentials.zeebeAddress="$ZEEBE_ADDRESS" \
+  --set saas.credentials.zeebeRestAddress="$ZEEBE_REST_ADDRESS" \
   --set saas.credentials.authServer="$ZEEBE_AUTHORIZATION_SERVER_URL"
 ```
 

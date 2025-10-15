@@ -32,7 +32,7 @@ func TestGoldenCredentials(t *testing.T) {
 				"saas.credentials.clientId":     "clientId",
 				"saas.credentials.clientSecret": "clientSecret",
 				"saas.credentials.authServer":   "authServer",
-				"saas.credentials.zeebeAddress": "zeebeAddress",
+				"saas.credentials.zeebeRestAddress": "zeebeRestAddress",
 			},
 		})
 	}
