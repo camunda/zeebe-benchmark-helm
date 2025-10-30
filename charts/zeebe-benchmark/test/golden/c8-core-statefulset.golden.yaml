@@ -23,7 +23,7 @@ spec:
       app.kubernetes.io/managed-by: Helm
       app.kubernetes.io/part-of: camunda-platform
       app.kubernetes.io/component: zeebe-broker
-  serviceName: camunda
+  serviceName: "camunda"
   updateStrategy:
     type: RollingUpdate
   podManagementPolicy: Parallel
@@ -38,7 +38,7 @@ spec:
         app.kubernetes.io/component: zeebe-broker
         app.kubernetes.io/version: "SNAPSHOT"
       annotations:
-        checksum/config: 537e3048877ed1746df49a8affe5b641d181fd134b20b246da51a0cbd4f3ceaa
+        checksum/config: 5d2e16e7b72ecc7a7ee8dc265a565025f657757de3804b1011e34272138365f4
     spec:
       imagePullSecrets:
         []
@@ -58,7 +58,6 @@ spec:
               type: RuntimeDefault
           command: ["bash", "/usr/local/bin/startup.sh"]
           env:
-            
             - name: LC_ALL
               value: C.UTF-8
             - name: K8S_NAME
@@ -66,11 +65,13 @@ spec:
                 fieldRef:
                   fieldPath: metadata.name
             - name: K8S_SERVICE_NAME
-              value: camunda
+              value: "camunda"
             - name: K8S_NAMESPACE
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.namespace
+
+
             - name: JAVA_TOOL_OPTIONS
               value: "-XX:MaxRAMPercentage=25.0 -XX:+ExitOnOutOfMemoryError -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/usr/local/camunda/data -XX:ErrorFile=/usr/local/camunda/data/zeebe_error%p.log -XX:NativeMemoryTracking=summary -Xlog:gc*:file=/usr/local/camunda/data/gc.log:time:filecount=7,filesize=8M"
             - name: K8S_POD_NAME
@@ -111,7 +112,7 @@ spec:
             - containerPort: 9600
               name: server
             - containerPort: 26500
-              name: gateway
+              name: grpc
           readinessProbe:
             httpGet:
               path: /actuator/health/readiness
@@ -151,7 +152,7 @@ spec:
       volumes:
         - name: config
           configMap:
-            name: camunda-configuration
+            name: camunda-configuration-unified
             defaultMode: 492
         - name: exporters
           emptyDir: {}
@@ -171,19 +172,18 @@ spec:
         seccompProfile:
           type: RuntimeDefault
       nodeSelector:
+
         cloud.google.com/gke-nodepool: n2-standard-4
-# yamllint disable
       affinity:
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
-              matchExpressions:
-              - key: app.kubernetes.io/component
-                operator: In
-                values:
-                - zeebe-broker
-            topologyKey: kubernetes.io/hostname
-# yamllint enable
+            - labelSelector:
+                matchExpressions:
+                  - key: app.kubernetes.io/component
+                    operator: In
+                    values:
+                      - zeebe-broker
+              topologyKey: kubernetes.io/hostname
   volumeClaimTemplates:
     - apiVersion: v1
       kind: PersistentVolumeClaim
