@@ -38,7 +38,7 @@ func TestGoldenCamundaPlatformCoreDefaults(t *testing.T) {
 
 	chartPath, err := filepath.Abs("../")
 	require.NoError(t, err)
-	templateNames := []string{"service", "statefulset", "configmap"}
+	templateNames := []string{"service", "statefulset", "configmap-unified"}
 
 	for _, name := range templateNames {
 		suite.Run(t, &golden.TemplateGoldenTest{
