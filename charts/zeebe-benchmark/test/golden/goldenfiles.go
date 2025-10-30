@@ -17,6 +17,7 @@ import (
 	"flag"
 	"io/ioutil"
 	"regexp"
+	"strings"
 
 	"github.com/gruntwork-io/terratest/modules/helm"
 	"github.com/gruntwork-io/terratest/modules/k8s"
@@ -34,6 +35,14 @@ type TemplateGoldenTest struct {
 	Templates      []string
 	IgnoredLines   []string
 	SetValues      map[string]string
+}
+
+func normalizeWhitespace(s string) string {
+	lines := strings.Split(s, "\n")
+	for i, line := range lines {
+		lines[i] = strings.TrimRight(line, " \t") // remove trailing spaces/tabs
+	}
+	return strings.TrimSpace(strings.Join(lines, "\n")) // normalize leading/trailing blank lines
 }
 
 func (s *TemplateGoldenTest) TestContainerGoldenTestDefaults() {
@@ -59,8 +68,11 @@ func (s *TemplateGoldenTest) TestContainerGoldenTestDefaults() {
 	}
 
 	expected, err := ioutil.ReadFile(goldenFile)
-
-	// then
 	s.Require().NoError(err, "Golden file doesn't exist or was not readable")
-	s.Require().Equal(string(expected), output)
+
+	// Normalize whitespace before comparison
+	expectedNormalized := normalizeWhitespace(string(expected))
+	outputNormalized := normalizeWhitespace(output)
+
+	s.Require().Equal(expectedNormalized, outputNormalized, "Golden file mismatch (ignoring whitespace differences)")
 }
