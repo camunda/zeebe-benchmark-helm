@@ -216,6 +216,15 @@ zeebe:
           minimumAge: "70m" # Deprecated - use camunda.data.secondaryStorage.retention.minimumAge
           policyName: "camunda-retention-policy" # Deprecated - use camunda.data.secondaryStorage.elasticsearch.history.policyName
 
+      data:
+        secondaryStorage:
+          retention:
+            enabled: true
+            minimumAge: "70m"
+          elasticsearch:
+            history:
+              policyName: "camunda-retention-policy"
+
     #Metrics:
     camunda.flags.jfr.metrics: "true"
     # RocksDB memory limit setting, limits the overall RocksDB memory usage
