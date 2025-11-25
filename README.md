@@ -8,7 +8,8 @@
 ######   #######  #        #     #  #######   #####   #     #     #     #######  ######
 ```
 
-> ![Important]
+> [!Important]
+> 
 > This Helm Chart has been deprecated, to set up load tests please make use of:
 >
 > * Camunda Platform Helm chart https://helm.camunda.io/
