@@ -1,3 +1,22 @@
+```sh
+######   #######  ######   ######   #######   #####      #     #######  #######  ######
+#     #  #        #     #  #     #  #        #     #    # #       #     #        #     #
+#     #  #        #     #  #     #  #        #         #   #      #     #        #     #
+#     #  #####    ######   ######   #####    #        #     #     #     #####    #     #
+#     #  #        #        #   #    #        #        #######     #     #        #     #
+#     #  #        #        #    #   #        #     #  #     #     #     #        #     #
+######   #######  #        #     #  #######   #####   #     #     #     #######  ######
+```
+
+> ![Important]
+> This Helm Chart has been deprecated, to set up load tests please make use of:
+>
+> * Camunda Platform Helm chart https://helm.camunda.io/
+> * Load test Helm chart https://camunda.github.io/camunda-load-tests-helm/
+>
+>
+> This chart is no longer maintained and will not receive updates or support.
+
 # Zeebe Benchmark Helm 
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
