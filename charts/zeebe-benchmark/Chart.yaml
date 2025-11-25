@@ -17,9 +17,6 @@ dependencies:
     repository: "https://prometheus-community.github.io/helm-charts"
     version: 6.4.0
     condition: "prometheus-elasticsearch-exporter.enabled"
-maintainers:
-  - name: ChrisKujawa
-    email: christopher.zell@camunda.com
 annotations:
   artifacthub.io/links: |
     - name: Zeebe Repo
