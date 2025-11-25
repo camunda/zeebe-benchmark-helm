@@ -13,7 +13,7 @@ This Helm Chart has been deprecated, to set up load tests please make use of:
  * Load test Helm chart https://camunda.github.io/camunda-load-tests-helm/
 
 
- This chart is no longer maintained and will not receive updates or support.
+This chart is no longer maintained and will not receive updates or support.
 
 # Zeebe Benchmark
 
