@@ -3,6 +3,43 @@ entries:
   zeebe-benchmark:
   - annotations:
       artifacthub.io/changes: |
+        - kind: fixed
+          description: "remove maintainers"
+        - kind: fixed
+          description: "bump cpu limits to 3"
+        - kind: changed
+          description: "mark as deprecated"
+      artifacthub.io/containsSecurityUpdates: "false"
+      artifacthub.io/links: |
+        - name: Zeebe Repo
+          url: https://github.com/camunda/camunda
+        - name: Zeebe Docs
+          url: https://docs.camunda.io/docs/components/zeebe/zeebe-overview/
+    apiVersion: v2
+    appVersion: 8.2.5
+    created: "2025-11-26T10:41:45.762901502Z"
+    dependencies:
+    - condition: camunda-platform.enabled
+      name: camunda-platform
+      repository: https://helm.camunda.io
+      version: 13.0.0-alpha8
+    - condition: prometheus-elasticsearch-exporter.enabled
+      name: prometheus-elasticsearch-exporter
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 6.4.0
+    deprecated: true
+    description: A Helm chart for Zeebe benchmarks
+    digest: afc4a965899235a613cfb8076481c5fefc9e0105f630c06ddd42bd42a530acfc
+    name: zeebe-benchmark
+    sources:
+    - https://github.com/camunda/zeebe-benchmark-helm
+    - https://github.com/camunda/camunda
+    type: application
+    urls:
+    - https://github.com/camunda/zeebe-benchmark-helm/releases/download/zeebe-benchmark-0.3.28/zeebe-benchmark-0.3.28.tgz
+    version: 0.3.28
+  - annotations:
+      artifacthub.io/changes: |
         - kind: added
           description: "change retention to 1h."
         - kind: fixed
@@ -2056,4 +2093,4 @@ entries:
     urls:
     - https://github.com/camunda/zeebe-benchmark-helm/releases/download/zeebe-benchmark-0.1.2/zeebe-benchmark-0.1.2.tgz
     version: 0.1.2
-generated: "2025-09-30T13:36:07.851785536Z"
+generated: "2025-11-26T10:41:45.763127737Z"
